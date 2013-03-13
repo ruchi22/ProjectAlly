@@ -1,7 +1,5 @@
 /app/Config
 /app/tmp
-/app/webroot/cache_css/
-/app/webroot/cache_js/
 /lib/Cake/Console/Templates/skel/tmp/
 /plugins
 /vendors
