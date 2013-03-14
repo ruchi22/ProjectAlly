@@ -17,40 +17,53 @@
 				<?php echo $this->Html->image($proUser['Profile']['userPhoto'], array('class' => 'img-polaroid'));?>
 				<h1><?php echo $proUser['Profile']['userName']; ?></h1><br/>
 				
-				Company 
-				<?php 
+				<table cellpadding="15px">
+				<tr>
+				<td><b>Company</b></td> 
+				<td><?php 
 					echo $proUser['Profile']['companyName']; 
-				?><br/><br/>
-				
-				Email Id
-				<?php 
+				?></td>
+				</tr>
+				<tr>
+				<td><b>Email Id</b></td>
+				<td><?php 
 					echo $proUser['Profile']['inputEmail']; 
-				?><br/><br/>
-				
-				Date Of Birth 
-				<?php 
+				?></td>
+				</tr>
+				<tr>
+				<td><b>Date Of Birth</b></td> 
+				<td><?php 
 					if(isset($proUser['Profile']['userDob'])) 
 							echo $proUser['Profile']['userDob']; 
-				?><br/><br/>
-				
-				Work Email Id
-				<?php 
+				?></td>
+				</tr>
+				<tr>
+				<td><b>Work Email Id</b></td>
+				<td><?php 
 					if(isset($proUser['Profile']['workEmail'])) 
-							echo $proUser['Profile']['workEmail']; ?><br/><br/>
-				
-				Address 
-				<?php 
+							echo $proUser['Profile']['workEmail']; 
+				?></td>
+				</tr>
+				<tr>
+				<td><b>Address</b></td> 
+				<td><?php 
 					if(isset($proUser['Profile']['userAddress'])) 
-							echo $proUser['Profile']['userAddress']; ?><br/><br/>
-				
-				Contacts
-				<?php 
+							echo $proUser['Profile']['userAddress']; 
+				?></td>
+				</tr>
+				<tr>
+				<td><b>Contacts</b></td>
+				<td><?php 
 					if(isset($proUser['Profile']['userMobile'])) 
-							echo $proUser['Profile']['userMobile']; ?><br/>
-				
-				Home
-				<?php	if(isset($proUser['Profile']['userHome'])) 
-								echo $proUser['Profile']['userHome']; ?>
-				<br/> <br/>
+							echo $proUser['Profile']['userMobile']; 
+				?></td>
+				<td>
+				<?php	
+					if(isset($proUser['Profile']['userHome'])){ 
+						echo $proUser['Profile']['userHome'];
+					}	 
+				?></td>
+				</tr>
+				</table>
 			</div>
 		</div>

@@ -39,7 +39,10 @@
 		
 		public function viewProfile($id = null){
 			$this->Profile->id = $id;
-			$this->set('proUser', $this->Profile->find('first', array('conditions' => array('Profile.id' => $id))));
+			if($id==$this->Session->read('id'))
+				$this->redirect(array('controller' => 'Employee', 'action' => 'userProfile'));
+			else
+				$this->set('proUser', $this->Profile->find('first', array('conditions' => array('Profile.id' => $id))));
 		}
 		
 		public function removeUser($id = null) {

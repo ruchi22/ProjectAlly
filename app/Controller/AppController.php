@@ -87,5 +87,18 @@ class AppController extends Controller {
 		$this->Session->destroy();
 		$this->redirect(array('controller' => 'Home', 'action' => 'index'));
 	}
+	
+	public function isSuperAdminLogged(){
+		if($this->Session->read('role')==1)
+			return true;
+		else
+			return false;
+	}
+	public function isAdminLogged(){
+		if($this->Session->read('role')==1)
+			return true;
+		else
+			return false;
+	}
 }
 
