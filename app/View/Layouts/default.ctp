@@ -19,6 +19,7 @@
 <?php echo $this->Html->css('bootstrap.min.css'); ?>
 <?php echo $this->Html->css('bootstrap-responsive.min.css'); ?>
 <?php echo $this->Html->css('style.css'); ?>
+<?php echo $this->Html->css('bootstap-combined-min.css'); ?>
 
 <?php echo $this->Html->script('libs/modernizr-2.5.3-respond-1.1.0.min'); ?>
 

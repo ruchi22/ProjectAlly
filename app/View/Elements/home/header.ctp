@@ -49,9 +49,6 @@
 		<li class="<?php if($act == 'HomePage'){ echo "active"; }?> pull-right">
 			<?php echo $this->Html->link('Home', array('controller' => 'Home', 'action' => 'index'))?>
 		</li>
-
-
-
 		</ul>
-	<hr>
 </div>
+<hr>

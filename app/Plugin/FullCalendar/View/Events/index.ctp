@@ -12,7 +12,7 @@
 ?>
 <div class="events index">
 	<h2><?php __('Events');?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table class="table table-condensed">
 	<tr>
 			<th><?php echo $this->Paginator->sort('event_type_id');?></th>
 			<th><?php echo $this->Paginator->sort('title');?></th>
@@ -20,6 +20,7 @@
 			<th><?php echo $this->Paginator->sort('start');?></th>
             <th><?php echo $this->Paginator->sort('end');?></th>
             <th><?php echo $this->Paginator->sort('all_day');?></th>
+			<th class="actions"></th>
 			<th class="actions"></th>
 	</tr>
 	<?php
@@ -45,6 +46,8 @@
         <td><?php if($event['Event']['all_day'] == 1) { echo "Yes"; } else { echo "No"; } ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $event['Event']['id'])); ?>
+		</td>
+		<td class="actions">
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $event['Event']['id'])); ?>
 		</td>
 	</tr>
@@ -61,6 +64,6 @@
 	<ul>
 		<li><?php echo $this->Html->link(__('New Event', true), array('plugin' => 'full_calendar', 'action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('Manage Event Types', true), array('plugin' => 'full_calendar', 'controller' => 'event_types', 'action' => 'index')); ?> </li>
-		<li><li><?php echo $this->Html->link(__('View Calendar', true), array('plugin' => 'full_calendar', 'controller' => 'full_calendar')); ?></li>
+		<li><?php echo $this->Html->link(__('View Calendar', true), array('plugin' => 'full_calendar', 'controller' => 'full_calendar')); ?></li>
 	</ul>
 </div>

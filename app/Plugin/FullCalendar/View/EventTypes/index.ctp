@@ -12,10 +12,11 @@
 ?>
 <div class="eventTypes index">
 	<h2><?php __('Event Types');?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table class="table table-condensed">
 	<tr>
 			<th><?php echo $this->Paginator->sort('name');?></th>
             <th><?php echo $this->Paginator->sort('color');?></th>
+			<th class="actions"></th>
 			<th class="actions"></th>
 	</tr>
 	<?php
@@ -31,6 +32,8 @@
         <td><?php echo $eventType['EventType']['color']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('plugin' => 'full_calendar', 'action' => 'view', $eventType['EventType']['id'])); ?>
+		</td>
+		<td class="actions">
 			<?php echo $this->Html->link(__('Edit', true), array('plugin' => 'full_calendar', 'action' => 'edit', $eventType['EventType']['id'])); ?>
 		</td>
 	</tr>
@@ -38,16 +41,16 @@
 	</table>
 
 	<div class="paging">
-		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
+		<?php echo $this->Paginator->prev('<< ' . __('Previous', true), array(), null, array('class'=>'disabled'));?>
 	 | 	<?php echo $this->Paginator->numbers();?>
  |
-		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+		<?php echo $this->Paginator->next(__('Next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div>
 </div>
 <div class="actions">
 	<ul>
 		<li><?php echo $this->Html->link(__('New Event Type', true), array('plugin' => 'full_calendar', 'action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('Manage Events', true), array('plugin' => 'full_calendar', 'controller' => 'events', 'action' => 'index')); ?></li>
-        <li><li><?php echo $this->Html->link(__('View Calendar', true), array('plugin' => 'full_calendar', 'controller' => 'full_calendar')); ?></li>
+        <li><?php echo $this->Html->link(__('View Calendar', true), array('plugin' => 'full_calendar', 'controller' => 'full_calendar')); ?></li>
 	</ul>
 </div>
