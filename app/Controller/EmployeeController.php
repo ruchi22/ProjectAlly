@@ -1,7 +1,7 @@
 <?php
 	class EmployeeController extends AppController{
 		public $name = 'Employee';
-		public $helpers = array('Html','Form','Paginator');
+		public $helpers = array('Html','Form');
 		public $components = array('Session');
 		public $uses = array('UserInfo', 'Profile', 'EventType', 'Event');
 
