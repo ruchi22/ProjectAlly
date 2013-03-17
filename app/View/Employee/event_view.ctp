@@ -1,3 +1,4 @@
+//test
 <div class="events view">
 <h2><?php echo __('Event'); ?></h2>
 	<dl class="dl-horizontal"><?php $i = 0; $class = ' class="altrow"';?>
