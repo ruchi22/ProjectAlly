@@ -3,7 +3,7 @@
 	<dl class="dl-horizontal"><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><u><?php echo __('Event Type'); ?></u></dt>
 		<br/>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>><?php echo $this->Html->link($event['EventType']['name'], array('controller' => 'event_types', 'action' => 'view', $event['EventType']['id'])); ?></dd>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>><?php echo $this->Html->link($event['EventType']['name'], array('controller' => 'Employee', 'action' => 'eventtype_view', $event['EventType']['id'])); ?></dd>
 		<br/>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Title'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>><?php echo $event['Event']['title']; ?></dd>

@@ -104,8 +104,8 @@
 	
 	function eventtype_view($id = null) {
 		if(!$id) {
-			$this->Session->setFlash(__('Invalid event type', true));
-			$this->redirect(array('action' => 'index'));
+			$this->Session->setFlash('Invalid event type', 'error');
+			$this->redirect(array('action' => 'eventtype'));
 		}
 		$this->set('eventType', $this->EventType->read(null, $id));
 	}
@@ -115,24 +115,24 @@
 			$this->EventType->create();
 			if ($this->EventType->save($this->data)) {
 				$this->Session->setFlash('The event type has been saved', 'success');
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'eventtype'));
 			} else {
-				$this->Session->setFlash(__('The event type could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The event type could not be saved. Please, try again.', 'error');
 			}
 		}
 	}
 
 	function eventtype_edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid event type', true));
-			$this->redirect(array('action' => 'index'));
+			$this->Session->setFlash('Invalid event type', 'error');
+			$this->redirect(array('action' => 'eventtype'));
 		}
 		if (!empty($this->data)) {
 			if ($this->EventType->save($this->data)) {
-				$this->Session->setFlash(__('The event type has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash('The event type has been saved', 'success');
+				$this->redirect(array('action' => 'eventtype'));
 			} else {
-				$this->Session->setFlash(__('The event type could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The event type could not be saved. Please, try again.', 'error');
 			}
 		}
 		if (empty($this->data)) {
@@ -142,15 +142,15 @@
 
 	function eventtype_delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for event type', true));
-			$this->redirect(array('action'=>'index'));
+			$this->Session->setFlash('Invalid id for event type', 'error');
+			$this->redirect(array('action' => 'eventtype'));
 		}
 		if ($this->EventType->delete($id)) {
-			$this->Session->setFlash(__('Event type deleted', true));
+			$this->Session->setFlash('Event type deleted', 'success');
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('Event type was not deleted', true));
-		$this->redirect(array('action' => 'index'));
+		$this->Session->setFlash('Event type was not deleted', 'error');
+		$this->redirect(array('action' => 'eventtype'));
 	}
 	function event() {
 		$this->Event->recursive = 1;
@@ -159,8 +159,8 @@
 		
 	function event_view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid event', true));
-			$this->redirect(array('action' => 'index'));
+			$this->Session->setFlash('Invalid event', 'error');
+			$this->redirect(array('action' => 'viewCalendar'));
 		}
 		$this->set('event', $this->Event->read(null, $id));
 	}
@@ -169,10 +169,10 @@
 		if (!empty($this->data)) {
 			$this->Event->create();
 			if ($this->Event->save($this->data)) {
-				$this->Session->setFlash(__('The event has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash('The event has been saved', 'success');
+				$this->redirect(array('action' => 'viewCalendar'));
 			} else {
-				$this->Session->setFlash(__('The event could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The event could not be saved. Please, try again.', 'error');
 			}
 		}
 		$this->set('eventTypes', $this->Event->EventType->find('list'));
@@ -180,15 +180,15 @@
 
 	function event_edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid event', true));
-			$this->redirect(array('action' => 'index'));
+			$this->Session->setFlash('Invalid event', 'error');
+			$this->redirect(array('action' => 'viewCalendar'));
 		}
 		if (!empty($this->data)) {
 			if ($this->Event->save($this->data)) {
-				$this->Session->setFlash(__('The event has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash('The event has been saved', 'success');
+				$this->redirect(array('action' => 'viewCalendar'));
 			} else {
-				$this->Session->setFlash(__('The event could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The event could not be saved. Please, try again.', 'error');
 			}
 		}
 		if (empty($this->data)) {
@@ -199,15 +199,15 @@
 
 	function event_delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for event', true));
-			$this->redirect(array('action'=>'index'));
+			$this->Session->setFlash('Invalid id for event', 'error');
+			$this->redirect(array('action'=>'viewCalendar'));
 		}
 		if ($this->Event->delete($id)) {
-			$this->Session->setFlash(__('Event deleted', true));
-			$this->redirect(array('action'=>'index'));
+			$this->Session->setFlash('Event deleted', 'success');
+			$this->redirect(array('action'=>'viewCalendar'));
 		}
-		$this->Session->setFlash(__('Event was not deleted', true));
-		$this->redirect(array('action' => 'index'));
+		$this->Session->setFlash('Event was not deleted', 'error');
+		$this->redirect(array('action' => 'viewCalendar'));
 	}
 
         // The feed action is called from "webroot/js/ready.js" to get the list of events (JSON)
