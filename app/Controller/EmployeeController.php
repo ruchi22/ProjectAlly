@@ -1,4 +1,3 @@
-//test
 <?php
 	class EmployeeController extends AppController{
 		public $name = 'Employee';
@@ -161,7 +160,7 @@
 	function event_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash('Invalid event', 'error');
-			$this->redirect(array('action' => 'viewCalendar'));
+			$this->redirect(array('action' => 'event'));
 		}
 		$this->set('event', $this->Event->read(null, $id));
 	}
@@ -171,7 +170,7 @@
 			$this->Event->create();
 			if ($this->Event->save($this->data)) {
 				$this->Session->setFlash('The event has been saved', 'success');
-				$this->redirect(array('action' => 'viewCalendar'));
+				$this->redirect(array('action' => 'event'));
 			} else {
 				$this->Session->setFlash('The event could not be saved. Please, try again.', 'error');
 			}
@@ -182,12 +181,12 @@
 	function event_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash('Invalid event', 'error');
-			$this->redirect(array('action' => 'viewCalendar'));
+			$this->redirect(array('action' => 'event'));
 		}
 		if (!empty($this->data)) {
 			if ($this->Event->save($this->data)) {
 				$this->Session->setFlash('The event has been saved', 'success');
-				$this->redirect(array('action' => 'viewCalendar'));
+				$this->redirect(array('action' => 'event'));
 			} else {
 				$this->Session->setFlash('The event could not be saved. Please, try again.', 'error');
 			}
@@ -201,14 +200,14 @@
 	function event_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash('Invalid id for event', 'error');
-			$this->redirect(array('action'=>'viewCalendar'));
+			$this->redirect(array('action'=>'event'));
 		}
 		if ($this->Event->delete($id)) {
 			$this->Session->setFlash('Event deleted', 'success');
-			$this->redirect(array('action'=>'viewCalendar'));
+			$this->redirect(array('action'=>'event'));
 		}
 		$this->Session->setFlash('Event was not deleted', 'error');
-		$this->redirect(array('action' => 'viewCalendar'));
+		$this->redirect(array('action' => 'event'));
 	}
 
         // The feed action is called from "webroot/js/ready.js" to get the list of events (JSON)
