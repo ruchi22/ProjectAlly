@@ -11,6 +11,7 @@
 	            <th>All day</th>
 				<th class="actions"></th>
 				<th class="actions"></th>
+				<th class="actions"></th>
 		</tr>
 		<?php
 		$i = 0;
@@ -38,6 +39,9 @@
 	        </td>
 			<td class="actions">
 				<a href="<?php echo $this->Html->url(array('action' => 'event_edit', $event['Event']['id'])); ?>" class="btn"><i class="icon-edit"></i> <strong>Edit</strong></a>
+			</td>
+			<td class="actions">
+				<a href="<?php echo $this->Html->url(array('action' => 'event_delete', $event['Event']['id'])); ?>" class="btn"><i class="icon-remove"></i> <strong>Delete</strong></a>
 			</td>
 		</tr>
 	<?php } ?>

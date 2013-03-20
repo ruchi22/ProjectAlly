@@ -2,11 +2,13 @@
 <?php echo $this->Html->css('bootstrap-datetimepicker.min.css'); ?>
 <div class="row-fluid">
 	<div class="events form well span6">
-	<?php echo $this->Form->create('Event');?>
+	<?php echo $this->Form->create('Leave');?>
 		<fieldset>
-		<legend>Add Event</legend>
+		<legend>Request Leave</legend>
 		<?php
-			echo $this->Form->input('event_type_id');
+			echo $this->Form->input('event_type_id', array('options' => array(
+						'8' => 'Sickday', '4' => 'Leave'
+						)));
 			echo $this->Form->input('profile_id', array('type' => 'hidden', 'value' => $this->Session->read('id')));
 			echo $this->Form->input('title');
 			echo $this->Form->input('details');
@@ -45,13 +47,11 @@
 			</script>
 			<?php 
 			echo $this->Form->input('all_day', array('checked' => 'checked'));
-			echo $this->Form->input('status', array('options' => array(
-						'Scheduled' => 'Scheduled','Confirmed' => 'Confirmed','In Progress' => 'In Progress',
-						'Rescheduled' => 'Rescheduled','Completed' => 'Completed'
-					)
-				)
-			);
-		?>
+			echo $this->Form->input('status1', array('value' => 
+																	'In Progress'
+													)
+									);
+									?>
 		</fieldset>
 	<?php echo $this->Form->end(__('Submit', true));?>
 	</div>

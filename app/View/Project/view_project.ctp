@@ -24,7 +24,7 @@
 				
 				<br/> <br/>
 				<!-- list of users that can be added goes here -->
-				<table class="table table-hover">
+				<table class="table table-hover span8">
 					<caption>Project Staff</caption>
 					<thead>
 						<tr>

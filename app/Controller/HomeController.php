@@ -45,7 +45,7 @@ class HomeController extends AppController {
  *
  * @var array
  */
-	public $uses = array('UserInfo', 'Profile','AddProject');
+	public $uses = array('UserInfo', 'Profile', 'AddProject', 'Event', 'EventType', 'Leave');
 
 /**
  * Displays a view
@@ -84,11 +84,11 @@ class HomeController extends AppController {
 	}
 	
 	public function HomePage() {
-
+		$this->set('leaveRequests', $this->Profile->find('all', array('conditions' => array('Profile.leave_request' => 1))));
 	}
 	
 	public function test() {
-		echo "you successfully registered with projectally....kindly wait till admin approves yours request.";
+		echo "You successfully registered with projectally....kindly wait till admin approves yours request.";
 	}
 	
 	public function message() {
@@ -102,5 +102,19 @@ class HomeController extends AppController {
 	public function listProject() {
 		$this->set(compact('title_for_layout'));
 		$this->set('projects', $this->AddProject->find('all'));
+	}
+	
+	public function approve_request($id = null){
+		$this->Profile->updateAll(array('leave_taken' => 'Profile.leave_taken + 1', 
+										'leave_Request' => '0'), 
+								array('Profile.id' => $id));
+		$this->Leave->updateAll(array('status1' => "'".Confirmed."'"), 
+								array('Leave.profile_id' => $id));
+		$this->redirect(array('controller' => 'Home', 'action' => 'HomePage'));
+	}
+	
+	public function decline_request($id = null){
+		$this->Event->deleteAll(array('Leave.profile_id' => $id));						
+		$this->redirect(array('controller' => 'Home', 'action' => 'HomePage'));
 	}
 }
