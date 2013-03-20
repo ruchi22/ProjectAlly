@@ -35,13 +35,13 @@
 	        <?php } ?>
 	        <td><?php if($event['Event']['all_day'] == 1) { echo "Yes"; } else { echo "No"; } ?>&nbsp;</td>
 			<td class="actions">
-				<a href="<?php echo $this->Html->url(array('action' => 'event_view', $event['Event']['id']));?>" class="btn"><i class="icon-eye-open"></i> <strong>View</strong></a>
+				<a href="<?php echo $this->Html->url(array('action' => 'event_view', $event['Event']['id']));?>" class="btn btn-small"><i class="icon-eye-open"></i> <strong>View</strong></a>
 	        </td>
 			<td class="actions">
-				<a href="<?php echo $this->Html->url(array('action' => 'event_edit', $event['Event']['id'])); ?>" class="btn"><i class="icon-edit"></i> <strong>Edit</strong></a>
+				<a href="<?php echo $this->Html->url(array('action' => 'event_edit', $event['Event']['id'])); ?>" class="btn btn-small"><i class="icon-edit"></i> <strong>Edit</strong></a>
 			</td>
 			<td class="actions">
-				<a href="<?php echo $this->Html->url(array('action' => 'event_delete', $event['Event']['id'])); ?>" class="btn"><i class="icon-remove"></i> <strong>Delete</strong></a>
+				<a href="<?php echo $this->Html->url(array('action' => 'event_delete', $event['Event']['id'])); ?>" class="btn btn-small"><i class="icon-remove"></i> <strong>Delete</strong></a>
 			</td>
 		</tr>
 	<?php } ?>

@@ -45,7 +45,7 @@ class HomeController extends AppController {
  *
  * @var array
  */
-	public $uses = array('UserInfo', 'Profile', 'AddProject', 'Event', 'EventType', 'Leave');
+	public $uses = array('UserInfo', 'Profile', 'AddProject', 'Event', 'EventType');
 
 /**
  * Displays a view
@@ -85,6 +85,7 @@ class HomeController extends AppController {
 	
 	public function HomePage() {
 		$this->set('leaveRequests', $this->Profile->find('all', array('conditions' => array('Profile.leave_request' => 1))));
+		$this->set('leaveDetails', $this->Event->find('all'));
 	}
 	
 	public function test() {
@@ -108,13 +109,14 @@ class HomeController extends AppController {
 		$this->Profile->updateAll(array('leave_taken' => 'Profile.leave_taken + 1', 
 										'leave_Request' => '0'), 
 								array('Profile.id' => $id));
-		$this->Leave->updateAll(array('status1' => "'".Confirmed."'"), 
-								array('Leave.profile_id' => $id));
+		$this->Event->updateAll(array('status' => "'".Approved."'"), 
+								array('Event.profile_id' => $id));
 		$this->redirect(array('controller' => 'Home', 'action' => 'HomePage'));
 	}
 	
 	public function decline_request($id = null){
-		$this->Event->deleteAll(array('Leave.profile_id' => $id));						
+		$this->Event->updateAll(array('status' => "'".Declined."'"), 
+								array('Event.profile_id' => $id));
 		$this->redirect(array('controller' => 'Home', 'action' => 'HomePage'));
 	}
 }
