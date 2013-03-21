@@ -47,7 +47,7 @@
 			</script>
 			<?php 
 			echo $this->Form->input('all_day');
-			echo $this->Form->input('status', array('value' => 'In Progress'));
+			echo $this->Form->input('status', array('value' => 'In Progress','type'=>'hidden'));
 		?>
 		</fieldset>
 	<?php echo $this->Form->end(__('Submit', true));?>

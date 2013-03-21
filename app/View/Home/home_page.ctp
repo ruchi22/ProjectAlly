@@ -2,11 +2,7 @@
 	$role = $this->Session->read('role');
 ?>
 		<div class="row-fluid">
-			<div class="span2">
-				<!-- Sidebar content -->
-				<?php echo $this->element('sidebar/fix_side'); ?>
-			</div>
-			<div class="span10">
+			<div class="span12">
 				<!-- Main content -->
 				<!-- form using cakephp -->
 				<?php
@@ -16,7 +12,6 @@
 				if($role == 1){
 					if($leaveRequests != null){ ?>
 						<table class="table table-hover">
-							<caption>Leave Requests</caption>
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -46,13 +41,16 @@
 											echo '<td>';
 											echo $detail['Event']['details'];
 											echo '</td>';
+											$difference = abs(strtotime($detail['Event']['start']) - strtotime($detail['Event']['end']));
+											$days = round((($difference/60)/60)/24,0);
 											?>
 											<td class="actions">
-												<a href="<?php echo $this->Html->url(array('action' => 'approve_request', $request['Profile']['id']));?>" class="btn btn-small"><i class="icon-ok"></i> <strong>Approve</strong></a>
+												<a href="<?php echo $this->Html->url(array('action' => 'approve_request', $detail['Event']['id'], $request['Profile']['id'], $days));?>" class="btn btn-small"><i class="icon-ok"></i> <strong>Approve</strong></a>
 									        </td>
 											<td class="actions">
-												<a href="<?php echo $this->Html->url(array('action' => 'decline_request', $request['Profile']['id'])); ?>" class="btn btn-small"><i class="icon-remove"></i> <strong>Decline</strong></a>
+												<a href="<?php echo $this->Html->url(array('action' => 'decline_request', $detail['Event']['id'], $request['Profile']['id'])); ?>" class="btn btn-small"><i class="icon-remove"></i> <strong>Decline</strong></a>
 											</td>
+											
 										<?php 
 										echo '</tr>';
 										}

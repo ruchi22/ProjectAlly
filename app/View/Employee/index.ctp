@@ -6,10 +6,6 @@
 	
 ?>
 		<div class="row-fluid">
-			<div class="span2">
-				<!-- Sidebar content -->
-				<?php echo $this->element('sidebar/fix_side'); ?>
-			</div>
 			<div class="span10">
 				<!-- Main content -->
 				<!-- form using cakephp -->
@@ -27,23 +23,30 @@
 				<?php 
 				if($this->Session->read('role') != 1){
 					$leave_in_percentage = (100 * $currentUser['Profile']['leave_taken'])/21;
-				?>						
-				<div class="span6">
-					<strong>Time off's used in %</strong><span class="pull-right"><?php echo ceil($leave_in_percentage) ?>%</span>
-				  	<div class="progress progress-warning active">
-				    	<div class="bar" style="width: <?php echo $leave_in_percentage ?>%"></div>
+				
+					?>						
+					<div class="span6">
+						<strong>Time off's used in %</strong><span class="pull-right"><?php echo ceil($leave_in_percentage) ?>%</span>
+					  	<div class="progress progress-warning active">
+					    	<div class="bar" style="width: <?php echo $leave_in_percentage ?>%"></div>
+						</div>
+					  	<p>
+							<?php
+							if($leave_in_percentage != 100)
+								echo $this->Html->link('Request Time off',array('controller' => 'Employee', 'action' => 'leave_add'), array('class' => 'btn btn-large pull-right'));
+							else{?>
+								<div class="alert">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Warning!</strong> You have taken maximum number of leaves allowed..!
+								</div>	
+								<?php }?>
+					  	</p>
 					</div>
-				  	<p>
-						<?php
-							echo $this->Html->link('Request Time off',array('controller' => 'Employee', 'action' => 'leave_add'), array('class' => 'btn btn-large pull-right'));
-						?>
-				  	</p>
-				</div>	
 				<?php 
+				
 				if($leaveStatus != null){ 
 				?>
-					<table class="table table-hover">
-						<caption>Leave Requests</caption>
+					<table class="table table-hover span9">
 						<thead>
 							<tr>
 								<th>Name</th>
@@ -54,7 +57,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach($leaveStatus as $leave){ 
+				<?php foreach($leaveStatus as $leave){ ?>
+							<?php 
 							echo '<tr>';
 								echo '<td>';
 								echo $leave['Event']['title'];	

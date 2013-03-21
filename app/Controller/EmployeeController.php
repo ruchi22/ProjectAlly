@@ -182,7 +182,7 @@
 	function leave_add() {
 		if (!empty($this->data)) {
 			$this->Event->create();
-			$this->Profile->updateAll(array('leave_request' => '1'), array('Profile.id' => $this->Session->read('id')));
+			$this->Profile->updateAll(array('leave_request' => 'Profile.leave_request + 1'), array('Profile.id' => $this->Session->read('id')));
 			if ($this->Event->save($this->data)) {
 				$this->Session->setFlash('The leave has been successfully requested.', 'success');
 				$this->redirect(array('action' => 'index'));
@@ -243,12 +243,15 @@
 		$this->Session->setFlash('Event was not deleted', 'error');
 		$this->redirect(array('action' => 'index'));
 	}
+	
 	function leave_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash('Invalid id for event', 'error');
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Event->delete($id)) {
+			$this->Profile->updateAll(array('leave_request' => 'Profile.leave_request - 1'), 
+									  array('Profile.id' => $this->Session->read('id')));
 			$this->Session->setFlash('Event deleted', 'success');
 			$this->redirect(array('action'=>'index'));
 		}

@@ -84,7 +84,7 @@ class HomeController extends AppController {
 	}
 	
 	public function HomePage() {
-		$this->set('leaveRequests', $this->Profile->find('all', array('conditions' => array('Profile.leave_request' => 1))));
+		$this->set('leaveRequests', $this->Profile->find('all', array('conditions' => array('Profile.leave_request !=' => 0))));
 		$this->set('leaveDetails', $this->Event->find('all'));
 	}
 	
@@ -105,18 +105,28 @@ class HomeController extends AppController {
 		$this->set('projects', $this->AddProject->find('all'));
 	}
 	
-	public function approve_request($id = null){
-		$this->Profile->updateAll(array('leave_taken' => 'Profile.leave_taken + 1', 
-										'leave_Request' => '0'), 
-								array('Profile.id' => $id));
+	public function approve_request($id = null, $profile_id = null, $days = null){
+		if($days == 0){
+			$this->Profile->updateAll(array('leave_taken' => 'Profile.leave_taken + 0.5', 
+											'leave_request' => 'Profile.leave_request - 1'), 
+									array('Profile.id' => $profile_id));
+			
+		} else{
+			$this->Profile->updateAll(array('leave_taken' => 'Profile.leave_taken +'.$days, 
+											'leave_request' => 'Profile.leave_request - 1'), 
+									array('Profile.id' => $profile_id));
+		}
 		$this->Event->updateAll(array('status' => "'".Approved."'"), 
-								array('Event.profile_id' => $id));
+								array('Event.id' => $id));
 		$this->redirect(array('controller' => 'Home', 'action' => 'HomePage'));
 	}
 	
 	public function decline_request($id = null){
+		$this->Profile->updateAll(array('leave_request' => 'Profile.leave_request - 1'), 
+								array('Profile.id' => $profile_id));
 		$this->Event->updateAll(array('status' => "'".Declined."'"), 
-								array('Event.profile_id' => $id));
+								array('Event.id' => $id));
 		$this->redirect(array('controller' => 'Home', 'action' => 'HomePage'));
 	}
+	
 }
