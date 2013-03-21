@@ -30,7 +30,7 @@
 										if($detail['Event']['status'] == 'In Progress'){
 										echo '<tr>';
 											echo '<td>';
-											echo $request['Profile']['userName'];	
+											echo $this->Html->link($request['Profile']['userName'], array('controller' => 'Employee', 'action' => 'viewProfile', $request['Profile']['id']));
 											echo '</td>';
 											echo '<td>';
 											echo $this->Html->tag('span', 'Pending', array('class' => 'label label-important'));

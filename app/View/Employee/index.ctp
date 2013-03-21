@@ -6,11 +6,11 @@
 	
 ?>
 		<div class="row-fluid">
-			<div class="span10">
+			<div class="span12">
 				<!-- Main content -->
 				<!-- form using cakephp -->
 				<?php 
-					echo $this->Html->link('Profile',array('controller' => 'Employee', 'action' => 'userProfile'),array('class' => 'btn'));
+					echo $this->Html->link('Profile',array('controller' => 'Employee', 'action' => 'userProfile'), array('class' => 'btn'));
 					
 					echo $this->Html->link('Project',array('controller' => 'Project', 'action' => 'listProject'),array('class' => 'btn'));
 					
@@ -46,7 +46,7 @@
 				
 				if($leaveStatus != null){ 
 				?>
-					<table class="table table-hover span9">
+					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th>Name</th>
@@ -89,7 +89,7 @@
 									<td></td>
 									<td></td>
 									<td class="actions">
-										<a href="<?php echo $this->Html->url(array('action' => 'leave_delete', $leave['Event']['id'])); ?>" class="btn btn-small"><i class="icon-remove"></i><strong>Remove</strong></a>
+										<a href="<?php echo $this->Html->url(array('action' => 'leave_remove', $leave['Event']['id'])); ?>" class="btn btn-small"><i class="icon-remove"></i><strong>Remove</strong></a>
 									</td>
 							<?php
 								}
