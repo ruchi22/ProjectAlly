@@ -33,6 +33,12 @@
 			$this->set('proUser', $this->Profile->find('all'));
 		}
 		
+		public function designateAdmin($id = null){
+			$this->Profile->updateAll(array('Profile.userRole' => '2'), array('Profile.id' => $id));
+			$this->Session->setFlash('User had been designated as Administrator', 'success');
+			$this->redirect(array('controller' => 'Employee', 'action' => 'viewProfile', $id));
+		}
+		
 		public function viewProfile($id = null){
 			$this->Profile->id = $id;
 			if($id==$this->Session->read('id'))
@@ -194,6 +200,7 @@
 	}
 	
 	function event_edit($id = null) {
+		$this->set('events', $this->Event->find('first', array('conditions' => array('Event.id' => $id))));
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash('Invalid event', 'error');
 			$this->redirect(array('action' => 'event'));
@@ -213,6 +220,7 @@
 	}
 	
 	function leave_edit($id = null) {
+		$this->set('events', $this->Event->find('first', array('conditions' => array('Event.id' => $id))));
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash('Invalid event', 'error');
 			$this->redirect(array('action' => 'index'));
@@ -252,6 +260,19 @@
 		if ($this->Event->delete($id)) {
 			$this->Profile->updateAll(array('leave_request' => 'Profile.leave_request - 1'), 
 									  array('Profile.id' => $this->Session->read('id')));
+			$this->Session->setFlash('Event deleted', 'success');
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Session->setFlash('Event was not deleted', 'error');
+		$this->redirect(array('action' => 'index'));
+	}
+	
+	function leave_remove($id = null) {
+		if (!$id) {
+			$this->Session->setFlash('Invalid id for event', 'error');
+			$this->redirect(array('action'=>'index'));
+		}
+		if ($this->Event->delete($id)) {
 			$this->Session->setFlash('Event deleted', 'success');
 			$this->redirect(array('action'=>'index'));
 		}
