@@ -4,31 +4,30 @@
 		public $helpers = array('Html','Form');
 		public $components = array('Session');
 		public $uses = array('UserInfo', 'Profile', 'EventType', 'Event');
-
-		/*public function beforeFilter() {
-			//to prevent going back after logout is clicked
-			//$this->disableCache();
-			
-			/*$name = $this->Session->read('name');
-			if (isset($name)) {
-				
-			}
-			else {
-				$this->redirect(array('controller' => 'Home', 'action' => 'index'));
-			}
-		}*/
+		
+		public function beforeFilter(){
+			//TO INDICATE MAX LEAVE THAT IS ALLOWED
+			$max_leave = 21;
+			$this->set(compact('max_leave'));
+			//TO NOTIFY PENDING USER REQUEST
+			$notify = $this->Profile->find('count', array('conditions' => array('Profile.status' => 0)));
+			$this->set(compact('notify'));
+			$this -> set('currentUser', $this->Profile->find('first' ,array('conditions' => 
+																	array('Profile.id' => $this->Session->read('id')))));
+		}
 		
 		public function index() {
 			$title_for_layout = 'Home';
 			$this->set(compact('title_for_layout'));
-
 			$this -> set('users', $this->Profile->find('all' ,array('conditions' => 
 																	array('Profile.id >' => 'Profile.id',
-																	'Profile.status' => '1'))));
+																			'Profile.status' => '1'))));
+			//TO LIST CURRENT LEAVE STATUS
+			$this->set('leaveStatus', $this->Event->find('all' ,array('conditions' => 
+																	array('Event.profile_id' => $this->Session->read('id')))));
+			
 		}
 
-		//new methods
-		
 		public function pendingUsers() {
 			$this->set(compact('title_for_layout'));
 			$this->set('proUser', $this->Profile->find('all'));
@@ -87,19 +86,11 @@
 		public function viewCalendar(){
 			
 		}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	/* CALENDAR SPECIFIC FUNTIONS */
 	function eventtype() {
-		$this->set('eventTypes', $this->EventType->find('all'));
+			$this->EventType->recursive = 0;
+			$this->set('eventTypes', $this->EventType->find('all'));
 	}
 	
 	function eventtype_view($id = null) {
@@ -153,8 +144,10 @@
 		$this->redirect(array('action' => 'eventtype'));
 	}
 	function event() {
-		$this->Event->recursive = 1;
-		$this->set('events', $this->Event->find('all'));
+		if($this->Session->read('role')==1)
+			$this->set('events', $this->Event->find('all'));			
+		else
+			$this->set('events', $this->Event->find('all', array('conditions' => array('profile_id' => $this->Session->read('id')))));
 	}
 		
 	function event_view($id = null) {
@@ -164,7 +157,15 @@
 		}
 		$this->set('event', $this->Event->read(null, $id));
 	}
-
+	
+	function leave_view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash('Invalid event', 'error');
+			$this->redirect(array('action' => 'event'));
+		}
+		$this->set('event', $this->Event->read(null, $id));
+	}
+	
 	function event_add() {
 		if (!empty($this->data)) {
 			$this->Event->create();
@@ -177,7 +178,21 @@
 		}
 		$this->set('eventTypes', $this->Event->EventType->find('list'));
 	}
-
+	
+	function leave_add() {
+		if (!empty($this->data)) {
+			$this->Event->create();
+			$this->Profile->updateAll(array('leave_request' => 'Profile.leave_request + 1'), array('Profile.id' => $this->Session->read('id')));
+			if ($this->Event->save($this->data)) {
+				$this->Session->setFlash('The leave has been successfully requested.', 'success');
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash('The leave could not be saved. Please, try again.', 'error');
+			}
+		}
+		$this->set('eventTypes', $this->Event->EventType->find('list'));
+	}
+	
 	function event_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash('Invalid event', 'error');
@@ -196,21 +211,55 @@
 		}
 		$this->set('eventTypes', $this->Event->EventType->find('list'));
 	}
-
+	
+	function leave_edit($id = null) {
+		if (!$id && empty($this->data)) {
+			$this->Session->setFlash('Invalid event', 'error');
+			$this->redirect(array('action' => 'index'));
+		}
+		if (!empty($this->data)) {
+			if ($this->Event->save($this->data)) {
+				$this->Session->setFlash('The event has been saved', 'success');
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash('The event could not be saved. Please, try again.', 'error');
+			}
+		}
+		if (empty($this->data)) {
+			$this->data = $this->Event->read(null, $id);
+		}
+		$this->set('eventTypes', $this->Event->EventType->find('list'));
+	}
+	
 	function event_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash('Invalid id for event', 'error');
-			$this->redirect(array('action'=>'event'));
+			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Event->delete($id)) {
 			$this->Session->setFlash('Event deleted', 'success');
-			$this->redirect(array('action'=>'event'));
+			$this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash('Event was not deleted', 'error');
-		$this->redirect(array('action' => 'event'));
+		$this->redirect(array('action' => 'index'));
 	}
-
-        // The feed action is called from "webroot/js/ready.js" to get the list of events (JSON)
+	
+	function leave_delete($id = null) {
+		if (!$id) {
+			$this->Session->setFlash('Invalid id for event', 'error');
+			$this->redirect(array('action'=>'index'));
+		}
+		if ($this->Event->delete($id)) {
+			$this->Profile->updateAll(array('leave_request' => 'Profile.leave_request - 1'), 
+									  array('Profile.id' => $this->Session->read('id')));
+			$this->Session->setFlash('Event deleted', 'success');
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Session->setFlash('Event was not deleted', 'error');
+		$this->redirect(array('action' => 'index'));
+	}
+	
+	// The feed action is called from "webroot/js/ready.js" to get the list of events (JSON)
 	function event_feed($id=null) {
 		$this->layout = "ajax";
 		$vars = $this->params['url'];
@@ -246,8 +295,5 @@
 		$this->Event->saveField('end', $vars['end']);
 		$this->Event->saveField('all_day', $vars['allday']);
 	}
-	
-	
-	
 }
 ?>

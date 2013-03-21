@@ -56,7 +56,7 @@
 	<?php echo $this->Form->end(__('Submit', true));?>
 	</div>
 	<div class="actions span6">
-		<ul class="nav nav-tabs nav-stacked span3">
+		<ul class="nav nav-tabs nav-stacked span4">
 			<li><?php echo $this->Html->link('View Event', array('action' => 'event_view', $this->Form->value('Event.id'))); ?></li>
 			<li><?php echo $this->Html->link('Manage Events', array('controller' => 'Employee', 'action' => 'event')); ?></li>
 			<li><?php echo $this->Html->link('Manage Events Types', array('controller' => 'Employee', 'action' => 'eventtype')); ?></li>
