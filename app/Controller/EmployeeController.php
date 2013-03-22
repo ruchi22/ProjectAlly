@@ -294,19 +294,37 @@
 				$allday = false;
 				$end = $event['Event']['end'];
 			}
-			$data[] = array(
-					'id' => $event['Event']['id'],
-					'title'=>$event['Event']['title'],
-					'start'=>$event['Event']['start'],
-					'end' => $end,
-					'allDay' => $allday,
-					'url' => Router::url('/') . 'Employee/event_view/'.$event['Event']['id'],
-					'details' => $event['Event']['details'],
-					'className' => $event['EventType']['color']
-			);
+			if($event['Event']['event_type_id'] == 4 || $event['Event']['event_type_id'] == 8){
+				if($event['Event']['status'] == 'Approved'){
+				$data[] = array(
+						'id' => $event['Event']['id'],
+						'title'=>$event['Event']['title'],
+						'start'=>$event['Event']['start'],
+						'end' => $end,
+						'allDay' => $allday,
+						'url' => Router::url('/') . 'Employee/event_view/'.$event['Event']['id'],
+						'details' => $event['Event']['details'],
+						'className' => $event['EventType']['color']
+				);
+				}else{
+					$data[] = array();
+				}
+			}else{
+				$data[] = array(
+						'id' => $event['Event']['id'],
+						'title'=>$event['Event']['title'],
+						'start'=>$event['Event']['start'],
+						'end' => $end,
+						'allDay' => $allday,
+						'url' => Router::url('/') . 'Employee/event_view/'.$event['Event']['id'],
+						'details' => $event['Event']['details'],
+						'className' => $event['EventType']['color']
+				);
+			}
+			
 		}
 		$this->set("json", json_encode($data));
-			}
+	}
 
         // The update action is called from "webroot/js/ready.js" to update date/time when an event is dragged or resized
 	function event_update() {
