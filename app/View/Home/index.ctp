@@ -15,8 +15,8 @@
 					<legend> Log in to Project<span style="color: #52a8ec"><strong>Ally</strong></span></legend>
 					<?php 
 					echo "<div class=\"control-group\">";
-						echo $this->Form->label('inputEmail', 'Email', array('class' => 'control-label'));
-						echo $this->Form->input('inputEmail',array('label' => false,
+						echo $this->Form->label('input_email', 'Email', array('class' => 'control-label'));
+						echo $this->Form->input('input_email',array('label' => false,
 																	'placeholder' => 'Email',
 																	'div' => array(
 																		'class' => 'controls'
@@ -24,8 +24,8 @@
 																	));
 					echo "</div>";
 					echo "<div class=\"control-group\">";
-						echo $this->Form->label('inputPassword', 'Password', array('class' => 'control-label'));
-						echo $this->Form->input('inputPassword',array('label' => false,
+						echo $this->Form->label('input_password', 'Password', array('class' => 'control-label'));
+						echo $this->Form->input('input_password',array('label' => false,
 																  'placeholder' => 'Password',
 																  'type' => 'password',
 																  'div' => array(
@@ -67,37 +67,37 @@
 					<table>
 					<tr>
 						<td align="right">Name</td>
-						<td><?php echo $this->Form->input('userName',array('label' => false,
+						<td><?php echo $this->Form->input('user_name',array('label' => false,
 																		   'type' => 'text')); ?>
 						</td>
 					</tr>
 					<tr>
 						<td align="right">Company</td>
-						<td><?php echo $this->Form->input('companyName',array('label' => false,
+						<td><?php echo $this->Form->input('company_name',array('label' => false,
 																		   'type' => 'text')); ?>
 						</td>
 					</tr>
 					<tr>
 						<td align="right">Designation</td>
-						<td><?php echo $this->Form->input('userRole',array('label' => false,
+						<td><?php echo $this->Form->input('user_role',array('label' => false,
 																		   'options' => $user_role)); ?>
 						</td>
 					</tr>
 					<tr>
 						<td align="right">Email</td>
-						<td><?php echo $this->Form->input('inputEmail',array('label' => false,
+						<td><?php echo $this->Form->input('input_email',array('label' => false,
 																		   'type' => 'text')); ?>
 						</td>
 					</tr>
 					<tr>
 						<td align="right">Password</td>
-						<td><?php echo $this->Form->input('inputPassword',array('label' => false,
+						<td><?php echo $this->Form->input('input_password',array('label' => false,
 																				'type' => 'password')); ?>
 						</td>
 					</tr>
 					<tr>
 						<td align="right">Confirm Password</td>
-						<td><?php echo $this->Form->input('confirmPassword',array('label' => false,
+						<td><?php echo $this->Form->input('confirm_password',array('label' => false,
 																				'type' => 'password')); ?>
 						</td>
 					</tr>
@@ -116,12 +116,12 @@
 					//requirement.
 					/*echo $this->Form->create('',array('class' => 'form-horizontal'));
 					echo "<div class=\"control-group\">";
-						echo $this->Form->label('inputEmail', 'Email', array('class' => 'control-label'));
-						echo $this->Form->input('inputEmail',$options);
+						echo $this->Form->label('input_email', 'Email', array('class' => 'control-label'));
+						echo $this->Form->input('input_email',$options);
 					echo "</div>";
 					echo "<div class=\"control-group\">";
-						echo $this->Form->label('inputPassword', 'Password', array('class' => 'control-label'));
-						echo $this->Form->input('inputPassword',array('label' => false,
+						echo $this->Form->label('input_password', 'Password', array('class' => 'control-label'));
+						echo $this->Form->input('input_password',array('label' => false,
 																  'placeholder' => 'Password',
 																  'type' => 'password',
 																  'div' => array(
@@ -149,15 +149,15 @@
 				<!-- 
 				<form class="form-horizontal">
 				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">Email</label>
+				    <label class="control-label" for="input_email">Email</label>
 				    <div class="controls">
-				      <input type="text" id="inputEmail" placeholder="Email">
+				      <input type="text" id="input_email" placeholder="Email">
 				    </div>
 				  </div>
 				  <div class="control-group">
-				    <label class="control-label" for="inputPassword">Password</label>
+				    <label class="control-label" for="input_password">Password</label>
 				    <div class="controls">
-				      <input type="password" id="inputPassword" placeholder="Password">
+				      <input type="password" id="input_password" placeholder="Password">
 				    </div>
 				  </div>
 				  <div class="control-group">
