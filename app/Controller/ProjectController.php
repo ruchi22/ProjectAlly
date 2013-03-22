@@ -73,9 +73,22 @@
         }
 
         public function newMilestone() {
+            //responsible user
             $this->set('responsibleuser',$this->Profile->find('list',array(
                                                                      'fields' => array('Profile.user_name'),
                                                                      'conditions' => array('Profile.status'))));
+            //to add new milestone
+            if(!empty($this->data))
+            {
+                if($this->Milestones->save($this->data))
+                {
+                    $this->Session->setFlash('New milestone created successfully.', 'success');
+                    $this->redirect(array('action' => 'newMilestone'));
+                }else
+                {
+                    $this->Session->setFlash('Something went wrong...Please try again', 'error');
+                }
+            }
         }
 
         public function listTickets() {

@@ -9,18 +9,14 @@
         <div class="span5 well">
             <legend>Add New Milestone</legend>
                 <?php
-                echo $this->Form->create('NewMilestone',array('class' => 'form-horizontal', 'url' => array('controller' => 'Project',
+                echo $this->Form->create('Milestones',array('class' => 'form-horizontal', 'url' => array('controller' => 'Project',
                                                                                                            'action' => 'newMilestone')));
                 echo $this->Form->input('title');
                 ?>
 
-<!--                <tr>-->
-<!--                    <td align="right">Due date</td>-->
-<!--                    <td>--><?php //echo $this->Form->input('dueDate', array('label' => false,'id' => false ,'id' => 'datepicker')); ?><!--</td>-->
-<!--                </tr>-->
-                    <div id="datetimepicker1" class="input-append date">
+                <div id="datetimepicker1" class="input-append date">
                         <label>Due Date</label>
-                        <input data-format="yyyy/MM/dd HH:mm:ss" type="text" id="data[Event][start]" name="data[Event][start]"></input>
+                        <input data-format="yyyy/MM/dd hh:mm:ss" type="text" id="data[Milestones][due_date]" name="data[Milestones][due_date]"></input>
                          <span class="add-on">
                           <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                           </i>
@@ -33,16 +29,20 @@
                                     });
                                 });
                             </script>
-                    </div>
-                    <?php
-                        echo $this->Form->input('responsibleUser',array(
+                </div>
+                <?php
+                        echo $this->Form->input('responsible_user',array(
                              'options' => $responsibleuser,
-                             'empty' => '(Select a user)'));
+                             'empty' => '--- Select an user ---'));
+
+                        echo $this->Form->input('planner',array(
+                             'options' => array('none')));
+
                         echo "<span>Description</span><br/>";
                         echo $this->Form->textarea('description');
                         echo $this->Form->submit('Create Milestone',array('class' => 'btn'));
                         echo $this->Form->end();
-                    ?>
+                ?>
         </div>
     </div>
 </div>
