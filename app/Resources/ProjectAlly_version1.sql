@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 22, 2013 at 04:41 PM
--- Server version: 5.5.20
--- PHP Version: 5.3.10
+-- Generation Time: Mar 22, 2013 at 05:25 PM
+-- Server version: 5.5.8
+-- PHP Version: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,11 +26,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `attachments` (
-  `attachment_id` int(5) NOT NULL AUTO_INCREMENT,
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `bug_id` int(5) NOT NULL,
   `attachment` blob NOT NULL,
-  PRIMARY KEY (`attachment_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `attachments`
+--
+
 
 -- --------------------------------------------------------
 
@@ -51,6 +55,11 @@ CREATE TABLE IF NOT EXISTS `bugs_and_features` (
   `attachment` text NOT NULL,
   PRIMARY KEY (`bugs_and_features_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `bugs_and_features`
+--
+
 
 -- --------------------------------------------------------
 
@@ -114,13 +123,18 @@ INSERT INTO `event_types` (`id`, `name`, `color`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `milestones` (
-  `milestone_id` int(5) NOT NULL AUTO_INCREMENT,
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `responsible_user` int(5) NOT NULL,
   `title` varchar(255) NOT NULL,
   `due_date` date NOT NULL,
   `description` text NOT NULL,
-  PRIMARY KEY (`milestone_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `milestones`
+--
+
 
 -- --------------------------------------------------------
 
@@ -129,10 +143,15 @@ CREATE TABLE IF NOT EXISTS `milestones` (
 --
 
 CREATE TABLE IF NOT EXISTS `priority` (
-  `priority_id` int(2) NOT NULL AUTO_INCREMENT,
+  `id` int(2) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
-  PRIMARY KEY (`priority_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `priority`
+--
+
 
 -- --------------------------------------------------------
 
@@ -142,22 +161,22 @@ CREATE TABLE IF NOT EXISTS `priority` (
 
 CREATE TABLE IF NOT EXISTS `profile` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
-  `userName` varchar(255) NOT NULL,
-  `companyName` varchar(255) NOT NULL,
-  `userRole` int(1) NOT NULL,
-  `inputEmail` varchar(255) NOT NULL,
-  `inputPassword` varchar(255) NOT NULL,
-  `confirmPassword` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `company_name` varchar(255) NOT NULL,
+  `user_role` int(1) NOT NULL,
+  `input_email` varchar(255) NOT NULL,
+  `input_password` varchar(255) NOT NULL,
+  `confirm_password` varchar(255) NOT NULL,
   `status` int(1) NOT NULL,
-  `leave_request` int(1) NOT NULL,
+  `leave_request` int(5) NOT NULL,
   `leave_taken` float NOT NULL,
-  `userDob` varchar(15) NOT NULL,
-  `userGender` varchar(10) NOT NULL,
-  `workEmail` varchar(255) NOT NULL,
-  `userAddress` varchar(255) NOT NULL,
-  `userMobile` varchar(255) NOT NULL,
-  `userHome` varchar(255) NOT NULL,
-  `userPhoto` blob NOT NULL,
+  `user_dob` varchar(15) NOT NULL,
+  `user_gender` varchar(10) NOT NULL,
+  `work_email` varchar(255) NOT NULL,
+  `user_address` varchar(255) NOT NULL,
+  `user_mobile` varchar(255) NOT NULL,
+  `user_home` varchar(255) NOT NULL,
+  `user_photo` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
@@ -165,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Dumping data for table `profile`
 --
 
-INSERT INTO `profile` (`id`, `userName`, `companyName`, `userRole`, `inputEmail`, `inputPassword`, `confirmPassword`, `status`, `leave_request`, `leave_taken`, `userDob`, `userGender`, `workEmail`, `userAddress`, `userMobile`, `userHome`, `userPhoto`) VALUES
+INSERT INTO `profile` (`id`, `user_name`, `company_name`, `user_role`, `input_email`, `input_password`, `confirm_password`, `status`, `leave_request`, `leave_taken`, `user_dob`, `user_gender`, `work_email`, `user_address`, `user_mobile`, `user_home`, `user_photo`) VALUES
 (1, 'Hardik Shah', 'Aecor', 1, 'hardik@gmail.com', 'testtest', 'testtest', 1, 0, 0, '', '', '', '', '', '', ''),
 (2, 'Ankur Pandit', 'Aecor', 2, 'ankur@gmail.com', 'testtest', 'testtest', 1, 0, 2, '', '', '', '', '', '', ''),
 (4, 'Aakash', 'Aecor', 2, 'aakash@aecor.com', 'testtest', 'testtest', 1, 0, 1, '', '', '', '', '', '', ''),
@@ -180,9 +199,9 @@ INSERT INTO `profile` (`id`, `userName`, `companyName`, `userRole`, `inputEmail`
 
 CREATE TABLE IF NOT EXISTS `project` (
   `id` int(3) NOT NULL AUTO_INCREMENT,
-  `projectName` varchar(255) NOT NULL,
-  `projectDescription` varchar(255) NOT NULL,
-  `projectMembers` varchar(255) NOT NULL,
+  `project_name` varchar(255) NOT NULL,
+  `project_description` varchar(255) NOT NULL,
+  `project_members` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
@@ -190,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `project` (
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`id`, `projectName`, `projectDescription`, `projectMembers`) VALUES
+INSERT INTO `project` (`id`, `project_name`, `project_description`, `project_members`) VALUES
 (4, 'Project Management Testing', 'this is a sample project created for testing of project management feature', '1,5,2'),
 (5, 'dummy ', 'for testing', '1,4,6');
 
@@ -201,11 +220,12 @@ INSERT INTO `project` (`id`, `projectName`, `projectDescription`, `projectMember
 --
 
 CREATE TABLE IF NOT EXISTS `status` (
-  `status_id` int(2) NOT NULL AUTO_INCREMENT,
+  `id` int(2) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
-  PRIMARY KEY (`status_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Dumping data for table `status`
+--
+
