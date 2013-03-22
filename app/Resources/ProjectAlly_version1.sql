@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 22, 2013 at 05:25 PM
--- Server version: 5.5.8
--- PHP Version: 5.3.5
+-- Generation Time: Mar 22, 2013 at 08:32 PM
+-- Server version: 5.5.20
+-- PHP Version: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -32,11 +33,6 @@ CREATE TABLE IF NOT EXISTS `attachments` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `attachments`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -55,11 +51,6 @@ CREATE TABLE IF NOT EXISTS `bugs_and_features` (
   `attachment` text NOT NULL,
   PRIMARY KEY (`bugs_and_features_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `bugs_and_features`
---
-
 
 -- --------------------------------------------------------
 
@@ -127,14 +118,17 @@ CREATE TABLE IF NOT EXISTS `milestones` (
   `responsible_user` int(5) NOT NULL,
   `title` varchar(255) NOT NULL,
   `due_date` date NOT NULL,
+  `planner` varchar(255) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `milestones`
 --
 
+INSERT INTO `milestones` (`id`, `responsible_user`, `title`, `due_date`, `planner`, `description`) VALUES
+(1, 2, 'testing', '2013-03-28', '0', 'sample desc');
 
 -- --------------------------------------------------------
 
@@ -147,11 +141,6 @@ CREATE TABLE IF NOT EXISTS `priority` (
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `priority`
---
-
 
 -- --------------------------------------------------------
 
@@ -225,7 +214,6 @@ CREATE TABLE IF NOT EXISTS `status` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `status`
---
-
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
