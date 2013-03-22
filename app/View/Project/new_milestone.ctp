@@ -35,10 +35,8 @@
                             </script>
                     </div>
                     <?php
-                        //to generate options for responsible users
-                        $opt = implode('","',$responsibleuser);
                         echo $this->Form->input('responsibleUser',array(
-                             'options' => array('"'.$opt.'"'),
+                             'options' => $responsibleuser,
                              'empty' => '(Select a user)'));
                         echo "<span>Description</span><br/>";
                         echo $this->Form->textarea('description');
