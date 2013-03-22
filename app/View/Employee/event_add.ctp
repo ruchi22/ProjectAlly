@@ -29,7 +29,7 @@
 			</script>
 			<div id="datetimepicker2" class="input-append date">
 	         <label>End</label>		
-			 <input data-format="yyyy/MM/dd hh:mm:ss PP" type="text" id="data[Event][end]" name="data[Event][end]"></input>
+			 <input data-format="yyyy/MM/dd hh:mm:ss PP" type="text" id="data[Event][end]" name="data[Event][end]" />
 			 		<span class="add-on">
 		      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 		      </i>

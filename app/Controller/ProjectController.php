@@ -73,7 +73,9 @@
         }
 
         public function newMilestone() {
-
+            $this->set('responsibleuser',$this->Profile->find('list',array(
+                                                                     'fields' => array('Profile.user_name'),
+                                                                     'conditions' => array('Profile.status'))));
         }
 
         public function listTickets() {
