@@ -1,7 +1,7 @@
 <?php
 	class ProjectController extends AppController {	
 		
-		public $uses = array('AddProject','Profile');
+		public $uses = array('AddProject','Profile','Milestones','BugsAndFeatures');
 		
 		
 		public function listProject() {
@@ -65,5 +65,19 @@
 			}
 			$this->redirect(array('controller' => 'Project', 'action' => 'viewProject', $proj_id));
 		}
+
+
+
+        public function listMilestones() {
+
+        }
+
+        public function newMilestone() {
+
+        }
+
+        public function listTickets() {
+
+        }
 	}
 ?>

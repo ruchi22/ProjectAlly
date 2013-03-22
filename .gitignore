@@ -1,9 +1,7 @@
-/app/tmp/*
+tmp/*
+app/tmp/*
 app/tmp/logs/*
 !empty
 /app/tmp/logs/*
-/lib/Cake/Console/Templates/skel/tmp/
-/build
-/dist
 .DS_Store
-/tags
+error.log

@@ -70,5 +70,15 @@
 						</tbody>
 					</table>
 				</div>
+
 			</div>
+            <?php
+                //small sub menu kind a thing...need to keep it at better place later on
+                echo $this->Html->link('Tickets',array('controller' => 'Project', 'action' => 'listTickets'),
+                                                 array('class' => 'btn'));
+                echo $this->Html->link('Milestones',array('controller' => 'Project', 'action' => 'listMilestones'),
+                                                 array('class' => 'btn'));
+                echo $this->Html->link('Go Back',array('controller' => 'Project', 'action' => 'listProject'),
+                                                 array('class' => 'btn'));
+            ?>
 		</div>
