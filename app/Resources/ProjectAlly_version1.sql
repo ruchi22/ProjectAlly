@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2013 at 05:07 PM
--- Server version: 5.5.8
--- PHP Version: 5.3.5
+-- Generation Time: Mar 22, 2013 at 04:41 PM
+-- Server version: 5.5.20
+-- PHP Version: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,6 +19,38 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `cake`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attachments`
+--
+
+CREATE TABLE IF NOT EXISTS `attachments` (
+  `attachment_id` int(5) NOT NULL AUTO_INCREMENT,
+  `bug_id` int(5) NOT NULL,
+  `attachment` blob NOT NULL,
+  PRIMARY KEY (`attachment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bugs_and_features`
+--
+
+CREATE TABLE IF NOT EXISTS `bugs_and_features` (
+  `bugs_and_features_id` int(5) NOT NULL AUTO_INCREMENT,
+  `creadedby` int(5) NOT NULL,
+  `status` int(5) NOT NULL,
+  `priority` int(5) NOT NULL,
+  `assignedto` int(5) NOT NULL,
+  `milestone` int(5) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` int(5) NOT NULL,
+  `attachment` text NOT NULL,
+  PRIMARY KEY (`bugs_and_features_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -47,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `events` (
 
 INSERT INTO `events` (`id`, `event_type_id`, `profile_id`, `title`, `details`, `start`, `end`, `all_day`, `status`, `active`, `created`, `modified`) VALUES
 (49, 8, 1, 'test nine', 'test nine', '2013-03-23 01:46:13', '2013-03-26 01:46:13', 0, 'In Progress', 1, '2013-03-21', '2013-03-21'),
-(52, 8, 6, 'test eleven', 'test ten ', '2013-03-23 05:30:42', '2013-03-24 05:30:42', 0, 'In Progress', 1, '2013-03-21', '2013-03-21'),
+(52, 8, 6, 'test eleven', 'test ten ', '2013-03-23 05:30:42', '2013-03-24 05:30:42', 0, 'Approved', 1, '2013-03-21', '2013-03-21'),
 (46, 8, 5, 'test one', 'test one', '2013-03-22 12:52:39', '2013-03-23 12:52:39', 1, 'Approved', 1, '2013-03-21', '2013-03-21');
 
 -- --------------------------------------------------------
@@ -73,6 +106,33 @@ INSERT INTO `event_types` (`id`, `name`, `color`) VALUES
 (6, 'Medical', 'Green'),
 (7, 'Emergency', 'Black'),
 (8, 'Sickday', 'Brown');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `milestones`
+--
+
+CREATE TABLE IF NOT EXISTS `milestones` (
+  `milestone_id` int(5) NOT NULL AUTO_INCREMENT,
+  `responsible_user` int(5) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `due_date` date NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`milestone_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `priority`
+--
+
+CREATE TABLE IF NOT EXISTS `priority` (
+  `priority_id` int(2) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL,
+  PRIMARY KEY (`priority_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -110,7 +170,7 @@ INSERT INTO `profile` (`id`, `userName`, `companyName`, `userRole`, `inputEmail`
 (2, 'Ankur Pandit', 'Aecor', 2, 'ankur@gmail.com', 'testtest', 'testtest', 1, 0, 2, '', '', '', '', '', '', ''),
 (4, 'Aakash', 'Aecor', 2, 'aakash@aecor.com', 'testtest', 'testtest', 1, 0, 1, '', '', '', '', '', '', ''),
 (5, 'Ruchi Shah', 'Aecor', 3, 'ruchi@gmail.com', 'testtest', 'testtest', 1, 0, 21, '', '', '', '', '', '', ''),
-(6, 'Payal Shah', 'Aecor', 4, 'payal@gmail.com', 'testtest', 'testtest', 1, 1, 9, '', '', '', '', '', '', '');
+(6, 'Payal Shah', 'Aecor', 4, 'payal@gmail.com', 'testtest', 'testtest', 1, 0, 10, '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -124,13 +184,28 @@ CREATE TABLE IF NOT EXISTS `project` (
   `projectDescription` varchar(255) NOT NULL,
   `projectMembers` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `project`
 --
 
 INSERT INTO `project` (`id`, `projectName`, `projectDescription`, `projectMembers`) VALUES
-(1, 'Sample Project 1', 'This project is created for testing purpose', '2,1'),
-(2, 'ProjectAlly', 'Project and Employee Management Tool', ''),
-(3, 'Sample Project 2', 'Project made for testing', '');
+(4, 'Project Management Testing', 'this is a sample project created for testing of project management feature', '1,5,2'),
+(5, 'dummy ', 'for testing', '1,4,6');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status`
+--
+
+CREATE TABLE IF NOT EXISTS `status` (
+  `status_id` int(2) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL,
+  PRIMARY KEY (`status_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
