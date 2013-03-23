@@ -288,12 +288,13 @@ class UploadComponent extends Component
             clearstatcache();
             if ($uploaded_file && is_uploaded_file($uploaded_file)) {
                 // multipart/formdata uploads (POST method uploads)
-
+				
                 // File information to save on database
                 $data = array(
                     'Upload' => array(
                         'attachment' => $name,
-                        'size' => $size
+                        'size' => $size,
+                		'bugs_and_features_id' => $this->bug_id 
                     )
                 );
 

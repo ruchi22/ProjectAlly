@@ -43,6 +43,9 @@ class AppController extends Controller {
 		$notify = $this->Profile->find('count', array('conditions' => array('Profile.status' => 0)));
 		$this->set(compact('notify'));
 		
+		//TO PASS THE TICKET ID IN UPLOADING SUPPORT DOCUMENTS
+		$this->Upload->bug_id = $this->Session->read('bug_id');
+			
 		//To check whether an user is logged in or not
 		$name = $this->Session->read('name');
 		if (isset($name)) {
