@@ -1,7 +1,7 @@
 <?php
 	class ProjectController extends AppController {	
 		
-		public $uses = array('AddProject','Profile','Milestones','BugsAndFeatures');
+		public $uses = array('AddProject','Profile','Milestone','BugAndFeature');
 		
 		
 		public function listProject() {
@@ -52,13 +52,13 @@
 			//exit;
 			if ($project['AddProject']['projectMembers'] == null)
 			{
-				$this->AddProject->UpdateAll(array('AddProject.projectMembers' => "'$user_id'"),
+				$this->AddProject->UpdateAll(array('AddProject.project_members' => "'$user_id'"),
 											array('AddProject.id' => $proj_id));	
 			}
 			else 
 			{
 				$users_id = $project['AddProject']['projectMembers'] . ',' . $user_id;
-				$this->AddProject->UpdateAll(array('AddProject.projectMembers' => "'$users_id'"),
+				$this->AddProject->UpdateAll(array('AddProject.project_members' => "'$users_id'"),
 											array('AddProject.id' => $proj_id));
 				
 			
@@ -69,7 +69,9 @@
 
 
         public function listMilestones() {
-
+            $this->set('milestones', $this->Milestone->find('all'));
+            $this->set('responsibleuser',$this->Profile->find('all',array(
+                                                                     'conditions' => array('Profile.status'))));
         }
 
         public function newMilestone() {
@@ -80,7 +82,7 @@
             //to add new milestone
             if(!empty($this->data))
             {
-                if($this->Milestones->save($this->data))
+                if($this->Milestone->save($this->data))
                 {
                     $this->Session->setFlash('New milestone created successfully.', 'success');
                     $this->redirect(array('action' => 'newMilestone'));

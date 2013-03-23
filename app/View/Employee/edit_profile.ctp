@@ -28,9 +28,9 @@
 					echo "</div>";
 					
 					echo "<div class=\"control-group\">";
-						echo $this->Form->label('userName', 'Name', array('class' => 'control-label'));
-						echo $this->Form->input('userName', array('label' => false,
-															'value' => $proUser['Profile']['userName']));
+						echo $this->Form->label('user_name', 'Name', array('class' => 'control-label'));
+						echo $this->Form->input('user_name', array('label' => false,
+															'value' => $proUser['Profile']['user_name']));
 					echo "</div>";
 				
 					echo "<div class=\"control-group\">";

@@ -2,7 +2,7 @@
     $role = $this->Session->read('role');
 ?>
 <div class="row-fluid">
-    <div class="span12">
+    <div class="span3">
         <?php
             if ($role==1 || $role==2)
             {
@@ -11,35 +11,52 @@
                 array('class' => 'btn'));
             }
         ?>
-        display to be implemented once milestones are added.
-<!--        <table class="table table-hover well span5">-->
-<!--            <caption>Milestones</caption>-->
-<!--            --><?php
-//                foreach ($projects as $project):
-//            ?>
-<!--            <tr>-->
-<!--                <td>--><?php
-//                    if ($role==1 || $role==2)
-//                        echo $this->Html->link($project['AddProject']['projectName'],
-//                            array('controller' => 'Project', 'action' => 'viewProject', $project['AddProject']['id']));
-//                    else
-//                        echo $project['AddProject']['projectName'];
-//                    ?>
-<!--                </td>-->
-<!--                <td>--><?php //echo $this->Html->link('View Members',array('controller' => 'Project', 'action' => 'viewMembers', $project['AddProject']['id']),array('class' => 'btn btn-info')); ?><!-- </td>-->
-<!--                <td>-->
-<!--                    --><?php
-//                    if ($role==1 || $role==2)
-//                        echo $this->Html->link('Delete',array('controller' => 'Project', 'action' => 'deleteProject', $project['AddProject']['id']),array('class' => 'btn btn-info'));
-//                    ?>
-<!---->
-<!--                </td>-->
-<!--            </tr>-->
-<!--                --><?php
-//            endforeach;
-//
-//            ?>
-<!--            </tbody>-->
-<!--        </table>-->
-    </div>
+	</div>
+	<?php foreach($milestones as $milestone){ ?>
+	<div class="span8">
+ 		<div class="row">
+			<div class="span7">
+				<h4><strong><a href="#"><?php echo $milestone['Milestone']['title']; ?></a></strong></h4>
+			</div>
+			<div class="span2">      
+		     	<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				    Action
+				    <span class="caret"></span>
+				  	</a>
+				  	<ul class="dropdown-menu">
+					    <li><a tabindex="-1" href="#">Mark as Completed</a></li>
+					    <li class="divider"></li>
+					    <li><a tabindex="-1" href="#">Delete</a></li>				  
+				  	</ul>
+				</div>			
+			</div>
+		</div>
+		<div class="row">
+			<div class="span8">      
+		        <p>
+			    	<?php echo $milestone['Milestone']['title']; ?>
+			    </p>
+		    </div>
+		</div>
+	    <div class="row">
+	    	<div class="span8">
+		        <p></p>
+		        <p>
+		       	<?php 
+		       	foreach($responsibleuser as $user){
+		       		if($user['Profile']['id'] == $milestone['Milestone']['responsible_user']){?>
+		        	<i class="icon-user"></i> <b>Responsible User: </b><a href="#"><?php echo $user['Profile']['user_name']?></a> 
+		        <?php
+					 } 
+		       	}
+				?>  	
+		          	| <i class="icon-calendar"></i> <b>Due date: </b> <?php
+					echo $this->Time->format('F jS, Y', $milestone['Milestone']['due_date']); ?>	
+		        </p>
+		        <hr>
+    	  	</div>
+   		 </div>
+	</div>
+	<?php } ?>
 </div>
