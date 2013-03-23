@@ -35,10 +35,10 @@
 							<tr>
 								<td><?php 
 									if ($role==1 || $role==2)
-										echo $this->Html->link($project['AddProject']['projectName'], 
+										echo $this->Html->link($project['AddProject']['project_name'],
 													array('controller' => 'Project', 'action' => 'viewProject', $project['AddProject']['id']));
 									else 
-										echo $project['AddProject']['projectName'];												
+										echo $project['AddProject']['project_name'];
 									?>
 								</td>
 								<td><?php echo $this->Html->link('View Members',array('controller' => 'Project', 'action' => 'viewMembers', $project['AddProject']['id']),array('class' => 'btn btn-info')); ?> </td>
