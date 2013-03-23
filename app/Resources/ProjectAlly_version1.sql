@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 23, 2013 at 05:22 PM
+-- Generation Time: Mar 23, 2013 at 08:58 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `bugs_and_features` (
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `estimate` int(5) NOT NULL,
+  `project_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
@@ -60,9 +61,9 @@ CREATE TABLE IF NOT EXISTS `bugs_and_features` (
 -- Dumping data for table `bugs_and_features`
 --
 
-INSERT INTO `bugs_and_features` (`id`, `reported_by`, `status`, `priority_id`, `assigned_to`, `milestone_id`, `title`, `description`, `estimate`) VALUES
-(10, '1', '3', 2, 5, 1, 'Sample ticket', 'Ticket made for testing...', 3),
-(11, '1', '3', 4, 2, 1, 'Sample ticket 2', 'Ticket for testing 2', 1);
+INSERT INTO `bugs_and_features` (`id`, `reported_by`, `status`, `priority_id`, `assigned_to`, `milestone_id`, `title`, `description`, `estimate`, `project_id`) VALUES
+(10, '1', '3', 2, 5, 1, 'Sample ticket', 'Ticket made for testing...', 3, 4),
+(11, '1', '3', 4, 2, 1, 'Sample ticket 2', 'Ticket for testing 2', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -154,6 +155,7 @@ CREATE TABLE IF NOT EXISTS `milestones` (
   `due_date` date NOT NULL,
   `planner` varchar(255) NOT NULL,
   `description` text NOT NULL,
+  `project_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
@@ -161,9 +163,9 @@ CREATE TABLE IF NOT EXISTS `milestones` (
 -- Dumping data for table `milestones`
 --
 
-INSERT INTO `milestones` (`id`, `responsible_user`, `title`, `due_date`, `planner`, `description`) VALUES
-(1, 2, 'testing', '2013-03-28', '0', 'sample desc'),
-(2, 2, 'Testing 2', '2013-03-29', '0', 'Sample Milestone for testing');
+INSERT INTO `milestones` (`id`, `responsible_user`, `title`, `due_date`, `planner`, `description`, `project_id`) VALUES
+(1, 2, 'testing', '2013-03-28', '0', 'sample desc', 4),
+(2, 2, 'Testing 2', '2013-03-29', '0', 'Sample Milestone for testing', 5);
 
 -- --------------------------------------------------------
 
@@ -277,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `uploads` (
   `size` int(11) NOT NULL,
   `bugs_and_features_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `uploads`
