@@ -9,14 +9,14 @@
         <div class="span5 well">
             <legend>Add New Milestone</legend>
                 <?php
-                echo $this->Form->create('Milestones',array('class' => 'form-horizontal', 'url' => array('controller' => 'Project',
+                echo $this->Form->create('Milestone',array('class' => 'form-horizontal', 'url' => array('controller' => 'Project',
                                                                                                            'action' => 'newMilestone')));
                 echo $this->Form->input('title');
                 ?>
 
                 <div id="datetimepicker1" class="input-append date">
                         <label>Due Date</label>
-                        <input data-format="yyyy/MM/dd hh:mm:ss" type="text" id="data[Milestones][due_date]" name="data[Milestones][due_date]"></input>
+                        <input data-format="yyyy/MM/dd hh:mm:ss" type="text" id="data[Milestone][due_date]" name="data[Milestone][due_date]"></input>
                          <span class="add-on">
                           <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                           </i>
