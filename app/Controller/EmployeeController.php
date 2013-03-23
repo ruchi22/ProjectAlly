@@ -71,19 +71,19 @@
 		}
 		
 		public function updateProfile(){
-			$this->Profile->updateAll(array('Profile.userName' => "'".$this->data['Profile']['userName']."'",
-											'Profile.inputEmail' => "'".$this->data['Profile']['inputEmail']."'",
-											'Profile.userDob' => "'".$this->data['Profile']['userDob']."'", 
-											'Profile.userGender' => "'".$this->data['Profile']['userGender']."'", 
-											'Profile.workEmail' => "'".$this->data['Profile']['workEmail']."'", 
-											'Profile.userAddress' => "'".$this->data['Profile']['userAddress']."'", 
-											'Profile.userMobile' => "'".$this->data['Profile']['userMobile']."'", 
-											'Profile.userPhoto' => "'".$this->data['Profile']['userPhoto']."'", 
-											'Profile.userHome' => "'".$this->data['Profile']['userHome']."'"),
+			$this->Profile->updateAll(array('Profile.user_name' => "'".$this->data['Profile']['user_name']."'",
+											'Profile.input_email' => "'".$this->data['Profile']['input_email']."'",
+											'Profile.user_dob' => "'".$this->data['Profile']['user_dob']."'", 
+											'Profile.user_gender' => "'".$this->data['Profile']['userGender']."'", 
+											'Profile.work_email' => "'".$this->data['Profile']['work_email']."'", 
+											'Profile.user_address' => "'".$this->data['Profile']['user_address']."'", 
+											'Profile.user_mobile' => "'".$this->data['Profile']['user_mobile']."'", 
+											'Profile.user_photo' => "'".$this->data['Profile']['user_photo']."'", 
+											'Profile.user_home' => "'".$this->data['Profile']['user_home']."'"),
 									  array('Profile.id' => $this->Session->read('id')));
 				
-			$this->Profile->updateAll(array('Profile.userName' => "'".$this->data['Profile']['userName']."'",
-											'Profile.inputEmail' => "'".$this->data['Profile']['inputEmail']."'"),
+			$this->Profile->updateAll(array('Profile.user_name' => "'".$this->data['Profile']['user_name']."'",
+											'Profile.input_email' => "'".$this->data['Profile']['input_email']."'"),
 									  array('Profile.id' => $this->Session->read('id')));
 			
 			$this->redirect(array('controller' => 'Employee', 'action' => 'userProfile'));
@@ -294,19 +294,37 @@
 				$allday = false;
 				$end = $event['Event']['end'];
 			}
-			$data[] = array(
-					'id' => $event['Event']['id'],
-					'title'=>$event['Event']['title'],
-					'start'=>$event['Event']['start'],
-					'end' => $end,
-					'allDay' => $allday,
-					'url' => Router::url('/') . 'Employee/event_view/'.$event['Event']['id'],
-					'details' => $event['Event']['details'],
-					'className' => $event['EventType']['color']
-			);
+			if($event['Event']['event_type_id'] == 4 || $event['Event']['event_type_id'] == 8){
+				if($event['Event']['status'] == 'Approved'){
+				$data[] = array(
+						'id' => $event['Event']['id'],
+						'title'=>$event['Event']['title'],
+						'start'=>$event['Event']['start'],
+						'end' => $end,
+						'allDay' => $allday,
+						'url' => Router::url('/') . 'Employee/event_view/'.$event['Event']['id'],
+						'details' => $event['Event']['details'],
+						'className' => $event['EventType']['color']
+				);
+				}else{
+					$data[] = array();
+				}
+			}else{
+				$data[] = array(
+						'id' => $event['Event']['id'],
+						'title'=>$event['Event']['title'],
+						'start'=>$event['Event']['start'],
+						'end' => $end,
+						'allDay' => $allday,
+						'url' => Router::url('/') . 'Employee/event_view/'.$event['Event']['id'],
+						'details' => $event['Event']['details'],
+						'className' => $event['EventType']['color']
+				);
+			}
+			
 		}
 		$this->set("json", json_encode($data));
-			}
+	}
 
         // The update action is called from "webroot/js/ready.js" to update date/time when an event is dragged or resized
 	function event_update() {
