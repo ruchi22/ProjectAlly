@@ -15,7 +15,7 @@
 			?>
 			<div id="datetimepicker1" class="input-append date">
 	         <label>Start</label>		
-			 <input data-format="yyyy/MM/dd HH:mm:ss" type="text" id="data[Event][start]" name="data[Event][start]"></input>
+			 <input data-format="yyyy/MM/dd hh:mm:ss" type="text" id="data[Event][start]" name="data[Event][start]"></input>
 			 <span class="add-on">
 		      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 		      </i>
@@ -31,7 +31,7 @@
 			</script>
 			<div id="datetimepicker2" class="input-append date">
 	         <label>End</label>		
-			 <input data-format="yyyy/MM/dd HH:mm:ss" type="text" id="data[Event][end]" name="data[Event][end]"></input>
+			 <input data-format="yyyy/MM/dd hh:mm:ss" type="text" id="data[Event][end]" name="data[Event][end]"></input>
 			 		<span class="add-on">
 		      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 		      </i>

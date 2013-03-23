@@ -32,8 +32,8 @@ App::uses('Controller', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $components = array('DebugKit.Toolbar', 'Session');
-	var $helpers = array('AssetCompress.AssetCompress');
+	public $components = array('DebugKit.Toolbar', 'Session', 'FileUpload.Upload');
+	var $helpers = array('AssetCompress.AssetCompress', 'FileUpload.UploadForm');
 	
 	public $uses = array('UserInfo', 'Profile', 'AddProject');
 	//Manually defined functions
@@ -53,8 +53,8 @@ class AppController extends Controller {
 	public function authenticate() {
 		//function to authenticate a user
 		$test = $this->UserInfo->Find('first',array('conditions' => 
-												array('UserInfo.inputEmail' => $this->data['UserInfo']['inputEmail'],
-													  'UserInfo.inputPassword' => $this->data['UserInfo']['inputPassword'],
+												array('UserInfo.input_email' => $this->data['UserInfo']['input_email'],
+													  'UserInfo.input_password' => $this->data['UserInfo']['input_password'],
 													  'UserInfo.status' => '1')));
 		
 		echo "<pre>";
@@ -68,8 +68,8 @@ class AppController extends Controller {
 				else 
 				{
 					echo "login successful";
-					$this->Session->write('name',$test['UserInfo']['userName']);
-					$this->Session->write('role',$test['UserInfo']['userRole']);
+					$this->Session->write('name',$test['UserInfo']['user_name']);
+					$this->Session->write('role',$test['UserInfo']['user_role']);
 					$this->Session->write('id',$test['UserInfo']['id']);
 					$this->redirect(array('controller' => 'Home', 'action' => 'HomePage'));
 					exit();

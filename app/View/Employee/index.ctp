@@ -42,8 +42,8 @@
 								<?php }?>
 					  	</p>
 					</div>
+				<div class="span8">
 				<?php 
-				
 				if($leaveStatus != null){ 
 				?>
 					<table class="table table-hover">
@@ -98,7 +98,8 @@
 						</tbody>
 					</table>
 				<?php }
-			}
-			?>
+				}	
+				?>
+				</div>
 			</div>
 		</div>
