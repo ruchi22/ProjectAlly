@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 23, 2013 at 01:22 PM
+-- Generation Time: Mar 23, 2013 at 05:22 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -28,7 +28,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 CREATE TABLE IF NOT EXISTS `attachments` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `bug_id` int(5) NOT NULL,
-  `attachment` blob NOT NULL,
+  `attachment` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -47,27 +47,22 @@ CREATE TABLE IF NOT EXISTS `bugs_and_features` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `reported_by` varchar(255) NOT NULL,
   `status` varchar(50) NOT NULL,
-  `priority` int(5) NOT NULL,
+  `priority_id` int(5) NOT NULL,
   `assigned_to` int(5) NOT NULL,
-  `milestone` int(5) NOT NULL,
+  `milestone_id` int(5) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `estimate` int(5) NOT NULL,
-  `attachment` int(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `bugs_and_features`
 --
 
-INSERT INTO `bugs_and_features` (`id`, `reported_by`, `status`, `priority`, `assigned_to`, `milestone`, `title`, `description`, `estimate`, `attachment`) VALUES
-(3, '0', '0', 2, 2, 1, 'Test', 'test', 3, 0),
-(4, '0', '0', 1, 4, 1, 'Test', 'test', 3, 0),
-(5, '0', '0', 5, 1, 1, 'tes', 'test', 2, 0),
-(6, 'Hardik Shah', 'new', 5, 1, 1, 'tes', 'test', 2, 0),
-(7, 'Hardik Shah', 'new', 5, 1, 1, 'tes', 'test', 2, 0),
-(8, 'Hardik Shah', '3', 1, 5, 1, 'Test', 'test', 3, 0);
+INSERT INTO `bugs_and_features` (`id`, `reported_by`, `status`, `priority_id`, `assigned_to`, `milestone_id`, `title`, `description`, `estimate`) VALUES
+(10, '1', '3', 2, 5, 1, 'Sample ticket', 'Ticket made for testing...', 3),
+(11, '1', '3', 4, 2, 1, 'Sample ticket 2', 'Ticket for testing 2', 1);
 
 -- --------------------------------------------------------
 
@@ -160,14 +155,15 @@ CREATE TABLE IF NOT EXISTS `milestones` (
   `planner` varchar(255) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `milestones`
 --
 
 INSERT INTO `milestones` (`id`, `responsible_user`, `title`, `due_date`, `planner`, `description`) VALUES
-(1, 2, 'testing', '2013-03-28', '0', 'sample desc');
+(1, 2, 'testing', '2013-03-28', '0', 'sample desc'),
+(2, 2, 'Testing 2', '2013-03-29', '0', 'Sample Milestone for testing');
 
 -- --------------------------------------------------------
 
@@ -277,17 +273,13 @@ CREATE TABLE IF NOT EXISTS `status` (
 
 CREATE TABLE IF NOT EXISTS `uploads` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `attachment` varchar(255) NOT NULL,
   `size` int(11) NOT NULL,
+  `bugs_and_features_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `uploads`
 --
 
-INSERT INTO `uploads` (`id`, `name`, `size`) VALUES
-(7, 'Happy BIrthday.png', 222820),
-(8, 'Happy BIrthday.png', 222820),
-(9, 'Happy BIrthday.png', 222820),
-(10, 'Happy BIrthday.png', 222820);

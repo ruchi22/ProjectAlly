@@ -3,7 +3,6 @@
 		
 		public $uses = array('AddProject','Profile','Milestone','BugAndFeature','Priority','Estimate');
 		
-		
 		public function listProject() {
 			$this->set(compact('title_for_layout'));
 			$this->set('projects', $this->AddProject->find('all'));
@@ -133,5 +132,9 @@
                 }
             }
         }
+        
+        public function attachFiles($id = null){
+        	$this->Session->write('bug_id', $id);
+		}
 	}
 ?>
