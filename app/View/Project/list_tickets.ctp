@@ -16,13 +16,11 @@ $role = $this->Session->read('role');
 
     <div class="span8">
     <?php
-    foreach($milestones as $milestone){
-    ?>    
-    	<h3><strong>MILESTONE: <a href="#"><?php echo $milestone['Milestone']['title']; ?></a></strong></h3>
-        	<?php 
-        	foreach($tickets as $ticket){
+    	foreach($tickets as $ticket){
+    		foreach($milestones as $milestone){
             	if($milestone['Milestone']['id']==$ticket['BugAndFeature']['milestone_id']){
         	?>
+        <h3><strong>MILESTONE: <a href="#"><?php echo $milestone['Milestone']['title']; ?></a></strong></h3>
         		<div class="row">
 	                <div class="span7">
 	                    <h4><strong><a href="#"><?php echo $ticket['BugAndFeature']['title']; ?></a></strong></h4>
