@@ -70,8 +70,7 @@
 
         public function listMilestones() {
             $this->set('milestones', $this->Milestone->find('all'));
-            $this->set('responsibleuser',$this->Profile->find('all',array(
-                                                                     'conditions' => array('Profile.status'))));
+            $this->set('responsibleuser',$this->Profile->find('all'));
         }
 
         public function newMilestone() {
@@ -94,7 +93,9 @@
         }
 
         public function listTickets() {
-
+            $this->set('tickets', $this->BugAndFeature->find('all'));
+            $this->set('users',$this->Profile->find('all'));
+            $this->set('milestones', $this->Milestone->find('all'));
         }
 
         public function newTicket() {

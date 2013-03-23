@@ -23,14 +23,20 @@
                     <td><?php echo $this->Form->textarea('description',array('label'=>false)); ?></td>
                 </tr>
                 <?php $reportedby = $this->Session->read('name'); ?>
+                <?php $id_reportedby = $this->Session->read('id'); ?>
                 <tr>
                     <td><label>Reported By</label></td>
                     <td>
                         <?php
-                            echo $this->Form->input('reported_by',array('label' => false,
+                            echo $this->Form->input('Reported By',array('label' => false,
 										                                'readonly' => 'readonly',
 										                                'value' => $reportedby
 										                            	));
+                            echo $this->Form->input('reported_by',array('label' => false,
+                                                                        'type' => 'hidden',
+                                                                        'readonly' => 'readonly',
+                                                                        'value' => $id_reportedby
+                                                                        ));
                         ?>
                     </td>
                 </tr>
@@ -49,7 +55,7 @@
                     <td><label>Priority</label></td>
                     <td>
                         <?php
-                            echo $this->Form->input('priority',array('label'=>false,
+                            echo $this->Form->input('priority_id',array('label'=>false,
 									                                 'options' => $priority,
 									                                 'empty' => '===  Select priority of the bug ==='
 									                                 ));
@@ -71,7 +77,7 @@
                     <td><label>Milestone</label></td>
                     <td>
                         <?php
-                            echo $this->Form->input('milestone',array('label'=>false,
+                            echo $this->Form->input('milestone_id',array('label'=>false,
 									                                'options' => $milestone,
 									                                'empty' => '=== Select a milestone  ==='
 									                            	));
