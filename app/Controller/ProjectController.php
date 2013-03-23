@@ -122,7 +122,7 @@
             //to create a new ticket
             if(!empty($this->data))
             {
-                if($this->BugAndFeature->save($this->data))
+                if($this->BugAndFeature->save($this->data['Ticket']))
                 {
                     $this->Session->setFlash('New ticket created successfully.', 'success');
                     $this->redirect(array('action' => 'newTicket'));

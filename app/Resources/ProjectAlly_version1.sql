@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 23, 2013 at 11:37 AM
--- Server version: 5.5.20
--- PHP Version: 5.3.10
+-- Generation Time: Mar 23, 2013 at 01:22 PM
+-- Server version: 5.5.8
+-- PHP Version: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -33,6 +32,11 @@ CREATE TABLE IF NOT EXISTS `attachments` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `attachments`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -41,8 +45,8 @@ CREATE TABLE IF NOT EXISTS `attachments` (
 
 CREATE TABLE IF NOT EXISTS `bugs_and_features` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
-  `reported_by` int(5) NOT NULL,
-  `status` int(5) NOT NULL,
+  `reported_by` varchar(255) NOT NULL,
+  `status` varchar(50) NOT NULL,
   `priority` int(5) NOT NULL,
   `assigned_to` int(5) NOT NULL,
   `milestone` int(5) NOT NULL,
@@ -51,7 +55,19 @@ CREATE TABLE IF NOT EXISTS `bugs_and_features` (
   `estimate` int(5) NOT NULL,
   `attachment` int(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `bugs_and_features`
+--
+
+INSERT INTO `bugs_and_features` (`id`, `reported_by`, `status`, `priority`, `assigned_to`, `milestone`, `title`, `description`, `estimate`, `attachment`) VALUES
+(3, '0', '0', 2, 2, 1, 'Test', 'test', 3, 0),
+(4, '0', '0', 1, 4, 1, 'Test', 'test', 3, 0),
+(5, '0', '0', 5, 1, 1, 'tes', 'test', 2, 0),
+(6, 'Hardik Shah', 'new', 5, 1, 1, 'tes', 'test', 2, 0),
+(7, 'Hardik Shah', 'new', 5, 1, 1, 'tes', 'test', 2, 0),
+(8, 'Hardik Shah', '3', 1, 5, 1, 'Test', 'test', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -248,6 +264,30 @@ CREATE TABLE IF NOT EXISTS `status` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Dumping data for table `status`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uploads`
+--
+
+CREATE TABLE IF NOT EXISTS `uploads` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `size` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `uploads`
+--
+
+INSERT INTO `uploads` (`id`, `name`, `size`) VALUES
+(7, 'Happy BIrthday.png', 222820),
+(8, 'Happy BIrthday.png', 222820),
+(9, 'Happy BIrthday.png', 222820),
+(10, 'Happy BIrthday.png', 222820);
