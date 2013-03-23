@@ -51,9 +51,12 @@
 						 } 
 			       	}
 					?>  	
-			          	| <i class="icon-calendar"></i> <b>Due date: </b> <?php
+			        | <i class="icon-calendar"></i> <b>Due date: </b> <?php
 						echo $this->Time->format('F jS, Y', $milestone['Milestone']['due_date']); ?>	
-			        </p>
+			        | <i class="icon-eye-open"></i>
+			        	<b>
+			        	<a href="<?php echo $this->Html->url(array('controller' => 'Project', 'action' => 'listTickets', 'milestone' => $milestone['Milestone']['id'])); ?>" >View tickets</a></b>
+					</p>
 			        <hr>
 	    	  	</div>
 	   		 </div>

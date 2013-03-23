@@ -68,8 +68,8 @@
 
 
 
-        public function listMilestones() {
-            $this->set('milestones', $this->Milestone->find('all'));
+        public function listMilestones($proj_id = null) {
+            $this->set('milestones', $this->Milestone->find('all', array('conditions' => array('Milestone.project_id' => $proj_id))));
             $this->set('responsibleuser',$this->Profile->find('all'));
         }
 
@@ -92,12 +92,19 @@
             }
         }
 
-        public function listTickets() {
-            $this->set('tickets', $this->BugAndFeature->find('all'));
+        public function listTickets($proj_id = null) {
+            $this->set('tickets', $this->BugAndFeature->find('all', array('conditions' => array('BugAndFeature.project_id' => $proj_id))));
             $this->set('users',$this->Profile->find('all'));
             $this->set('milestones', $this->Milestone->find('all'));
+            
+            if(isset($this->request->params['named']['milestone'])){
+				$this->set('tickets', $this->BugAndFeature->find('all'));
+	            $this->set('users',$this->Profile->find('all'));
+	            $this->set('milestones', $this->Milestone->find('all', array('conditions' => array('Milestone.id' => $this->request->params['named']['milestone']))));
+        	}
         }
-
+		
+		
         public function newTicket() {
             //fetching the values of priority
             $this->set('priority',$this->Priority->find('list',array(
