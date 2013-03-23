@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 23, 2013 at 09:28 AM
+-- Generation Time: Mar 23, 2013 at 11:37 AM
 -- Server version: 5.5.20
 -- PHP Version: 5.3.10
 
@@ -41,16 +41,39 @@ CREATE TABLE IF NOT EXISTS `attachments` (
 
 CREATE TABLE IF NOT EXISTS `bugs_and_features` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
-  `creadedby` int(5) NOT NULL,
+  `reported_by` int(5) NOT NULL,
   `status` int(5) NOT NULL,
   `priority` int(5) NOT NULL,
-  `assignedto` int(5) NOT NULL,
+  `assigned_to` int(5) NOT NULL,
   `milestone` int(5) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
+  `estimate` int(5) NOT NULL,
   `attachment` int(5) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `estimate`
+--
+
+CREATE TABLE IF NOT EXISTS `estimate` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `estimate`
+--
+
+INSERT INTO `estimate` (`id`, `type`) VALUES
+(1, 'None'),
+(2, 'Small'),
+(3, 'Medium'),
+(4, 'Large');
 
 -- --------------------------------------------------------
 
@@ -140,7 +163,18 @@ CREATE TABLE IF NOT EXISTS `priority` (
   `id` int(2) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `priority`
+--
+
+INSERT INTO `priority` (`id`, `type`) VALUES
+(1, 'Highest'),
+(2, 'High'),
+(3, 'Normal'),
+(4, 'Low'),
+(5, 'Lowest');
 
 -- --------------------------------------------------------
 
