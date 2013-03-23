@@ -94,5 +94,9 @@
         public function listTickets() {
 
         }
+
+        public function newTicket() {
+
+        }
 	}
 ?>

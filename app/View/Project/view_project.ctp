@@ -10,8 +10,8 @@
 				<!-- MAIN CONTENT -->
 				<div class="span12">		
 					<?php //echo $this->Html->image($proUser['Profile']['userPhoto'], array('class' => 'img-polaroid'));?>
-					<h1><?php echo $project['AddProject']['projectName']; ?></h1><br/>
-					<h3><?php echo $project['AddProject']['projectDescription']; ?></h3><br/>
+					<h1><?php echo $project['AddProject']['project_name']; ?></h1><br/>
+					<h3><?php echo $project['AddProject']['project_description']; ?></h3><br/>
 				</div>
 				<br/>	
 				<div class="span3">
@@ -33,7 +33,7 @@
 						</thead>
 						<tbody>
 							<?php
-								$members = $project['AddProject']['projectMembers'];
+								$members = $project['AddProject']['project_members'];
 								$addedmembers = explode(",", $members);
 								foreach ($users as $proUser):
 							?> 
@@ -54,9 +54,9 @@
 										if ($flag == 0)
 										{
 									?>
-									<td> <?php echo $this->Html->link($proUser['Profile']['userName'], 
+									<td> <?php echo $this->Html->link($proUser['Profile']['user_name'],
 																array('controller' => 'Employee', 'action' => 'viewProfile', $proUser['Profile']['id'])); ?> </td>
-									<td> <?php echo $proUser['Profile']['companyName'];?> </td>
+									<td> <?php echo $proUser['Profile']['company_name'];?> </td>
 									<td> <?php echo $this->Html->link('Add User', array('controller' => 'Project', 'action' =>'addMember','user_id' => $proUser['Profile']['id'], 'proj_id' => $project['AddProject']['id'])); ?>
 								    </td>
 								    <?php 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 22, 2013 at 08:32 PM
+-- Generation Time: Mar 23, 2013 at 09:28 AM
 -- Server version: 5.5.20
 -- PHP Version: 5.3.10
 
@@ -40,16 +40,16 @@ CREATE TABLE IF NOT EXISTS `attachments` (
 --
 
 CREATE TABLE IF NOT EXISTS `bugs_and_features` (
-  `bugs_and_features_id` int(5) NOT NULL AUTO_INCREMENT,
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `creadedby` int(5) NOT NULL,
   `status` int(5) NOT NULL,
   `priority` int(5) NOT NULL,
   `assignedto` int(5) NOT NULL,
   `milestone` int(5) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `description` int(5) NOT NULL,
-  `attachment` text NOT NULL,
-  PRIMARY KEY (`bugs_and_features_id`)
+  `description` text NOT NULL,
+  `attachment` int(5) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
