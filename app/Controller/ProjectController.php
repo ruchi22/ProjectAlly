@@ -9,6 +9,9 @@
 		}
 		
 		public function viewProject($id = null) {
+
+            //$project_id = $this->request->params['pass'][0];
+
 			$this->AddProject->id = $id;
 			$this->set('project', $this->AddProject->find('first', array('conditions' => 
 																		array('AddProject.id' => $id))));
@@ -47,8 +50,6 @@
 			$proj_id = $this->params['named']['proj_id'];
 			$project = $this->AddProject->find('first',array('conditions' =>
 															array('AddProject.id' => $proj_id)));
-			//echo $project['AddProject']['projectMembers'];
-			//exit;
 			if ($project['AddProject']['projectMembers'] == null)
 			{
 				$this->AddProject->UpdateAll(array('AddProject.project_members' => "'$user_id'"),
