@@ -95,6 +95,16 @@
                     </td>
                 </tr>
                 <tr>
+                    <td></td>
+                    <td><?php
+                        echo $this->Form->input('project_id',array('label'=>false,
+                            'type' => 'hidden',
+                            'value' => $projectid
+                        ));
+                        ?>
+                    </td>
+                </tr>
+                <tr>
                     <td><?php echo $this->Form->submit('Create Ticket',array('class' => 'btn')); ?></td>
                     <td></td>
                 </tr>
