@@ -46,7 +46,7 @@
 		       	<?php 
 		       	foreach($responsibleuser as $user){
 		       		if($user['Profile']['id'] == $milestone['Milestone']['responsible_user']){?>
-		        	<i class="icon-user"></i> <b>Responsible User: </b><a href="#"><?php echo $user['Profile']['user_name']?></a> 
+		        	<i class="icon-user"></i> <b>Responsible User: </b><a href=""><?php echo $user['Profile']['user_name']?></a>
 		        <?php
 					 } 
 		       	}

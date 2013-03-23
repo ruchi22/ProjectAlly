@@ -32,8 +32,8 @@ App::uses('Controller', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $components = array('DebugKit.Toolbar', 'Session');
-	var $helpers = array('AssetCompress.AssetCompress');
+	public $components = array('DebugKit.Toolbar', 'Session', 'FileUpload.Upload');
+	var $helpers = array('AssetCompress.AssetCompress', 'FileUpload.UploadForm');
 	
 	public $uses = array('UserInfo', 'Profile', 'AddProject');
 	//Manually defined functions
