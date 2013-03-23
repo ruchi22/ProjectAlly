@@ -1,7 +1,7 @@
 <?php
 	class ProjectController extends AppController {	
 		
-		public $uses = array('AddProject','Profile','Milestone','BugAndFeature');
+		public $uses = array('AddProject','Profile','Milestone','BugAndFeature','Priority','Estimate');
 		
 		
 		public function listProject() {
@@ -98,7 +98,39 @@
         }
 
         public function newTicket() {
+            //fetching the values of priority
+            $this->set('priority',$this->Priority->find('list',array(
+                'fields' => array('Priority.type')
+            )));
 
+            //fetching the values for list of users
+            $this->set('assignedto',$this->Profile->find('list',array(
+                'fields' => array('Profile.user_name'),
+                'conditions' => array('Profile.status')
+            )));
+
+            //fetching the values for list of milestones
+            $this->set('milestone',$this->Milestone->find('list',array(
+                'fields' => array('Milestone.title')
+            )));
+
+            //fetching the values pf estimated size
+            $this->set('estimate',$this->Estimate->find('list',array(
+                'fields' => array('Estimate.type')
+            )));
+
+            //to create a new ticket
+            if(!empty($this->data))
+            {
+                if($this->BugAndFeature->save($this->data))
+                {
+                    $this->Session->setFlash('New ticket created successfully.', 'success');
+                    $this->redirect(array('action' => 'newTicket'));
+                }else
+                {
+                    $this->Session->setFlash('Something went wrong...Please try again', 'error');
+                }
+            }
         }
 	}
 ?>
