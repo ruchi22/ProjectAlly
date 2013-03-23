@@ -292,7 +292,7 @@ class UploadComponent extends Component
                 // File information to save on database
                 $data = array(
                     'Upload' => array(
-                        'name' => $name,
+                        'attachment' => $name,
                         'size' => $size
                     )
                 );
