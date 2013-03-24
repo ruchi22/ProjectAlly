@@ -55,7 +55,7 @@ class HomeController extends AppController {
  */
 	
 	public function beforeFilter() {
-		parent::beforeFilter();
+		//parent::beforeFilter();
 		//next two lines are to count the number of pending users
 		$notify = $this->Profile->find('count', array('conditions' => array('Profile.status' => 0)));
 		$this->set(compact('notify'));
