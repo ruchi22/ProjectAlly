@@ -1,0 +1,26 @@
+#ticker {
+	height: 120px;
+	overflow: hidden;
+
+}
+#ticker li {
+	height: 40px;
+}
+
+#ticker1 {
+	height: 120px;
+	overflow: hidden;
+
+}
+#ticker1 li {
+	height: 40px;
+}
+
+#ticker2 {
+	height: 120px;
+	overflow: hidden;
+
+}
+#ticker2 li {
+	height: 40px;
+}
