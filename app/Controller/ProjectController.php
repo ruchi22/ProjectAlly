@@ -1,7 +1,7 @@
 <?php
 	class ProjectController extends AppController {	
 		
-		public $uses = array('AddProject','Profile','Milestone','BugAndFeature','Priority','Estimate');
+		public $uses = array('AddProject','Profile','Milestone','BugAndFeature','Priority','Estimate','Status');
 		
 		public function listProject() {
 			$this->set(compact('title_for_layout'));
@@ -96,6 +96,13 @@
             $this->set('tickets', $this->BugAndFeature->find('all', array('conditions' => array('BugAndFeature.project_id' => $proj_id))));
             $this->set('users',$this->Profile->find('all'));
             $this->set('milestones', $this->Milestone->find('all'));
+            $this->set('assignedto',$this->Profile->find('list',array(
+                'fields' => array('Profile.user_name'),
+                'conditions' => array('Profile.status')
+            )));
+            $this->set('status',$this->Status->find('list',array(
+                'fields' => array('Status.type')
+            )));
             
             if(isset($this->request->params['named']['milestone'])){
 				$this->set('tickets', $this->BugAndFeature->find('all'));
