@@ -101,6 +101,8 @@
 																				'type' => 'password')); ?>
 						</td>
 					</tr>
+						<?php echo $this->Form->input('created',array('type' => 'hidden', 'value' => "CakeTime::format('Y-m-d H:i:s', time())")); ?>
+						<?php echo $this->Form->input('modified',array('type' => 'hidden', 'value' => "CakeTime::format('Y-m-d H:i:s', time())")); ?>
 					<tr>
 						<td></td>
 						<td><?php echo $this->Form->submit('Sign Up',array('class' => 'btn')); ?></td>

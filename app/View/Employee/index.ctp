@@ -11,11 +11,6 @@
 				<!-- form using cakephp -->
 				<?php 
 					echo $this->Html->link('Profile',array('controller' => 'Employee', 'action' => 'userProfile'), array('class' => 'btn'));
-					
-					echo $this->Html->link('Project',array('controller' => 'Project', 'action' => 'listProject'),array('class' => 'btn'));
-					
-					echo $this->Html->link('View Calendar',array('controller' => 'Employee', 'action' => 'viewCalendar'), array('class' => 'btn'));
-						
 				?>
 				<br/>
 				<br/>
