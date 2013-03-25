@@ -59,7 +59,8 @@
 									<td> <?php echo $proUser['Profile']['company_name'];?> </td>
 									<td> <?php echo $this->Html->link('Add User', array('controller' => 'Project', 'action' =>'addMember','user_id' => $proUser['Profile']['id'], 'proj_id' => $project['AddProject']['id'])); ?>
 								    </td>
-								    <?php 
+									
+            					    <?php 
 										}
 									?>
 								</tr>
@@ -67,18 +68,19 @@
 							<?php 
 								endforeach;
 							?>
+							
 						</tbody>
 					</table>
 				</div>
 
 			</div>
-            <?php
+			<?php
                 //small sub menu kind a thing...need to keep it at better place later on
-                echo $this->Html->link('Tickets',array('controller' => 'Project', 'action' => 'listTickets'),
+                echo $this->Html->link('Tickets',array('controller' => 'Project', 'action' => 'listTickets', $project['AddProject']['id']),
                                                  array('class' => 'btn'));
-                echo $this->Html->link('Milestones',array('controller' => 'Project', 'action' => 'listMilestones'),
+                echo $this->Html->link('Milestones',array('controller' => 'Project', 'action' => 'listMilestones', $project['AddProject']['id']),
                                                  array('class' => 'btn'));
                 echo $this->Html->link('Go Back',array('controller' => 'Project', 'action' => 'listProject'),
                                                  array('class' => 'btn'));
-            ?>
+            ?>            
 		</div>

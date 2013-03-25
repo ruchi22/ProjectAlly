@@ -40,6 +40,10 @@
 
                         echo "<span>Description</span><br/>";
                         echo $this->Form->textarea('description');
+                        echo $this->Form->input('project_id',array('label'=>false,
+                            'type' => 'hidden',
+                            'value' => $projectid
+                        ));
                         echo $this->Form->submit('Create Milestone',array('class' => 'btn'));
                         echo $this->Form->end();
                 ?>

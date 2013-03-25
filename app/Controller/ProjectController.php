@@ -3,13 +3,15 @@
 		
 		public $uses = array('AddProject','Profile','Milestone','BugAndFeature','Priority','Estimate');
 		
-		
 		public function listProject() {
 			$this->set(compact('title_for_layout'));
 			$this->set('projects', $this->AddProject->find('all'));
 		}
 		
 		public function viewProject($id = null) {
+
+            //$project_id = $this->request->params['pass'][0];
+
 			$this->AddProject->id = $id;
 			$this->set('project', $this->AddProject->find('first', array('conditions' => 
 																		array('AddProject.id' => $id))));
@@ -48,8 +50,6 @@
 			$proj_id = $this->params['named']['proj_id'];
 			$project = $this->AddProject->find('first',array('conditions' =>
 															array('AddProject.id' => $proj_id)));
-			//echo $project['AddProject']['projectMembers'];
-			//exit;
 			if ($project['AddProject']['projectMembers'] == null)
 			{
 				$this->AddProject->UpdateAll(array('AddProject.project_members' => "'$user_id'"),
@@ -68,10 +68,9 @@
 
 
 
-        public function listMilestones() {
-            $this->set('milestones', $this->Milestone->find('all'));
-            $this->set('responsibleuser',$this->Profile->find('all',array(
-                                                                     'conditions' => array('Profile.status'))));
+        public function listMilestones($proj_id = null) {
+            $this->set('milestones', $this->Milestone->find('all', array('conditions' => array('Milestone.project_id' => $proj_id))));
+            $this->set('responsibleuser',$this->Profile->find('all'));
         }
 
         public function newMilestone() {
@@ -93,10 +92,19 @@
             }
         }
 
-        public function listTickets() {
-
+        public function listTickets($proj_id = null) {
+            $this->set('tickets', $this->BugAndFeature->find('all', array('conditions' => array('BugAndFeature.project_id' => $proj_id))));
+            $this->set('users',$this->Profile->find('all'));
+            $this->set('milestones', $this->Milestone->find('all'));
+            
+            if(isset($this->request->params['named']['milestone'])){
+				$this->set('tickets', $this->BugAndFeature->find('all'));
+	            $this->set('users',$this->Profile->find('all'));
+	            $this->set('milestones', $this->Milestone->find('all', array('conditions' => array('Milestone.id' => $this->request->params['named']['milestone']))));
+        	}
         }
-
+		
+		
         public function newTicket() {
             //fetching the values of priority
             $this->set('priority',$this->Priority->find('list',array(
@@ -132,5 +140,9 @@
                 }
             }
         }
+        
+        public function attachFiles($id = null){
+        	$this->Session->write('bug_id', $id);
+		}
 	}
 ?>

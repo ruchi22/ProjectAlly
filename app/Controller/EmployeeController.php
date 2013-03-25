@@ -6,6 +6,7 @@
 		public $uses = array('UserInfo', 'Profile', 'EventType', 'Event');
 		
 		public function beforeFilter(){
+			parent::beforeFilter();
 			//TO INDICATE MAX LEAVE THAT IS ALLOWED
 			$max_leave = 21;
 			$this->set(compact('max_leave'));
@@ -79,7 +80,8 @@
 											'Profile.user_address' => "'".$this->data['Profile']['user_address']."'", 
 											'Profile.user_mobile' => "'".$this->data['Profile']['user_mobile']."'", 
 											'Profile.user_photo' => "'".$this->data['Profile']['user_photo']."'", 
-											'Profile.user_home' => "'".$this->data['Profile']['user_home']."'"),
+											'Profile.user_home' => "'".$this->data['Profile']['user_home']."'",
+											'Profile.modified' => "'".CakeTime::format('Y-m-d H:i:s', time())."'"),
 									  array('Profile.id' => $this->Session->read('id')));
 				
 			$this->Profile->updateAll(array('Profile.user_name' => "'".$this->data['Profile']['user_name']."'",
