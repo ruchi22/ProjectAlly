@@ -8,7 +8,7 @@ $role = $this->Session->read('role');
         if ($role==1 || $role==2)
         {
             echo $this->Html->link('New Ticket',
-                array('controller' => 'Project', 'action' => 'newTicket'),
+                array('controller' => 'Project', 'action' => 'newTicket', $projectid),
                 array('class' => 'btn'));
         }
         ?>
@@ -18,15 +18,29 @@ $role = $this->Session->read('role');
     <?php
         foreach($milestones as $milestone){
             ?>
-            <h3><strong>MILESTONE: <a href="#"><?php echo $milestone['Milestone']['title']; ?></a></strong></h3>
-            <table class="table table-bordered">
-            <?php
+            <h3><strong>
+            <?php  
+            echo $this->Html->link($milestone['Milestone']['title'], array('controller' => 'Project', 
+               															   'action' => 'viewMilestone', $milestone['Milestone']['id'])); 
+            ?>
+            </strong></h3>
+            <br/>
+            <table class="table table-striped">
+            <thead>
+        			<tr>
+	        			<th>Ticket id</th>
+	        			<th>Title</th>
+	        			<th>Assigned to</th>
+	        			<th>Status</th>
+	        			<th></th>
+	        			<th></th>
+        			</tr>
+        		</thead>
+        	<?php
             foreach($tickets as $ticket){
             	if($milestone['Milestone']['id']==$ticket['BugAndFeature']['milestone_id']){
         	?>
-
-
-                    <tr>
+        			<tr>
                         <td>
                             <?php echo $ticket['BugAndFeature']['id']; ?>
                         </td>
@@ -37,11 +51,16 @@ $role = $this->Session->read('role');
                             <a href="#"><?php echo $assignedto[$ticket['BugAndFeature']['assigned_to']]; ?></a>
                         </td>
                         <td>
-                            <a href="#"><?php echo $status[$ticket['BugAndFeature']['status']]; ?></a>
+                            <?php echo $status[$ticket['BugAndFeature']['status']]; ?>
                         </td>
+						<td class="actions">
+							<a href="<?php echo $this->Html->url(array('action' => 'editTicket', $ticket['BugAndFeature']['id'])); ?>"><i class="icon-edit"></i> <strong>Edit</strong></a>
+						</td>
+			            <td class="actions">
+							<a href="<?php echo $this->Html->url(array('action' => 'deleteTicket', $ticket['BugAndFeature']['id'], $projectid));?>"><i class="icon-remove"></i> <strong>Delete</strong></a>
+				        </td>
                     </tr>
-
-<!--                    <div class="row">-->
+				<!--         <div class="row">-->
 <!--	                <div class="span7">-->
 <!--	                    <h4><strong><a href="#">--><?php //echo $ticket['BugAndFeature']['title']; ?><!--</a></strong></h4>-->
 <!--	                </div>-->
@@ -102,6 +121,6 @@ $role = $this->Session->read('role');
         <?php
     	}
 //   		?>
-<!--        </div>-->
+		</div>
     </div>
 </div>
