@@ -94,7 +94,7 @@
         
         public function deleteMilestone($milestone_id = null, $proj_id = null){
         	$this->Milestone->delete($milestone_id);
-        	$this->redirect(array('controller' => 'Project', 'action' => 'listMilestone', $proj_id));
+        	$this->redirect(array('controller' => 'Project', 'action' => 'listMilestones', $proj_id));
 		}
         
         public function newMilestone($proj_id = null) {
@@ -126,7 +126,7 @@
             $this->set('projectid', $proj_id);
             $this->set('tickets', $this->BugAndFeature->find('all', array('conditions' => array('BugAndFeature.project_id' => $proj_id))));
             $this->set('users',$this->Profile->find('all'));
-            $this->set('milestones', $this->Milestone->find('all'));
+            $this->set('milestones', $this->Milestone->find('all', array('conditions' => array('Milestone.project_id' => $proj_id))));
             $this->set('assignedto',$this->Profile->find('list',array(
                 'fields' => array('Profile.user_name'),
                 'conditions' => array('Profile.status')
@@ -144,7 +144,7 @@
 		
         
 		public function deleteTicket($ticket_id = null, $proj_id = null){
-        	$this->Milestone->delete($ticket_id);
+        	$this->BugAndFeature->delete($ticket_id);
         	$this->redirect(array('controller' => 'Project', 'action' => 'listTickets', $proj_id));
 		}
 	

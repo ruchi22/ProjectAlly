@@ -4,11 +4,9 @@
 	<div class="events form well span6">
 	<?php echo $this->Form->create('Event');?>
 		<fieldset>
-		<legend>Request Leave</legend>
+		<legend>Add Event</legend>
 		<?php
-			echo $this->Form->input('event_type_id', array('options' => array(
-						'8' => 'Sickday', '4' => 'Leave'
-						)));
+			echo $this->Form->input('event_type_id');
 			echo $this->Form->input('profile_id', array('type' => 'hidden', 'value' => $this->Session->read('id')));
 			echo $this->Form->input('title');
 			echo $this->Form->input('details');
@@ -31,7 +29,7 @@
 			</script>
 			<div id="datetimepicker2" class="input-append date">
 	         <label>End</label>		
-			 <input data-format="yyyy/MM/dd hh:mm:ss" type="text" id="data[Event][end]" name="data[Event][end]"></input>
+			 <input data-format="yyyy/MM/dd hh:mm:ss" type="text" id="data[Event][end]" name="data[Event][end]" />
 			 		<span class="add-on">
 		      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 		      </i>
@@ -47,14 +45,20 @@
 			</script>
 			<?php 
 			echo $this->Form->input('all_day', array('checked' => 'checked'));
-			echo $this->Form->input('status', array('value' => 'In Progress', 'type' => 'hidden'));
-			?>
+			echo $this->Form->input('status', array('options' => array(
+						'Scheduled' => 'Scheduled','Confirmed' => 'Confirmed','In Progress' => 'In Progress',
+						'Rescheduled' => 'Rescheduled','Completed' => 'Completed'
+					)
+				)
+			);
+		?>
 		</fieldset>
-	<?php echo $this->Form->end('Submit', true);?>
+	<?php echo $this->Form->end(__('Submit', true));?>
 	</div>
 	<div class="actions span6">
 		<ul class="nav nav-tabs nav-stacked span4">
-			<li><?php echo $this->Html->link('Manage Events', array('controller' => 'Employee', 'action' => 'event')); ?></li>
+			<li><?php echo $this->Html->link('Manage Events', array('action' => 'event')); ?></li>
+			<li><?php echo $this->Html->link('Manage Events Types', array('action' => 'eventtype')); ?></li>
 		</ul>
 	</div>
 </div>
