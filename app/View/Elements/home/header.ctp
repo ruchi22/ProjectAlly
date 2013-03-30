@@ -1,4 +1,7 @@
-<?php $act = $this->request->params['action']; ?>
+<?php
+    $act = $this->request->params['action'];
+    $cont = $this->request->params['controller'];
+?>
 <div class="header">
     <h1>Project<span style="color: #52a8ec"><strong>Ally</strong></span></h1>
     <ul class="nav nav-pills">
@@ -41,20 +44,16 @@
             //below links will be showed only if the user is logged in
             ?>
 
-            <li class="<?php if($act == 'index'){ echo "active"; }?> pull-right">
+            <li class="<?php if($cont == 'Employee'){ echo "active"; }?> pull-right">
                 <?php echo $this->Html->link('Employee Management', array('controller' => 'Employee', 'action' => 'index'))?>
             </li>
 
-            <li class="<?php if($act == 'listProject'){ echo "active"; }?> pull-right">
+            <li class="<?php if($cont == 'Project'){ echo "active"; }?> pull-right">
                 <?php echo $this->Html->link('Project Management', array('controller' => 'Project', 'action' => 'listProject'))?>
             </li>
 
-            <li class="<?php if($act == 'viewCalendar'){ echo "active"; }?> pull-right">
+            <li class="<?php if($cont == 'Calendar'){ echo "active"; }?> pull-right">
                 <?php echo $this->Html->link('Calendar', array('controller' => 'Employee', 'action' => 'viewCalendar'))?>
-            </li>
-
-            <li class="<?php if($act == 'projectDoc'){ echo "active"; }?> pull-right">
-                <?php echo $this->Html->link('Project Documentation', array('controller' => 'Project', 'action' => 'projectDoc'))?>
             </li>
 
             <?php
