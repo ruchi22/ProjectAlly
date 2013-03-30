@@ -25,8 +25,8 @@ $role = $this->Session->read('role');
             ?>
             </strong></h3>
             <br/>
-            <table class="table table-striped">
-            <thead>
+            <table class="table table-bordered">
+            	<thead>
         			<tr>
 	        			<th>Ticket id</th>
 	        			<th>Title</th>

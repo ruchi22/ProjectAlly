@@ -12,9 +12,9 @@ echo $this->Html->css('fullcalendar', null, array('inline' => false));
 	<br/>
 	<div class="actions">
 		<ul class="nav nav-tabs nav-stacked span3">
-		    <li><?php echo $this->Html->link('New Event', array('controller' => 'Employee', 'action' => 'event_add')); ?></li>
-			<li><?php echo $this->Html->link('Manage Events', array('controller' => 'Employee', 'action' => 'event')); ?></li>
-			<li><?php echo $this->Html->link('Manage Events Types', array('controller' => 'Employee', 'action' => 'eventtype')); ?></li>
+		    <li><?php echo $this->Html->link('New Event', array('action' => 'event_add')); ?></li>
+			<li><?php echo $this->Html->link('Manage Events', array('action' => 'event')); ?></li>
+			<li><?php echo $this->Html->link('Manage Events Types', array('action' => 'eventtype')); ?></li>
 		</ul>
 	</div>
 </div>
