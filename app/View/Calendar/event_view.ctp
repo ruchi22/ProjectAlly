@@ -4,7 +4,7 @@
 		<dl class="dl-horizontal"><?php $i = 0; $class = ' class="altrow"';?>
 			<dt<?php if ($i % 2 == 0) echo $class;?>><u><?php echo __('Event Type'); ?></u></dt>
 			<br/>
-			<dd<?php if ($i++ % 2 == 0) echo $class;?>><?php echo $this->Html->link($event['EventType']['name'], array('controller' => 'Employee', 'action' => 'eventtype_view', $event['EventType']['id'])); ?></dd>
+			<dd<?php if ($i++ % 2 == 0) echo $class;?>><?php echo $this->Html->link($event['EventType']['name'], array('controller' => 'Calendar', 'action' => 'eventtype_view', $event['EventType']['id'])); ?></dd>
 			<br/>
 			<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Title'); ?></dt>
 			<dd<?php if ($i++ % 2 == 0) echo $class;?>><?php echo $event['Event']['title']; ?></dd>
@@ -33,10 +33,10 @@
 	</div>
 	<div class="actions span6">
 		<ul class="nav nav-tabs nav-stacked span3">
-			<li><?php echo $this->Html->link('Edit Leave', array('action' => 'leave_edit', $event['Event']['id'])); ?> </li>
-			<li><?php echo $this->Html->link('Delete Leave', array('action' => 'leave_delete', $event['Event']['id']), null, sprintf(__('Are you sure you want to delete this %s event?', true), $event['EventType']['name'])); ?> </li>
+			<li><?php echo $this->Html->link('Edit Event', array('action' => 'event_edit', $event['Event']['id'])); ?> </li>
+			<li><?php echo $this->Html->link('Delete Event', array('action' => 'event_delete', $event['Event']['id']), null, sprintf(__('Are you sure you want to delete this %s event?', true), $event['EventType']['name'])); ?> </li>
 			<li><?php echo $this->Html->link('Manage Events', array('action' => 'event')); ?> </li>
-			<li><?php echo $this->Html->link('View Calendar', array('action' => 'viewCalendar')); ?></li>
+			<li><?php echo $this->Html->link('View Calendar', array('action' => 'index')); ?></li>
 		</ul>
 	</div>
 </div>

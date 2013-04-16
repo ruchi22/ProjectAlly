@@ -10,7 +10,7 @@
             <legend>Add New Milestone</legend>
                 <?php
                 echo $this->Form->create('Milestone',array('class' => 'form-horizontal', 'url' => array('controller' => 'Project',
-                                                                                                           'action' => 'newMilestone')));
+                                                                                                           'action' => 'newMilestone', $projectid)));
                 echo $this->Form->input('title');
                 ?>
 
@@ -41,9 +41,9 @@
                         echo "<span>Description</span><br/>";
                         echo $this->Form->textarea('description');
                         echo $this->Form->input('project_id',array('label'=>false,
-                            'type' => 'hidden',
-                            'value' => $projectid
-                        ));
+										                            'type' => 'hidden',
+										                            'value' => $projectid
+                        											));
                         echo $this->Form->submit('Create Milestone',array('class' => 'btn'));
                         echo $this->Form->end();
                 ?>

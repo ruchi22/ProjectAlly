@@ -34,7 +34,7 @@ class HandlerController extends FileUploadAppController {
 		        if (isset($_REQUEST['_method']) && $_REQUEST['_method'] === 'DELETE') {
 		            $this->Upload->delete();
 		        } else {
-		            $this->Upload->post();
+		        	$this->Upload->post();
 		        }
 		        break;
 		    case 'DELETE':

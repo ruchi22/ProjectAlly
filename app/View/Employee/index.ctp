@@ -28,7 +28,7 @@
 					  	<p>
 							<?php
 							if($leave_in_percentage != 100)
-								echo $this->Html->link('Request Time off',array('controller' => 'Employee', 'action' => 'leave_add'), array('class' => 'btn btn-large pull-right'));
+								echo $this->Html->link('Request Time off',array('controller' => 'Calendar', 'action' => 'leave_add'), array('class' => 'btn btn-large pull-right'));
 							else{?>
 								<div class="alert">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -69,13 +69,13 @@
 								if($leave['Event']['status']  == 'In Progress'){
 									?>
 									<td class="actions">
-										<a href="<?php echo $this->Html->url(array('action' => 'leave_view', $leave['Event']['id']));?>" class="btn btn-small"><i class="icon-eye-open"></i> <strong>View</strong></a>
+										<a href="<?php echo $this->Html->url(array('controller' => 'Calendar', 'action' => 'leave_view', $leave['Event']['id']));?>" class="btn btn-small"><i class="icon-eye-open"></i> <strong>View</strong></a>
 							        </td>
 									<td class="actions">
-										<a href="<?php echo $this->Html->url(array('action' => 'leave_edit', $leave['Event']['id'])); ?>" class="btn btn-small"><i class="icon-edit"></i> <strong>Edit</strong></a>
+										<a href="<?php echo $this->Html->url(array('controller' => 'Calendar', 'action' => 'leave_edit', $leave['Event']['id'])); ?>" class="btn btn-small"><i class="icon-edit"></i> <strong>Edit</strong></a>
 									</td>
 									<td class="actions">
-										<a href="<?php echo $this->Html->url(array('action' => 'leave_delete', $leave['Event']['id'])); ?>" class="btn btn-small"><i class="icon-remove"></i><strong>Delete</strong></a>
+										<a href="<?php echo $this->Html->url(array('controller' => 'Calendar', 'action' => 'leave_delete', $leave['Event']['id'])); ?>" class="btn btn-small"><i class="icon-remove"></i><strong>Delete</strong></a>
 									</td>
 							<?php 
 								}
@@ -84,7 +84,7 @@
 									<td></td>
 									<td></td>
 									<td class="actions">
-										<a href="<?php echo $this->Html->url(array('action' => 'leave_remove', $leave['Event']['id'])); ?>" class="btn btn-small"><i class="icon-remove"></i><strong>Remove</strong></a>
+										<a href="<?php echo $this->Html->url(array('controller' => 'Calendar', 'action' => 'leave_remove', $leave['Event']['id'])); ?>" class="btn btn-small"><i class="icon-remove"></i><strong>Remove</strong></a>
 									</td>
 							<?php
 								}

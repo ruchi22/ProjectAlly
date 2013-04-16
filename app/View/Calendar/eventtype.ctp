@@ -20,10 +20,10 @@
 			<td><?php echo $eventType['EventType']['name']; ?>&nbsp;</td>
 	        <td><?php echo $eventType['EventType']['color']; ?>&nbsp;</td>
 			<td class="actions">
-				<a href="<?php echo $this->Html->url(array('action' => 'eventtype_view', $eventType['EventType']['id']));?>" class="btn btn-small"><i class="icon-eye-open"></i> <strong>View</strong></a>
+				<a href="<?php echo $this->Html->url(array('action' => 'eventtype_view', $eventType['EventType']['id']));?>" ><i class="icon-eye-open"></i> <strong>View</strong></a>
 	        </td>
 			<td class="actions">
-				<a href="<?php echo $this->Html->url(array('action' => 'eventtype_edit', $eventType['EventType']['id'])); ?>" class="btn btn-small"><i class="icon-edit"></i> <strong>Edit</strong></a>
+				<a href="<?php echo $this->Html->url(array('action' => 'eventtype_edit', $eventType['EventType']['id'])); ?>" ><i class="icon-edit"></i> <strong>Edit</strong></a>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -32,8 +32,8 @@
 	<div class="actions span6">
 		<ul class="nav nav-tabs nav-stacked span3">
 			<li><?php echo $this->Html->link('New Event Type', array('action' => 'eventtype_add')); ?></li>
-			<li><?php echo $this->Html->link('Manage Events', array('controller' => 'Employee', 'action' => 'event')); ?></li>
-	        <li><?php echo $this->Html->link('View Calendar', array('controller' => 'Employee', 'action' => 'viewCalendar')); ?></li>
+			<li><?php echo $this->Html->link('Manage Events', array('action' => 'event')); ?></li>
+	        <li><?php echo $this->Html->link('View Calendar', array('action' => 'index')); ?></li>
 		</ul>
 	</div>
 </div>

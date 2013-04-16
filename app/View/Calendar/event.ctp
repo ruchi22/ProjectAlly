@@ -23,7 +23,7 @@
 		?>
 		<tr<?php echo $class;?>>
 			<td>
-				<?php echo $this->Html->link($event['EventType']['name'], array('controller' => 'Employee', 'action' => 'eventtype_view', $event['EventType']['id'])); ?>
+				<?php echo $this->Html->link($event['EventType']['name'], array('action' => 'eventtype_view', $event['EventType']['id'])); ?>
 			</td>
 			<td><?php echo $event['Event']['title']; ?></td>
 			<td><?php echo $event['Event']['status']; ?></td>
@@ -35,13 +35,13 @@
 	        <?php } ?>
 	        <td><?php if($event['Event']['all_day'] == 1) { echo "Yes"; } else { echo "No"; } ?>&nbsp;</td>
 			<td class="actions">
-				<a href="<?php echo $this->Html->url(array('action' => 'event_view', $event['Event']['id']));?>" class="btn btn-small"><i class="icon-eye-open"></i> <strong>View</strong></a>
+				<a href="<?php echo $this->Html->url(array('action' => 'event_view', $event['Event']['id']));?>" ><i class="icon-eye-open"></i> <strong>View</strong></a>
 	        </td>
 			<td class="actions">
-				<a href="<?php echo $this->Html->url(array('action' => 'event_edit', $event['Event']['id'])); ?>" class="btn btn-small"><i class="icon-edit"></i> <strong>Edit</strong></a>
+				<a href="<?php echo $this->Html->url(array('action' => 'event_edit', $event['Event']['id'])); ?>" ><i class="icon-edit"></i> <strong>Edit</strong></a>
 			</td>
 			<td class="actions">
-				<a href="<?php echo $this->Html->url(array('action' => 'event_delete', $event['Event']['id'])); ?>" class="btn btn-small"><i class="icon-remove"></i> <strong>Delete</strong></a>
+				<a href="<?php echo $this->Html->url(array('action' => 'event_delete', $event['Event']['id'])); ?>" ><i class="icon-remove"></i> <strong>Delete</strong></a>
 			</td>
 		</tr>
 	<?php } ?>
@@ -49,9 +49,9 @@
 	</div>
 	<div class="actions">
 		<ul class="nav nav-tabs nav-stacked span3">
-		    <li><?php echo $this->Html->link('New Event', array('controller' => 'Employee', 'action' => 'event_add')); ?></li>
-			<li><?php echo $this->Html->link('Manage Events', array('controller' => 'Employee', 'action' => 'event')); ?></li>
-			<li><?php echo $this->Html->link('Manage Events Types', array('controller' => 'Employee', 'action' => 'eventtype')); ?></li>
+		    <li><?php echo $this->Html->link('New Event', array('action' => 'event_add')); ?></li>
+			<li><?php echo $this->Html->link('Manage Events', array('action' => 'event')); ?></li>
+			<li><?php echo $this->Html->link('Manage Events Types', array('action' => 'eventtype')); ?></li>
 		</ul>
 	</div>
 </div>
