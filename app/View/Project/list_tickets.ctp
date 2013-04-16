@@ -45,7 +45,9 @@ $role = $this->Session->read('role');
                             <?php echo $ticket['BugAndFeature']['id']; ?>
                         </td>
                         <td>
-                            <a href="#"><?php echo $ticket['BugAndFeature']['title']; ?></a>
+                        	<?php
+                             echo $this->Html->link($ticket['BugAndFeature']['title'], array('controller' => 'Project', 'action' => 'viewTicket', $ticket['BugAndFeature']['id']));
+                        	?>
                         </td>
                         <td>
                             <a href="#"><?php echo $assignedto[$ticket['BugAndFeature']['assigned_to']]; ?></a>
