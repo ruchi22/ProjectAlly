@@ -148,11 +148,11 @@ class UploadFormHelper extends AppHelper {
         	        </div>
 	        <div class="fileupload-loading"></div>
 	        <br>
-	        <table role="presentation" class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+	        <table class="table table-striped"><tbody class="files" data-toggle="modal" data-target="#modal-gallery"></tbody></table>
 	    </form>
 	</div>
 	
-	<div id="modal-gallery" class="modal modal-gallery hide fade" data-filter=":odd">
+	<div id="modal-gallery" class="modal modal-gallery hide fade" data-filter=":odd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-header">
 	        <a class="close" data-dismiss="modal">&times;</a>
 	        <h3 class="modal-title"></h3>
@@ -177,7 +177,7 @@ class UploadFormHelper extends AppHelper {
 	        </a>
 	    </div>
 	</div>
-	';		
+	';
 	}
 
 	/**

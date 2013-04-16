@@ -3,24 +3,26 @@
         <!-- Main content -->
         <!-- form using cakephp -->
         <div class="span8 well">
-            <legend>Add New Ticket</legend>
+        <?php foreach ($tickets as $ticket){ ?>
+            <legend>Edit Ticket</legend>
             <?php
                 echo $this->Form->create('Ticket',array('class' => 'form-horizontal',
 									                    'url' => array('controller' => 'Project',
-									                                   'action' => 'newTicket', $projectid)));
+									                                   'action' => 'editTicket', $ticket['BugAndFeature']['id'], $projectid)));
+            	echo $this->Form->input('id', array('type' => 'hidden', 'value' => $ticket['BugAndFeature']['id']))
             ?>
             <table>
                 <tr>
                     <td><label>Title</label></td>
                     <td>
                         <?php
-                            echo $this->Form->input('title',array('label'=>false));
+                            echo $this->Form->input('title',array('label'=>false, 'value' => $ticket['BugAndFeature']['title']));
                         ?>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Description</label></td>
-                    <td><?php echo $this->Form->textarea('description',array('label'=>false)); ?></td>
+                    <td><?php echo $this->Form->textarea('description',array('label'=>false, 'value' => $ticket['BugAndFeature']['description'])); ?></td>
                 </tr>
                 <?php $reportedby = $this->Session->read('name'); ?>
                 <?php $id_reportedby = $this->Session->read('id'); ?>
@@ -46,7 +48,8 @@
                         <?php
                             echo $this->Form->input('status',array( 'label'=>false,
 									                                'readonly' => 'readonly',
-									                                'options' => array('3' => 'new')
+									                                'options' => array('3' => 'new'),
+                            										'value' => $ticket['BugAndFeature']['status']
 									                            ));
                         ?>
                     </td>
@@ -57,7 +60,7 @@
                         <?php
                             echo $this->Form->input('priority_id',array('label'=>false,
 									                                 'options' => $priority,
-									                                 'empty' => '===  Select priority of the bug ==='
+                            										 'value' => $ticket['BugAndFeature']['priority_id']	
 									                                 ));
                         ?>
                     </td>
@@ -67,8 +70,8 @@
                     <td>
                         <?php
                             echo $this->Form->input('assigned_to',array('label'=>false,
-										                                'options' => $assignedto,
-										                                'empty' => '=== Select reponsible user  ==='
+										                                'options' => $assignedto, 
+                            											'value' => $ticket['BugAndFeature']['assigned_to']
 										                            	));
                         ?>
                     </td>
@@ -79,7 +82,7 @@
                         <?php
                             echo $this->Form->input('milestone_id',array('label'=>false,
 									                                'options' => $milestone,
-									                                'empty' => '=== Select a milestone  ==='
+									                                'value' => $ticket['BugAndFeature']['milestone_id']
 									                            	));
                         ?>
                     </td>
@@ -89,7 +92,7 @@
                     <td><?php
                             echo $this->Form->input('estimate',array('label'=>false,
 									                                'options' => $estimate,
-									                                'empty' => '=== Select a estimated size  ==='
+									                                'value' => $ticket['BugAndFeature']['estimate']
 									                            	));
                         ?>
                     </td>
@@ -105,13 +108,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><?php echo $this->Form->submit('Create Ticket',array('class' => 'btn')); ?></td>
+                    <td><?php echo $this->Form->submit('Save Changes',array('class' => 'btn')); ?></td>
                     <td></td>
                 </tr>
             </table>
             <?php
                 echo $this->Form->end();
             ?>
+            <?php } ?>
         </div>
     </div>
 </div>
