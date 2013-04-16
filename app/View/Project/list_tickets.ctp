@@ -34,6 +34,7 @@ $role = $this->Session->read('role');
 	        			<th>Status</th>
 	        			<th></th>
 	        			<th></th>
+                        <th></th>
         			</tr>
         		</thead>
         	<?php
@@ -61,6 +62,21 @@ $role = $this->Session->read('role');
 			            <td class="actions">
 							<a href="<?php echo $this->Html->url(array('action' => 'deleteTicket', $ticket['BugAndFeature']['id'], $projectid));?>"><i class="icon-remove"></i> <strong>Delete</strong></a>
 				        </td>
+                        <!--dropdown start-->
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Action
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- dropdown menu links -->
+                                    <li><a>abc</a></li>
+                                    <li><a>xyz</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <!--dropdown end-->
                     </tr>
 				<!--         <div class="row">-->
 <!--	                <div class="span7">-->
