@@ -10,6 +10,7 @@
 				echo '<br/>';
 		
 		?>
+		<br/>
 		<div class="well">
 		<?php 
 			echo $this->element('comments/index', array('model' => 'Milestone', 'foreignKey' => $milestone['Milestone']['id']));

@@ -22,6 +22,7 @@ class CommentsController extends AppController {
 		);
 		$this->Comment->recursive = 0;
 		$this->set('comments', $this->paginate());
+		$this->set('possible_creators', $this->Profile->find('all'));
 		$this->set('_model', $model);
 		$this->set('_foreignKey', $id);
 	}
