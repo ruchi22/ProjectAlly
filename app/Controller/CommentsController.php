@@ -22,6 +22,7 @@ class CommentsController extends AppController {
 		);
 		$this->Comment->recursive = 0;
 		$this->set('comments', $this->paginate());
+		$this->set('possible_creators', $this->Profile->find('all'));
 		$this->set('_model', $model);
 		$this->set('_foreignKey', $id);
 	}
@@ -34,11 +35,13 @@ class CommentsController extends AppController {
 
 			$this->Comment->create();
 			if ($this->Comment->save($this->data)) {
-				$this->Session->setFlash(__('The Comment has been saved', true));
+				$this->Session->setFlash('The Comment has been saved', 'success');
 				$this->data = array();
 				$this->set('successful', true);
-			} else {
-				$this->Session->setFlash(__('The Comment could not be saved. Please, try again.', true));
+				
+				$this->redirect(array('controller' => 'Project', 'action' => 'listTickets', $proj_id));
+            } else {
+				$this->Session->setFlash('The Comment could not be saved. Please, try again.', 'error');
 			}
 		}
 		else {
