@@ -15,15 +15,17 @@ $this->Session->flash();
 ?>
 <br/>
 <div class="comments form">
-<?php echo $this->Form->create('Comment', array('update' => $divId, 'class' => 'AdvancedForm'));?>
+<?php echo $this->Form->create('Comment', array('model' => 'Comment', 'update' => $divId));?>
 	<fieldset>
  	<?php
 		echo $this->Form->input('model', array('type' => 'hidden'));
 		echo $this->Form->input('foreign_key', array('type' => 'hidden'));
-		echo $this->Form->input('creator_id', array('type' => 'hidden', 'value' => "'".$this->Session->read('id')."'"));
 		echo $this->Form->input('comment', array('label' => false, 'rows' => '2', 'class' => 'input-block-level', 'placeholder' => 'Add Comment'));
+		echo $this->Form->input('creator_id', array('type' => 'hidden', 'value' => "'".$this->Session->read('id')."'"));
+		
+		
 	?>
 	</fieldset>
-<?php echo $this->Form->submit('Submit', array('class' => 'btn btn-primary'));?></div>
-</di
-v>
+<?php echo $this->Form->submit('Submit', array('class' => 'btn btn-primary'));?>
+</div>
+</div>

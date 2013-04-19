@@ -57,7 +57,7 @@ $role = $this->Session->read('role');
                             <?php echo $status[$ticket['BugAndFeature']['status']]; ?>
                         </td>
 						<td class="actions">
-							<a href="<?php echo $this->Html->url(array('action' => 'editTicket', $ticket['BugAndFeature']['id'])); ?>"><i class="icon-edit"></i> <strong>Edit</strong></a>
+							<a href="<?php echo $this->Html->url(array('action' => 'editTicket', $ticket['BugAndFeature']['id'], $projectid)); ?>"><i class="icon-edit"></i> <strong>Edit</strong></a>
 						</td>
 			            <td class="actions">
 							<a href="<?php echo $this->Html->url(array('action' => 'deleteTicket', $ticket['BugAndFeature']['id'], $projectid));?>"><i class="icon-remove"></i> <strong>Delete</strong></a>
