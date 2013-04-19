@@ -29,19 +29,20 @@ class CommentsController extends AppController {
 	}
 
 	function add($model = null, $id = null) {
-		
 		if (!empty($this->data)) {
 			$model = Set::extract($this->data, 'Comment.model');
 			$id = Set::extract($this->data, 'Comment.foreign_key');
 			$this->Comment->create();
 			if ($this->Comment->save($this->data)) {
-				
-				$this->Session->setFlash('The Comment has been saved', 'success');
 				$this->data = array();
 				$this->set('successful', true);
-				
-				$this->redirect(array('controller' => 'Project', 'action' => 'listTickets', $proj_id));
-            } else {
+	        	if($model == 'Milestone')
+	        		$this->redirect(array('controller' => 'Project', 'action' => 'viewMilestone', $id));
+	        	elseif($model == 'BugAndFeature')
+	        		$this->redirect(array('controller' => 'Project', 'action' => 'viewTicket', $id));
+	        	
+	        	
+			} else {
 				$this->Session->setFlash('The Comment could not be saved. Please, try again.', 'error');
 			}
 		}
@@ -56,5 +57,13 @@ class CommentsController extends AppController {
 		$this->set('_model', $model);
 		$this->set('_foreignKey', $id);
 	}
+	
+	function delete($model = null, $redirect_id = null, $id = null){
+      	$this->Comment->delete($id);
+       	if($model=='Milestone')
+       		$this->redirect(array('controller' => 'Project', 'action' => 'viewMilestone', $redirect_id));
+       	elseif($act=='BugAndFeature')
+       		$this->redirect(array('controller' => 'Project', 'action' => 'viewTicket', $redirect_id));
+    }
 }
 ?>
