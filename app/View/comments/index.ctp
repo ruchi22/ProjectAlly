@@ -44,7 +44,7 @@ $this->Paginator->options(array(
 					}	
 				endif; ?>
 				</strong>
-				<!-- DISPLAYING TIME -->
+				<!-- DISPLAYING TIME	 -->
 				<h5 class="pull-right"><?php echo $this->Time->timeAgoInWords($comment['Comment']['created']); ?></h5>
 			</div>
 			<?php echo nl2br($comment['Comment']['comment']); ?>
