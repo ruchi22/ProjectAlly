@@ -3,7 +3,8 @@ class CommentsController extends AppController {
 
 	var $name = 'Comments';
 	var $components = array('RequestHandler');
-
+	public $uses = array('Comment');
+	
 	function beforeFilter() {
 		parent::beforeFilter();
 	}
@@ -32,9 +33,9 @@ class CommentsController extends AppController {
 		if (!empty($this->data)) {
 			$model = Set::extract($this->data, 'Comment.model');
 			$id = Set::extract($this->data, 'Comment.foreign_key');
-
 			$this->Comment->create();
 			if ($this->Comment->save($this->data)) {
+				
 				$this->Session->setFlash('The Comment has been saved', 'success');
 				$this->data = array();
 				$this->set('successful', true);
@@ -55,6 +56,5 @@ class CommentsController extends AppController {
 		$this->set('_model', $model);
 		$this->set('_foreignKey', $id);
 	}
-
 }
 ?>

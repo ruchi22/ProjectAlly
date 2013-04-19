@@ -19,7 +19,7 @@ $this->Paginator->options(array(
 		<div id="comment<?php echo $comment['Comment']['id']; ?>" class="comment">
 			<div class="posted-by">
 				<strong>
-				<?php if ( empty($comment['Creator']['id']) ): ?>
+				<?php if ( empty($comment['Comment']['creator_id']) ): ?>
 					<em>Anonymous</em>
 				<?php else: 
 					foreach($possible_creators as $creator){
@@ -55,5 +55,4 @@ $this->Paginator->options(array(
 	<?php
 	echo $this->requestAction('/comments/add/'.$_model.'/'.$_foreignKey, array('return'));
 	?>
-</div>
 </div>
