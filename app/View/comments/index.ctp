@@ -18,8 +18,21 @@ $this->Paginator->options(array(
   	<li style="padding-bottom:10px;">
 		<div id="comment<?php echo $comment['Comment']['id']; ?>" class="comment">
 			<div class="posted-by">
+				<!-- CODE TO CHECK IF USER CAN DELETE COMMENT -->
+				<?php 
+				if($comment['Comment']['creator_id'] == $this->Session->read('id')){
+						?>
+							<a href="<?php echo $this->Html->url(array('controller' => 'comments', 
+																	'action' => 'delete',  
+																	$comment['Comment']['model'], 
+																	$comment['Comment']['foreign_key'], 
+																	$comment['Comment']['id']));?>">
+							<i class="icon-remove"></i>
+							</a>
+				<?php } ?>
+				<!-- CODE TO DISPLAY WHO COMMENTED -->		
 				<strong>
-				<?php if ( empty($comment['Creator']['id']) ): ?>
+				<?php if ( empty($comment['Comment']['creator_id']) ): ?>
 					<em>Anonymous</em>
 				<?php else: 
 					foreach($possible_creators as $creator){
@@ -28,16 +41,10 @@ $this->Paginator->options(array(
 							echo $creator['Profile']['user_name'];
 							echo '</em>';	
 						}
-						if($creator['Profile']['id'] == $this->Session->read('id')){
-						?>
-						
-							<!-- CODE FOR COMMENT DELETION WILL GO HERE -->
-						
-						<?php 
-						}	
 					}	
 				endif; ?>
 				</strong>
+				<!-- DISPLAYING TIME	 -->
 				<h5 class="pull-right"><?php echo $this->Time->timeAgoInWords($comment['Comment']['created']); ?></h5>
 			</div>
 			<?php echo nl2br($comment['Comment']['comment']); ?>
@@ -55,5 +62,4 @@ $this->Paginator->options(array(
 	<?php
 	echo $this->requestAction('/comments/add/'.$_model.'/'.$_foreignKey, array('return'));
 	?>
-</div>
 </div>
