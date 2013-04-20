@@ -82,8 +82,8 @@
                 </div>
               </div>
             </div>
-            <a class="left carousel-control" href="#heroSlider" data-slide="prev">‹</a>
-            <a class="right carousel-control" href="#heroSlider" data-slide="next">›</a>
+            <a class="left carousel-control" href="#heroSlider" data-slide="prev"> ‹ </a>
+            <a class="right carousel-control" href="#heroSlider" data-slide="next"> › </a>
           </div>
         </div>
       </div>
