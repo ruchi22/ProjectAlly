@@ -16,7 +16,7 @@
             <h4><i class="icon-beaker"></i> About</h4>
             <nav>
               <ul class="quick-links">
-              <ul>
+              </ul>
             </nav>          
           </div>
       </div>
