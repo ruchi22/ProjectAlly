@@ -46,6 +46,9 @@ class AppController extends Controller {
 		
 		//TO PASS THE TICKET ID IN UPLOADING SUPPORT DOCUMENTS
 		$this->Upload->bug_id = $this->Session->read('bug_id');
+		
+		//TO PASS THE ID TO UPLOAD PHOTOS
+		$this->Upload->profile_check = $this->Session->read('profile_check');
 			
 		//To check whether an user is logged in or not
 		$name = $this->Session->read('name');
