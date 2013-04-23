@@ -96,6 +96,8 @@
 			
 			$this->redirect(array('controller' => 'Employee', 'action' => 'userProfile'));
 		}
-
+		public function addProfilePhoto(){
+			$this->Session->write('profile_check', $this->Session->read('id'));
+		}
 	}
 ?>

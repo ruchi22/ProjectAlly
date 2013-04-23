@@ -113,11 +113,8 @@ class UploadFormHelper extends AppHelper {
 	private function _loadTemplate( $url = null )
 	{
 		echo '<div class="container">
-		<form id="fileupload" action="'.Router::url('/', true).$url.'" method="POST" enctype="multipart/form-data">';
-		if($this->request->params['action'] == 'editProfile'){
-	        echo '<input type="hidden" name="profile_check" id="profile_check" value="1"/>';
-		}    
-	       echo '<div class="row fileupload-buttonbar">
+		<form id="fileupload" name="FileUpload" action="'.Router::url('/', true).$url.'" method="POST" enctype="multipart/form-data">';
+		   echo '<div class="row fileupload-buttonbar">
 	            <div class="span7">
 	                <span class="btn btn-success fileinput-button">
 	                    <i class="icon-plus icon-white"></i>
