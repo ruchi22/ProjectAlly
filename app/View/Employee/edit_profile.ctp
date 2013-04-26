@@ -25,7 +25,7 @@
 																									'action' => 'updateProfile')));
 					
 					if(isset($proUser['Profile']['user_photo'])){
-						echo $this->Html->image('../uploads/profile_pic_'.$this->Session->read('id').'.jpg', array('class' => 'img-polaroid', 'height' => '200px', 'width' => '200px'));
+						echo $this->Html->image('../uploads/profile_pic_'.$this->Session->read('id').'.jpg', array('class' => 'img-polaroid', 'height' => '100px', 'width' => '100px'));
 					} else {
 						echo $this->Html->image('default-profile.jpg', array('class' => 'img-polaroid'));
 					}

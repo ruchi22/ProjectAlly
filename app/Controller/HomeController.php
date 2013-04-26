@@ -35,14 +35,14 @@ class HomeController extends AppController {
 	}
 	
 	public function signUp(){
-		if(!empty($this->data)){
-			if($this->Profile->save($this->data)){
-				echo "successful";
-				$this->Session->setFlash('Your stuff has been saved.');
+		if(!empty($this->request->data)){
+			if($this->Profile->save($this->request->data)){
+				$this->Session->setFlash('You have been successfully registered.. Please wait for the confirmation..!', 'success');
+				$this->redirect(array('controller' => 'Home', 'action' => 'homePagxe'));
+				
 			} else {
 				$this->Session->setFlash('Something went wrong please try again.');
 			}
-		$this->redirect(array('controller' => 'Home', 'action' => 'homePage'));
 		}
 	}
 	
@@ -51,13 +51,6 @@ class HomeController extends AppController {
 		$this->set('leaveDetails', $this->Event->find('all'));
 	}
 	
-	public function test() {
-		echo "You successfully registered with projectally....kindly wait till admin approves yours request.";
-	}
-	
-	public function message() {
-		
-	}
 	
 	public function loginfailure() {
 		

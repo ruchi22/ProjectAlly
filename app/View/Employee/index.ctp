@@ -64,7 +64,7 @@
 								elseif ($leave['Event']['status']  == 'Approved')
 									 echo $this->Html->tag('span', 'Approved', array('class' => 'label label-success'));
 								elseif ($leave['Event']['status']  == 'Declined')
-									 echo $this->Html->tag('span', 'Approved', array('class' => 'label label-inverse'));
+									 echo $this->Html->tag('span', 'Declined', array('class' => 'label label-inverse'));
 								echo '</td>';
 								if($leave['Event']['status']  == 'In Progress'){
 									?>

@@ -19,46 +19,41 @@
 					$user_role = array('0' => 'Select Role', '1' => 'Super Administrator', '2' => 'Administrator', '3' =>'Employee', '4' =>'User');
 					?>
 				
-					<?php echo $this->Form->create('Profile',array('class' => 'form-horizontal form-signin-signup',
+						<?php echo $this->Form->create('Profile',array('class' => 'form-horizontal form-signin-signup',
 														'url' => array('controller' => 'Home',
-														'action' => 'index')));?>
+														'action' => 'signUp')));?>
 						<?php echo $this->Form->input('user_name',array('label' => false,
 																			'placeholder' => 'User Name',		
 																		   'type' => 'text')); ?>
 						
 						<?php echo $this->Form->input('company_name',array('label' => false,
-																			'placeholder' => 'Name of Company',
+																		   'placeholder' => 'Name of Company',
 																		   'type' => 'text')); ?>
 						
 					
 					
 						<?php echo $this->Form->input('user_role',array('label' => false,
 																		'type' => 'text',
-																			'placeholder' => 'Choose Designation',
-																		   'options' => $user_role)); ?>
+																		'placeholder' => 'Choose Designation',
+																		'options' => $user_role)); ?>
 						
 					
 					
 						<?php echo $this->Form->input('input_email',array('label' => false,
 																			'placeholder' => 'Email',
-																		   'type' => 'text')); ?>
+																		   	'type' => 'text')); ?>
 						
 					
 					
 						<?php echo $this->Form->input('input_password',array('label' => false,
-																			'placeholder' => 'Password',
+																				'placeholder' => 'Password',
 																				'type' => 'password')); ?>
 						
-					
+						
 					
 						<?php echo $this->Form->input('confirm_password',array('label' => false,
-																			'placeholder' => 'Confirm Password',
+																				'placeholder' => 'Confirm Password',
 																				'type' => 'password')); ?>
-						
-					
-						<?php echo $this->Form->input('created',array('type' => 'hidden', 'value' => "CakeTime::format('Y-m-d H:i:s', time())")); ?>
-						<?php echo $this->Form->input('modified',array('type' => 'hidden', 'value' => "CakeTime::format('Y-m-d H:i:s', time())")); ?>
-					
 						
 						<?php echo $this->Form->submit('Sign Up',array('class' => 'btn btn-primary btn-large bottom-space')); ?>
 					
