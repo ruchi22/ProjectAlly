@@ -39,7 +39,7 @@ class CommentsController extends AppController {
 				$this->set('successful', true);
 				
 				if ($this->request->is('ajax')) {
-					$this->render('index', 'ajax');
+					$this->render('success', 'ajax');
 				}
 				else{
 		        	if($model == 'Milestone')
