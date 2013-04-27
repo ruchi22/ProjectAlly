@@ -29,7 +29,6 @@ class CommentsController extends AppController {
 	}
 
 	function add($model = null, $id = null) {
-		$this->autoLayout = false;
 		if (!empty($this->data)) {
 			$model = Set::extract($this->data, 'Comment.model');
 			$id = Set::extract($this->data, 'Comment.foreign_key');
@@ -37,16 +36,12 @@ class CommentsController extends AppController {
 			if ($this->Comment->save($this->data)) {
 				$this->data = array();
 				$this->set('successful', true);
-				
-				if ($this->request->is('ajax')) {
-					$this->render('success', 'ajax');
-				}
-				else{
-		        	if($model == 'Milestone')
-		        		$this->redirect(array('controller' => 'Project', 'action' => 'viewMilestone', $id));
-		        	elseif($model == 'BugAndFeature')
-		        		$this->redirect(array('controller' => 'Project', 'action' => 'viewTicket', $id));
-				}
+	        	if($model == 'Milestone')
+	        		$this->redirect(array('controller' => 'Project', 'action' => 'viewMilestone', $id));
+	        	elseif($model == 'BugAndFeature')
+	        		$this->redirect(array('controller' => 'Project', 'action' => 'viewTicket', $id));
+	        	
+	        	
 			} else {
 				$this->Session->setFlash('The Comment could not be saved. Please, try again.', 'error');
 			}
