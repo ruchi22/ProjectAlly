@@ -41,5 +41,5 @@ $divId = 'comment_add_'.$_model.'_'.$_foreignKey;
 		?>
 	</div>
 </div>
-<?php echo $this->Js->writeBuffer(array('cache' => TRUE)); ?>
+<?php echo $this->Js->writeBuffer(); ?>
 
