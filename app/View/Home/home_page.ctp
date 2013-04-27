@@ -1,13 +1,20 @@
 <?php 
 	$role = $this->Session->read('role');
 ?>
-		<div class="row-fluid">
-			<div class="span12">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="span6 well">
+			<?php 
+			echo $this->Html->link('Project',array('controller' => 'Project', 'action' => 'listProject'),
+															array('class' => 'btn'));
+				
+			?>
+			<div id="success"></div>
+			</div>
+			<div class="span6 well">
 				<!-- Main content -->
 				<!-- form using cakephp -->
 				<?php
-				echo $this->Html->link('Project',array('controller' => 'Project', 'action' => 'listProject'),
-															array('class' => 'btn'));
 				
 				if($role == 1){
 					if($leaveRequests != null){ ?>
@@ -57,7 +64,6 @@
 									}
 								}
 							}?>
-							
 							</tbody>
 						</table>
 					<?php }
@@ -65,3 +71,4 @@
 				?>
 			</div>
 		</div>
+	</div>

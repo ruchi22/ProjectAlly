@@ -1,9 +1,9 @@
 <?php 
-	echo $this->Html->script('jquery-1.8.0.min.js');
-	echo $this->Html->script('jquery-ui-1.8.23.custom.min.js');
+	echo $this->Html->script('jquery-1.8.0.min.js', FALSE);
+	echo $this->Html->script('jquery-ui-1.8.23.custom.min.js', FALSE);
 	echo $this->Html->css('jquery-ui-1.8.23.custom.css');
 	echo $this->Html->css('jquery-ui.css');
-	echo $this->Html->script('jquery-ui.js');
+	echo $this->Html->script('jquery-ui.js', FALSE);
 ?>
 	<script>
 	 $(function() {

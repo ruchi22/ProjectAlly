@@ -12,6 +12,7 @@
 
 <title><?php echo $title_for_layout; ?></title>
 
+
 <?php echo $this->Html->meta('keywords',''); ?>
 <?php echo $this->Html->meta('description',''); ?>
 <?php echo $this->Html->meta(array('name' => 'author', 'content' => 'Hardik Shah')); ?>
@@ -32,6 +33,8 @@
 <?php
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
+	echo $scripts_for_layout;
+	echo $this->Js->writeBuffer(array('cache' => TRUE));
 ?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
