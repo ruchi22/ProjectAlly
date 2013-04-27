@@ -1,3 +1,0 @@
-<p>
-	Submitted successfully..!
-</p>
