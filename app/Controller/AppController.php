@@ -34,7 +34,7 @@ App::uses('CakeTime', 'Utility');
  */
 class AppController extends Controller {
 	public $components = array('DebugKit.Toolbar', 'Session', 'FileUpload.Upload');
-	var $helpers = array('AssetCompress.AssetCompress', 'FileUpload.UploadForm');
+	var $helpers = array('AssetCompress.AssetCompress', 'FileUpload.UploadForm', 'Js' =>array('JQuery'));
 	
 	public $uses = array('UserInfo', 'Profile', 'AddProject');
 	//Manually defined functions

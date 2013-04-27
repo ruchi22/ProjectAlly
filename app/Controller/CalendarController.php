@@ -230,7 +230,7 @@
 							'start'=>$event['Event']['start'],
 							'end' => $end,
 							'allDay' => $allday,
-							'url' => Router::url('/') . 'Employee/event_view/'.$event['Event']['id'],
+							'url' => Router::url('/') . 'Calendar/event_view/'.$event['Event']['id'],
 							'details' => $event['Event']['details'],
 							'className' => $event['EventType']['color']
 					);

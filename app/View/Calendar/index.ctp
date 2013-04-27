@@ -1,5 +1,5 @@
 <script type="text/javascript">
-plgFcRoot = '<?php echo $this->Html->url('/'); ?>' + "Employee";
+plgFcRoot = '<?php echo $this->Html->url('/'); ?>' + "Calendar";
  </script>
 <?php
 echo $this->Html->script(array('jquery-1.5.min', 'jquery-ui-1.8.9.custom.min', 'fullcalendar.min', 'jquery.qtip-1.0.0-rc3.min', 'ready'), array('inline' => 'false'));

@@ -1,9 +1,9 @@
 <?php 
-	echo $this->Html->script('jquery-1.8.0.min.js');
-	echo $this->Html->script('jquery-ui-1.8.23.custom.min.js');
+	echo $this->Html->script('jquery-1.8.0.min.js', FALSE);
+	echo $this->Html->script('jquery-ui-1.8.23.custom.min.js', FALSE);
 	echo $this->Html->css('jquery-ui-1.8.23.custom.css');
 	echo $this->Html->css('jquery-ui.css');
-	echo $this->Html->script('jquery-ui.js');
+	echo $this->Html->script('jquery-ui.js', FALSE);
 ?>
 	<script>
 	 $(function() {
@@ -25,7 +25,7 @@
 																									'action' => 'updateProfile')));
 					
 					if(isset($proUser['Profile']['user_photo'])){
-						echo $this->Html->image('../uploads/profile_pic_'.$this->Session->read('id').'.jpg', array('class' => 'img-polaroid', 'height' => '200px', 'width' => '200px'));
+						echo $this->Html->image('../uploads/profile_pic_'.$this->Session->read('id').'.jpg', array('class' => 'img-polaroid', 'height' => '100px', 'width' => '100px'));
 					} else {
 						echo $this->Html->image('default-profile.jpg', array('class' => 'img-polaroid'));
 					}
