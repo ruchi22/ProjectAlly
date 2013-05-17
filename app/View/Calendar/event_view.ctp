@@ -2,8 +2,15 @@
 	<div class="events view well span6">
 	<h2>Event</h2>
 		<dl class="dl-horizontal"><?php $i = 0; $class = ' class="altrow"';?>
-			<dt<?php if ($i % 2 == 0) echo $class;?>><u><?php echo __('Event Type'); ?></u></dt>
+			<dt<?php if ($i % 2 == 0) echo $class;?>><u><?php echo 'Leave By'; ?></u></dt>
+			<?php foreach ($leave_by as $leave): ?>
+			<?php if($event['Event']['profile_id'] == $leave['Profile']['id']){?>
+			<dd><?php echo $leave['Profile']['user_name'];
+			?></dd>
+			<?php } ?>
+			<?php endforeach; ?>
 			<br/>
+			<dt<?php if ($i % 2 == 0) echo $class;?>><u><?php echo __('Event Type'); ?></u></dt>
 			<dd<?php if ($i++ % 2 == 0) echo $class;?>><?php echo $this->Html->link($event['EventType']['name'], array('controller' => 'Calendar', 'action' => 'eventtype_view', $event['EventType']['id'])); ?></dd>
 			<br/>
 			<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Title'); ?></dt>

@@ -50,14 +50,14 @@
 			$proj_id = $this->params['named']['proj_id'];
 			$project = $this->AddProject->find('first',array('conditions' =>
 															array('AddProject.id' => $proj_id)));
-			if ($project['AddProject']['projectMembers'] == null)
+			if ($project['AddProject']['project_members'] == null)
 			{
 				$this->AddProject->UpdateAll(array('AddProject.project_members' => "'$user_id'"),
 											array('AddProject.id' => $proj_id));	
 			}
 			else 
 			{
-				$users_id = $project['AddProject']['projectMembers'] . ',' . $user_id;
+				$users_id = $project['AddProject']['project_members'] . ',' . $user_id;
 				$this->AddProject->UpdateAll(array('AddProject.project_members' => "'$users_id'"),
 											array('AddProject.id' => $proj_id));
 				

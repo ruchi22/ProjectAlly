@@ -31,7 +31,8 @@
 
 		public function pendingUsers() {
 			$this->set(compact('title_for_layout'));
-			$this->set('proUser', $this->Profile->find('all'));
+			$this->set('proUser', $this->Profile->find('all',array('conditions' => 
+																	array('Profile.user_role >' => 1))));
 		}
 		
 		public function designateAdmin($id = null){
