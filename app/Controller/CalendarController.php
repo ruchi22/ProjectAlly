@@ -214,6 +214,7 @@
 			$this->layout = "ajax";
 			$vars = $this->params['url'];
 			$conditions = array('conditions' => array('UNIX_TIMESTAMP(start) >=' => $vars['start'], 'UNIX_TIMESTAMP(start) <=' => $vars['end']));
+			$leave_by = $this->Profile->find('all');
 			$events = $this->Event->find('all', $conditions);
 			foreach($events as $event) {
 				if($event['Event']['all_day'] == 1) {
@@ -225,9 +226,12 @@
 				}
 				if($event['Event']['event_type_id'] == 4 || $event['Event']['event_type_id'] == 8){
 					if($event['Event']['status'] == 'Approved'){
+					foreach ($leave_by as $leave):
+					if($event['Event']['profile_id'] == $leave['Profile']['id']):
+				
 					$data[] = array(
 							'id' => $event['Event']['id'],
-							'title'=>$event['Event']['title'],
+							'title'=>$leave['Profile']['user_name'].' on leave',
 							'start'=>$event['Event']['start'],
 							'end' => $end,
 							'allDay' => $allday,
@@ -235,6 +239,8 @@
 							'details' => $event['Event']['details'],
 							'className' => $event['EventType']['color']
 					);
+					endif;
+					endforeach;
 					}else{
 						$data[] = array();
 					}
