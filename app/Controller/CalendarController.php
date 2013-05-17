@@ -90,6 +90,7 @@
 				$this->redirect(array('action' => 'event'));
 			}
 			$this->set('event', $this->Event->read(null, $id));
+			$this->set('leave_by', $this->Profile->find('all'));
 		}
 		
 		function leave_view($id = null) {
