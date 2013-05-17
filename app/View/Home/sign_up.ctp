@@ -9,21 +9,15 @@
             	<div class="center-align">
       			<!-- REGISTRATION FORM -->
 				<?php
-				 $options = array(
-					'label' => false,
-					'div' => array(
-						'class' => 'controls'
-						)
-					);
-					
-					$user_role = array('0' => 'Select Role', '1' => 'Super Administrator', '2' => 'Administrator', '3' =>'Employee', '4' =>'User');
+
+					$user_role = array('2' => 'Administrator', '3' =>'Employee', '4' =>'User');
 					?>
 				
 						<?php echo $this->Form->create('Profile',array('class' => 'form-horizontal form-signin-signup',
 														'url' => array('controller' => 'Home',
 														'action' => 'signUp')));?>
 						<?php echo $this->Form->input('user_name',array('label' => false,
-																			'placeholder' => 'User Name',		
+																			'placeholder' => 'Full Name',
 																		   'type' => 'text')); ?>
 						
 						<?php echo $this->Form->input('company_name',array('label' => false,
@@ -33,9 +27,9 @@
 					
 					
 						<?php echo $this->Form->input('user_role',array('label' => false,
-																		'type' => 'text',
 																		'placeholder' => 'Choose Designation',
-																		'options' => $user_role)); ?>
+																		'options' => $user_role,
+                                                                        'empty' => 'Select Role')); ?>
 						
 					
 					

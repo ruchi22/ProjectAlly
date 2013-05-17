@@ -38,7 +38,7 @@ class HomeController extends AppController {
 		if(!empty($this->request->data)){
 			if($this->Profile->save($this->request->data)){
 				$this->Session->setFlash('You have been successfully registered.. Please wait for the confirmation..!', 'success');
-				$this->redirect(array('controller' => 'Home', 'action' => 'homePagxe'));
+				$this->redirect(array('controller' => 'Home', 'action' => 'signUp'));
 				
 			} else {
 				$this->Session->setFlash('Something went wrong please try again.');
