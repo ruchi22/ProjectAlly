@@ -4,10 +4,9 @@
 		<dl class="dl-horizontal"><?php $i = 0; $class = ' class="altrow"';?>
 			<dt<?php if ($i % 2 == 0) echo $class;?>><u><?php echo 'Leave By'; ?></u></dt>
 			<?php foreach ($leave_by as $leave): ?>
-			<?php if($event['Event']['profile_id'] == $leave['Profile']['id']){?>
-			<dd><?php echo $leave['Profile']['user_name'];
-			?></dd>
-			<?php } ?>
+			<?php if($event['Event']['profile_id'] == $leave['Profile']['id']):?>
+			<dd<?php if ($i++ % 2 == 0) echo $class;?>><?php echo $this->Html->link($leave['Profile']['user_name'], array('controller' => 'Employee', 'action' => 'viewProfile', $event['Event']['profile_id'])); ?></dd>
+			<?php endif; ?>
 			<?php endforeach; ?>
 			<br/>
 			<dt<?php if ($i % 2 == 0) echo $class;?>><u><?php echo __('Event Type'); ?></u></dt>
