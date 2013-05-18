@@ -225,7 +225,8 @@
 }
 .form-signin-signup input[type="text"],
 .form-signin-signup input[type="password"],
-.form-signin-signup select{
+.form-signin-signup select,
+.form-signin-signup input[type='email']{
   width: 70%;
   height: 30px;
 }

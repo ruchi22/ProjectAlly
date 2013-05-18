@@ -1,3 +1,11 @@
+<!--validation code starts here-->
+<?php
+    echo $this->Html->script('jqBootstrapValidation');
+?>
+<script>
+    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
+
 <div class="container">
 	<div class="page-header">
     	<h1>Signup with ProjectAlly</h1>
@@ -17,37 +25,36 @@
 														'url' => array('controller' => 'Home',
 														'action' => 'signUp')));?>
 						<?php echo $this->Form->input('user_name',array('label' => false,
-																			'placeholder' => 'Full Name',
-																		   'type' => 'text')); ?>
-						
+																		'placeholder' => 'Full Name',
+																		'type' => 'text',
+                                                                        'required')); ?>
+                        <!-- p tag with class as help-block are for validation error messages -->
+                        <p class="help-block"></p>
 						<?php echo $this->Form->input('company_name',array('label' => false,
 																		   'placeholder' => 'Name of Company',
-																		   'type' => 'text')); ?>
-						
-					
+																		   'type' => 'text',
+                                                                           'required')); ?>
+                        <p class="help-block"></p>
 					
 						<?php echo $this->Form->input('user_role',array('label' => false,
 																		'placeholder' => 'Choose Designation',
 																		'options' => $user_role,
-                                                                        'empty' => 'Select Role')); ?>
-						
+                                                                        'empty' => 'Select Role',
+                                                                        'required')); ?>
+                        <p class="help-block"></p>
 					
 					
 						<?php echo $this->Form->input('input_email',array('label' => false,
-																			'placeholder' => 'Email',
-																		   	'type' => 'text')); ?>
-						
+																		  'placeholder' => 'Email',
+																		  'type' => 'email')); ?>
+                        <p class="help-block"></p>
 					
 					
 						<?php echo $this->Form->input('input_password',array('label' => false,
-																				'placeholder' => 'Password',
-																				'type' => 'password')); ?>
-						
-						
-					
-						<?php echo $this->Form->input('confirm_password',array('label' => false,
-																				'placeholder' => 'Confirm Password',
-																				'type' => 'password')); ?>
+																			 'placeholder' => 'Password',
+																			 'type' => 'password',
+                                                                             'required')); ?>
+                        <p class="help-block"></p>
 						
 						<?php echo $this->Form->submit('Sign Up',array('class' => 'btn btn-primary btn-large bottom-space')); ?>
 					
