@@ -18,7 +18,7 @@
 		}
 		
 		public function index(){
-			
+			$this->set('eventTypes', $this->EventType->find('all'));
 		}
 		
 		/* CALENDAR SPECIFIC FUNTIONS */
