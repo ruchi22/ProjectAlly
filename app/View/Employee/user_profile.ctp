@@ -77,7 +77,7 @@
 							?></td>
 						</tr>
 					</table>
-					 	<a href="<?php $this->Html->url(array('controller' => 'Employee','action' => 'editProfile'));?>" class="label btn">
+					 	<a href="<?php echo $this->Html->url(array('controller' => 'Employee','action' => 'editProfile'));?>" class="label btn">
 					 	<i class="icon-edit"></i> <strong>Edit Profile</strong>
 					 	</a>
 				</div>
