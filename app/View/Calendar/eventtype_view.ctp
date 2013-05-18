@@ -19,12 +19,12 @@
 			<li><?php echo $this->Html->link('Edit Event Type', array('action' => 'eventtype_edit', $eventType['EventType']['id'])); ?> </li>
 			<li><?php echo $this->Html->link('Delete Event Type', array('action' => 'eventtype_delete', $eventType['EventType']['id']), null, sprintf(__('Are you sure you want to delete %s?', true), $eventType['EventType']['name'])); ?> </li>
 			<li><?php echo $this->Html->link('Manage Event Types', array('action' => 'eventtype')); ?> </li>
-			<li><?php echo $this->Html->link('View Calendar', array('action' => 'viewCalendar')); ?></li>
+			<li><?php echo $this->Html->link('View Calendar', array('action' => 'index')); ?></li>
 		</ul>
 	</div>
 	<div class="related span12">
 		<h3><?php echo __('Related Events');?></h3>
-		<?php if (!empty($eventType['Event'])):?>
+		<?php if (!empty($eventType['Event'])){?>
 		<table class="table table-condensed">
 		<tr>
 			<th><?php echo __('Title'); ?></th>
@@ -60,6 +60,15 @@
 			</tr>
 		<?php endforeach; ?>
 		</table>
-	<?php endif; ?>
+	<?php } 
+	else{
+		?>
+		<div class="alert alert-info span5">
+			<b>No event exists of this event type..!</b>
+		</div>
+		<?php 
+	}	
+		
+	?>
 	</div>
 </div>

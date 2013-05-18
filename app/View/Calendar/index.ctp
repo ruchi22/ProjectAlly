@@ -10,6 +10,19 @@ echo $this->Html->css('fullcalendar', null, array('inline' => false));
 		<div id="calendar"></div>
 	</div>
 	<br/>
+	<table class="table table-bordered">
+		<tr>
+		<?php 
+			foreach ($eventTypes as $eventType){
+					?>
+				<td style="background-color:<?php echo $eventType['EventType']['color']; ?>; color: white;">
+				<b>
+				<?php echo $eventType['EventType']['name']; ?> 
+				</b>
+				</td>	
+			<?php } ?>
+		</tr>
+	</table>
 	<div class="actions">
 		<ul class="nav nav-tabs nav-stacked span3">
 		    <li><?php echo $this->Html->link('New Event', array('action' => 'event_add')); ?></li>
