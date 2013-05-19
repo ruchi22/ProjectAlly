@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 19, 2013 at 01:40 PM
--- Server version: 5.5.8
--- PHP Version: 5.3.5
+-- Generation Time: May 19, 2013 at 05:30 PM
+-- Server version: 5.5.20
+-- PHP Version: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,24 +19,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `cake`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `attachments`
---
-
-CREATE TABLE IF NOT EXISTS `attachments` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `bug_id` int(5) NOT NULL,
-  `attachment` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `attachments`
---
-
 
 -- --------------------------------------------------------
 
@@ -83,11 +66,6 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `modifier_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `comments`
---
-
 
 -- --------------------------------------------------------
 
@@ -173,7 +151,6 @@ CREATE TABLE IF NOT EXISTS `milestones` (
   `responsible_user` int(5) NOT NULL,
   `title` varchar(255) NOT NULL,
   `due_date` date NOT NULL,
-  `planner` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `project_id` int(11) NOT NULL,
   `created` datetime NOT NULL,
@@ -185,8 +162,8 @@ CREATE TABLE IF NOT EXISTS `milestones` (
 -- Dumping data for table `milestones`
 --
 
-INSERT INTO `milestones` (`id`, `responsible_user`, `title`, `due_date`, `planner`, `description`, `project_id`, `created`, `modified`) VALUES
-(1, 8, 'Milestone 1', '2013-05-24', '0', 'This is for testing', 2, '2013-05-18 19:47:57', '2013-05-18 19:47:57');
+INSERT INTO `milestones` (`id`, `responsible_user`, `title`, `due_date`, `description`, `project_id`, `created`, `modified`) VALUES
+(1, 8, 'Milestone 1', '2013-05-24', 'This is for testing', 2, '2013-05-18 19:47:57', '2013-05-18 19:47:57');
 
 -- --------------------------------------------------------
 
@@ -224,7 +201,6 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `user_role` int(1) NOT NULL,
   `input_email` varchar(255) NOT NULL,
   `input_password` varchar(255) NOT NULL,
-  `confirm_password` varchar(255) NOT NULL,
   `status` int(1) NOT NULL,
   `leave_request` int(5) NOT NULL,
   `leave_taken` float NOT NULL,
@@ -234,7 +210,6 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `user_address` varchar(255) NOT NULL,
   `user_mobile` varchar(255) NOT NULL,
   `user_home` varchar(255) NOT NULL,
-  `user_photo` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -244,16 +219,16 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Dumping data for table `profile`
 --
 
-INSERT INTO `profile` (`id`, `user_name`, `company_name`, `user_role`, `input_email`, `input_password`, `confirm_password`, `status`, `leave_request`, `leave_taken`, `user_dob`, `user_gender`, `work_email`, `user_address`, `user_mobile`, `user_home`, `user_photo`, `created`, `modified`) VALUES
-(7, 'Hardik Shah', 'Aecortech', 1, 'hardik@gmail.com', 'testtest', 'testtest', 1, 0, 0, '', '', '', '', '', '', '', '2013-05-17 11:57:01', '2013-05-17 11:57:01'),
-(8, 'Akash Bhardwaj', 'Aecortech', 2, 'akash@gmail.com', 'akash123', 'akash123', 1, 2, 1, '', '', '', '', '', '', '', '2013-05-17 12:00:03', '2013-05-17 12:00:03'),
-(9, 'Manali Pohani', 'Aecortech', 3, 'manali@gmail.com', 'manali123', 'manali123', 0, 0, 0, '', '', '', '', '', '', '', '2013-05-17 12:01:54', '2013-05-17 12:01:54'),
-(10, 'Dan Pope', 'Clubwebsite', 4, 'dan@gmail.com', 'dan123', 'dan123', 1, 0, 0, '', '', '', '', '', '', '', '2013-05-17 12:05:34', '2013-05-17 12:05:34'),
-(11, 'Jon F', 'Clubwebsite', 4, 'jon@gmail.com', 'jon123', 'jon123', 1, 0, 0, '', '', '', '', '', '', '', '2013-05-17 12:09:04', '2013-05-17 12:09:04'),
-(12, 'Ruchi Shah', 'Aecortech', 3, 'ruchi@gmail.com', 'ruchi123', 'ruchi123', 0, 0, 0, '', '', '', '', '', '', '', '2013-05-17 12:11:28', '2013-05-17 12:11:28'),
-(13, 'Sonal Dubey ', 'Aecortech', 3, 'sonal@gmail.com', 'sonal123', 'sonal123', 0, 0, 0, '', '', '', '', '', '', '', '2013-05-17 12:12:01', '2013-05-17 12:12:01'),
-(14, 'Payal Shah', 'Aecortech', 3, 'payal@gmail.com', 'payal123', 'payal123', 0, 0, 0, '', '', '', '', '', '', '', '2013-05-17 12:12:45', '2013-05-17 12:12:45'),
-(15, 'Ankur Pandit', 'Aecortech', 3, 'ankur@gmail.com', 'ankur123', 'ankur123', 0, 0, 0, '', '', '', '', '', '', '', '2013-05-17 12:13:16', '2013-05-17 12:13:16');
+INSERT INTO `profile` (`id`, `user_name`, `company_name`, `user_role`, `input_email`, `input_password`, `status`, `leave_request`, `leave_taken`, `user_dob`, `user_gender`, `work_email`, `user_address`, `user_mobile`, `user_home`, `created`, `modified`) VALUES
+(7, 'Hardik Shah', 'Aecortech', 1, 'hardik@gmail.com', 'testtest', 1, 0, 0, '', '', '', '', '', '', '2013-05-17 11:57:01', '2013-05-17 11:57:01'),
+(8, 'Akash Bhardwaj', 'Aecortech', 2, 'akash@gmail.com', 'akash123', 1, 2, 1, '', '', '', '', '', '', '2013-05-17 12:00:03', '2013-05-17 12:00:03'),
+(9, 'Manali Pohani', 'Aecortech', 3, 'manali@gmail.com', 'manali123', 0, 0, 0, '', '', '', '', '', '', '2013-05-17 12:01:54', '2013-05-17 12:01:54'),
+(10, 'Dan Pope', 'Clubwebsite', 4, 'dan@gmail.com', 'dan123', 1, 0, 0, '', '', '', '', '', '', '2013-05-17 12:05:34', '2013-05-17 12:05:34'),
+(11, 'Jon F', 'Clubwebsite', 4, 'jon@gmail.com', 'jon123', 1, 0, 0, '', '', '', '', '', '', '2013-05-17 12:09:04', '2013-05-17 12:09:04'),
+(12, 'Ruchi Shah', 'Aecortech', 3, 'ruchi@gmail.com', 'ruchi123', 0, 0, 0, '', '', '', '', '', '', '2013-05-17 12:11:28', '2013-05-17 12:11:28'),
+(13, 'Sonal Dubey ', 'Aecortech', 3, 'sonal@gmail.com', 'sonal123', 0, 0, 0, '', '', '', '', '', '', '2013-05-17 12:12:01', '2013-05-17 12:12:01'),
+(14, 'Payal Shah', 'Aecortech', 3, 'payal@gmail.com', 'payal123', 0, 0, 0, '', '', '', '', '', '', '2013-05-17 12:12:45', '2013-05-17 12:12:45'),
+(15, 'Ankur Pandit', 'Aecortech', 3, 'ankur@gmail.com', 'ankur123', 0, 0, 0, '', '', '', '', '', '', '2013-05-17 12:13:16', '2013-05-17 12:13:16');
 
 -- --------------------------------------------------------
 
@@ -265,19 +240,18 @@ CREATE TABLE IF NOT EXISTS `project` (
   `id` int(3) NOT NULL AUTO_INCREMENT,
   `project_name` varchar(255) NOT NULL,
   `project_description` varchar(255) NOT NULL,
-  `project_members` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`id`, `project_name`, `project_description`, `project_members`, `created`, `modified`) VALUES
-(2, 'ProjectAlly', 'Project and Employee management system', '', '2013-05-18 19:47:06', '2013-05-18 19:47:06'),
-(5, 'Club website', 'Football manager website', '', '2013-05-19 11:01:52', '2013-05-19 11:01:52');
+INSERT INTO `project` (`id`, `project_name`, `project_description`, `created`, `modified`) VALUES
+(2, 'ProjectAlly', 'Project and Employee management system', '2013-05-18 19:47:06', '2013-05-18 19:47:06'),
+(5, 'Club website', 'Football manager website', '2013-05-19 11:01:52', '2013-05-19 11:01:52');
 
 -- --------------------------------------------------------
 
@@ -351,3 +325,7 @@ INSERT INTO `uploads` (`id`, `attachment`, `size`, `bugs_and_features_id`) VALUE
 (4, 'profile_pic_7.jpg', 897932, 7),
 (5, 'profile_pic_7.jpg', 157385, 7),
 (6, 'profile_pic_7.jpg', 157385, 7);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
