@@ -225,7 +225,7 @@
 					$allday = false;
 					$end = $event['Event']['end'];
 				}
-				if($event['Event']['event_type_id'] == 4 || $event['Event']['event_type_id'] == 8){
+				if($event['Event']['event_type_id'] == 2 || $event['Event']['event_type_id'] == 3){
 					if($event['Event']['status'] == 'Approved'){
 					foreach ($leave_by as $leave):
 					if($event['Event']['profile_id'] == $leave['Profile']['id']):
@@ -245,7 +245,19 @@
 					}else{
 						$data[] = array();
 					}
-				}else{
+				}elseif($event['Event']['event_type_id'] == 1){
+					$data[] = array(
+							'id' => $event['Event']['id'],
+							'title'=>$event['Event']['title'],
+							'start'=>$event['Event']['start'],
+							'end' => $end,
+							'allDay' => $allday,
+							'url' => Router::url('/') . 'Calendar/event_view/'.$event['Event']['id'],
+							'details' => $event['Event']['details'],
+							'className' => $event['EventType']['color']
+					);
+				}
+				else{
 					$data[] = array(
 							'id' => $event['Event']['id'],
 							'title'=>$event['Event']['title'],
