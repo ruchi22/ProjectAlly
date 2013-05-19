@@ -1,7 +1,7 @@
 <?php
 	class ProjectController extends AppController {	
 		
-		public $uses = array('AddProject','Profile','Milestone','BugAndFeature','Priority','Estimate','Status','ProjectMember');
+		public $uses = array('AddProject','Profile','Milestone','BugAndFeature','Priority','Estimate','Status','ProjectMember','Event');
 		
 		public function listProject() {
 			$this->set(compact('title_for_layout'));
@@ -105,6 +105,17 @@
                 if($this->Milestone->save($this->data))
                 {
                     $this->Session->setFlash('New milestone created successfully.', 'success');
+                    $event_data = array('event_type_id' => '1',
+                    					'profile_id' => $this->data['Milestone']['responsible_user'], 
+                    					'title' => $this->data['Milestone']['title'], 
+                    					'details' => $this->data['Milestone']['description'], 
+                    					'start' => CakeTime::format('Y-m-d H:i:s', time()), 
+                    					'end' => $this->data['Milestone']['due_date'], 
+                    					'all_day' => '0', 
+                    					'status' => 'Approved',
+                    					'active' => '1' 
+                    					);
+                    $this->Event->save($event_data);					
                     $this->redirect(array('action' => 'listMilestones', $proj_id));
                 }else
                 {
