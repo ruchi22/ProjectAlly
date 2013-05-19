@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 18, 2013 at 05:26 PM
+-- Generation Time: May 19, 2013 at 01:40 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -57,12 +57,14 @@ CREATE TABLE IF NOT EXISTS `bugs_and_features` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `bugs_and_features`
 --
 
+INSERT INTO `bugs_and_features` (`id`, `reported_by`, `status`, `priority_id`, `assigned_to`, `milestone_id`, `title`, `description`, `estimate`, `project_id`, `created`, `modified`) VALUES
+(1, '7', '3', 1, 8, 1, 'Test Employee system', 'Testing', 4, 2, '2013-05-18 19:56:30', '2013-05-18 19:56:30');
 
 -- --------------------------------------------------------
 
@@ -129,12 +131,14 @@ CREATE TABLE IF NOT EXISTS `events` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=57 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `events`
 --
 
+INSERT INTO `events` (`id`, `event_type_id`, `profile_id`, `title`, `details`, `start`, `end`, `all_day`, `status`, `active`, `created`, `modified`) VALUES
+(58, 8, 8, 'Emergency', 'abcdefgh', '2013-05-22 15:30:52', '2013-05-23 15:31:13', 1, 'Approved', 1, '2013-05-19 10:01:18', '2013-05-19 10:01:18');
 
 -- --------------------------------------------------------
 
@@ -147,12 +151,16 @@ CREATE TABLE IF NOT EXISTS `event_types` (
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `color` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `event_types`
 --
 
+INSERT INTO `event_types` (`id`, `name`, `color`) VALUES
+(9, 'Sickday', 'Blue'),
+(10, 'Leave', 'Red'),
+(11, 'Personal', 'Pink');
 
 -- --------------------------------------------------------
 
@@ -171,12 +179,14 @@ CREATE TABLE IF NOT EXISTS `milestones` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `milestones`
 --
 
+INSERT INTO `milestones` (`id`, `responsible_user`, `title`, `due_date`, `planner`, `description`, `project_id`, `created`, `modified`) VALUES
+(1, 8, 'Milestone 1', '2013-05-24', '0', 'This is for testing', 2, '2013-05-18 19:47:57', '2013-05-18 19:47:57');
 
 -- --------------------------------------------------------
 
@@ -236,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
 
 INSERT INTO `profile` (`id`, `user_name`, `company_name`, `user_role`, `input_email`, `input_password`, `confirm_password`, `status`, `leave_request`, `leave_taken`, `user_dob`, `user_gender`, `work_email`, `user_address`, `user_mobile`, `user_home`, `user_photo`, `created`, `modified`) VALUES
 (7, 'Hardik Shah', 'Aecortech', 1, 'hardik@gmail.com', 'testtest', 'testtest', 1, 0, 0, '', '', '', '', '', '', '', '2013-05-17 11:57:01', '2013-05-17 11:57:01'),
-(8, 'Akash Bhardwaj', 'Aecortech', 3, 'akash@gmail.com', 'akash123', 'akash123', 1, 0, 0, '', '', '', '', '', '', '', '2013-05-17 12:00:03', '2013-05-17 12:00:03'),
+(8, 'Akash Bhardwaj', 'Aecortech', 2, 'akash@gmail.com', 'akash123', 'akash123', 1, 2, 1, '', '', '', '', '', '', '', '2013-05-17 12:00:03', '2013-05-17 12:00:03'),
 (9, 'Manali Pohani', 'Aecortech', 3, 'manali@gmail.com', 'manali123', 'manali123', 0, 0, 0, '', '', '', '', '', '', '', '2013-05-17 12:01:54', '2013-05-17 12:01:54'),
 (10, 'Dan Pope', 'Clubwebsite', 4, 'dan@gmail.com', 'dan123', 'dan123', 1, 0, 0, '', '', '', '', '', '', '', '2013-05-17 12:05:34', '2013-05-17 12:05:34'),
 (11, 'Jon F', 'Clubwebsite', 4, 'jon@gmail.com', 'jon123', 'jon123', 1, 0, 0, '', '', '', '', '', '', '', '2013-05-17 12:09:04', '2013-05-17 12:09:04'),
@@ -259,14 +269,15 @@ CREATE TABLE IF NOT EXISTS `project` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `project`
 --
 
 INSERT INTO `project` (`id`, `project_name`, `project_description`, `project_members`, `created`, `modified`) VALUES
-(1, 'ProjectAlly', 'Project and Employee Management System', '', '2013-05-18 17:13:59', '2013-05-18 17:13:59');
+(2, 'ProjectAlly', 'Project and Employee management system', '', '2013-05-18 19:47:06', '2013-05-18 19:47:06'),
+(5, 'Club website', 'Football manager website', '', '2013-05-19 11:01:52', '2013-05-19 11:01:52');
 
 -- --------------------------------------------------------
 
@@ -279,15 +290,19 @@ CREATE TABLE IF NOT EXISTS `project_members` (
   `project_id` int(11) NOT NULL,
   `profile_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `project_members`
 --
 
 INSERT INTO `project_members` (`id`, `project_id`, `profile_id`) VALUES
+(6, 5, 8),
+(7, 5, 11),
 (13, 5, 7),
-(14, 1, 10);
+(14, 1, 10),
+(15, 2, 8),
+(16, 3, 8);
 
 -- --------------------------------------------------------
 
@@ -323,9 +338,16 @@ CREATE TABLE IF NOT EXISTS `uploads` (
   `size` int(11) NOT NULL,
   `bugs_and_features_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `uploads`
 --
 
+INSERT INTO `uploads` (`id`, `attachment`, `size`, `bugs_and_features_id`) VALUES
+(1, 'profile_pic_7.jpg', 897932, 7),
+(2, 'profile_pic_7.jpg', 778077, 7),
+(3, 'profile_pic_7.jpg', 78457, 7),
+(4, 'profile_pic_7.jpg', 897932, 7),
+(5, 'profile_pic_7.jpg', 157385, 7),
+(6, 'profile_pic_7.jpg', 157385, 7);
