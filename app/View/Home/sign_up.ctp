@@ -24,38 +24,51 @@
 						<?php echo $this->Form->create('Profile',array('class' => 'form-horizontal form-signin-signup',
 														'url' => array('controller' => 'Home',
 														'action' => 'signUp')));?>
+						<div class="control-group">
 						<?php echo $this->Form->input('user_name',array('label' => false,
 																		'placeholder' => 'Full Name',
 																		'type' => 'text',
                                                                         'required')); ?>
                         <!-- p tag with class as help-block are for validation error messages -->
                         <p class="help-block"></p>
+                        </div>
+						<div class="control-group">
 						<?php echo $this->Form->input('company_name',array('label' => false,
 																		   'placeholder' => 'Name of Company',
 																		   'type' => 'text',
                                                                            'required')); ?>
                         <p class="help-block"></p>
-					
+						</div>
+						<div class="control-group">
 						<?php echo $this->Form->input('user_role',array('label' => false,
 																		'placeholder' => 'Choose Designation',
 																		'options' => $user_role,
                                                                         'empty' => 'Select Role',
                                                                         'required')); ?>
                         <p class="help-block"></p>
-					
-					
+						</div>
+						<div class="control-group">
 						<?php echo $this->Form->input('input_email',array('label' => false,
 																		  'placeholder' => 'Email',
 																		  'type' => 'email')); ?>
                         <p class="help-block"></p>
-					
-					
+						</div>
+						<div class="control-group">
 						<?php echo $this->Form->input('input_password',array('label' => false,
 																			 'placeholder' => 'Password',
 																			 'type' => 'password',
                                                                              'required')); ?>
                         <p class="help-block"></p>
-						
+						</div>
+						<div class="control-group">
+						<?php echo $this->Form->input('confirm_password',array('label' => false,
+																			 'placeholder' => 'Confirm Password',
+																			 'type' => 'password',
+																			 'data-validation-match-match' => 'data[Profile][input_password]',
+																			'name' => 'data[Profile][confirm_password]',	
+                                                                             'required')); ?>
+                        <p class="help-block"></p>
+						</div>
 						<?php echo $this->Form->submit('Sign Up',array('class' => 'btn btn-primary btn-large bottom-space')); ?>
 					
 					
@@ -68,13 +81,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-

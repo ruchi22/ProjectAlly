@@ -3,7 +3,7 @@
 ?>
 	<div class="row-fluid">
 		<div class="span12">
-			<div class="span6 well">
+			<div class="span4 well">
 			<?php 
 			echo $this->Html->link('Project',array('controller' => 'Project', 'action' => 'listProject'),
 															array('class' => 'btn'));
@@ -11,7 +11,7 @@
 			?>
 			<div id="success"></div>
 			</div>
-			<div class="span6 well">
+			<div class="span8 well">
 				<!-- Main content -->
 				<!-- form using cakephp -->
 				<?php
@@ -43,7 +43,7 @@
 											echo $this->Html->tag('span', 'Pending', array('class' => 'label label-important'));
 											echo '</td>';
 											echo '<td>';
-											echo $this->Html->link($detail['Event']['title'], array('controller' => 'Employee', 'action' => 'leave_view', $detail['Event']['id']));
+											echo $this->Html->link($detail['Event']['title'], array('controller' => 'Calendar', 'action' => 'leave_view', $detail['Event']['id']));
 											echo '</td>';
 											echo '<td>';
 											echo $detail['Event']['details'];
