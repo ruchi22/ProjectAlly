@@ -42,6 +42,17 @@
 		public function addProject() {
 			if(!empty($this->data)){
 				if($this->AddProject->save($this->data)){
+					 $event_data = array('event_type_id' =>  '3',
+                    					'profile_id' => $this->Session->read('id'), 
+                    					'title' => $this->data['AddProject']['project_name'], 
+                    					'details' => $this->data['AddProject']['project_description'], 
+                    					'start' => CakeTime::format('Y-m-d H:i:s', time()), 
+                    					'end' => $this->data['AddProject']['due_date'], 
+                    					'all_day' => '0', 
+                    					'status' => 'Approved',
+                    					'active' => '1' 
+                    					);
+                    $this->Event->save($event_data);			
 					$this->redirect(array('controller' => 'Project', 'action' => 'listProject'));
 				} else {
 					$this->Session->setFlash('Your stuff has been saved.');
@@ -105,7 +116,7 @@
                 if($this->Milestone->save($this->data))
                 {
                     $this->Session->setFlash('New milestone created successfully.', 'success');
-                    $event_data = array('event_type_id' => '1',
+                    $event_data = array('event_type_id' =>  '1',
                     					'profile_id' => $this->data['Milestone']['responsible_user'], 
                     					'title' => $this->data['Milestone']['title'], 
                     					'details' => $this->data['Milestone']['description'], 
@@ -171,7 +182,8 @@
 
             //fetching the values for list of milestones
             $this->set('milestone',$this->Milestone->find('list',array(
-                'fields' => array('Milestone.title')
+                'fields' => array('Milestone.title'),
+                'conditions' => array('Milestone.project_id' => $proj_id)
             )));
 
             //fetching the values pf estimated size
@@ -213,7 +225,8 @@
 
             //fetching the values for list of milestones
             $this->set('milestone',$this->Milestone->find('list',array(
-                'fields' => array('Milestone.title')
+                'fields' => array('Milestone.title'),
+                'conditions' => array('Milestone.project_id' => $proj_id)
             )));
 
             //fetching the values pf estimated size
