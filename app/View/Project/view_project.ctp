@@ -1,5 +1,18 @@
 		<div class="row-fluid">
-			<div class="span12">
+			<div class="span3">
+				<ul class="nav nav-tabs nav-stacked span9">
+					<li>
+		               <?php  echo $this->Html->link('Tickets',array('controller' => 'Project', 'action' => 'listTickets', $project['AddProject']['id'])); ?>
+		            </li>	
+		            <li>
+		               <?php echo $this->Html->link('Milestones',array('controller' => 'Project', 'action' => 'listMilestones', $project['AddProject']['id'])); ?>
+		            </li>
+		            <li>
+		                <?php echo $this->Html->link('Go Back',array('controller' => 'Project', 'action' => 'listProject')); ?>
+		            <li>
+	            </ul>
+			</div>            
+			<div class="span9">
 				<!-- MAIN CONTENT -->
 				<div class="span12">		
 					<?php //echo $this->Html->image($proUser['Profile']['userPhoto'], array('class' => 'img-polaroid')); ?>
@@ -7,7 +20,7 @@
 					<h3><?php echo $project['AddProject']['project_description']; ?></h3><br/>
 				</div>
 				<br/>	
-				<div class="span3">
+				<div class="span4">
 				<?php 
 				if($project_members == null){
 					?>
@@ -18,7 +31,7 @@
 				}
 				else {
 				?>
-				<table class="table table-bordered">
+				<table class="table table-bordered table-hover">
 								<caption>List of Employees Working on project</caption>
 								<thead>
 									<tr>
@@ -46,9 +59,9 @@
 						</table>	
 					</div>
 				
-				<div class="span5">
+				<div class="span9">
 					<!-- LIST OF USERS THAT CAN BE ADDED GOES HERE -->
-					<table class="table table-bordered">
+					<table class="table table-bordered table-hover">
 						<caption>Project Staff</caption>
 						<thead>
 							<tr>
@@ -90,13 +103,4 @@
 				</div>
 
 			</div>
-			<?php
-                //small sub menu kind a thing...need to keep it at better place later on
-                echo $this->Html->link('Tickets',array('controller' => 'Project', 'action' => 'listTickets', $project['AddProject']['id']),
-                                                 array('class' => 'btn'));
-                echo $this->Html->link('Milestones',array('controller' => 'Project', 'action' => 'listMilestones', $project['AddProject']['id']),
-                                                 array('class' => 'btn'));
-                echo $this->Html->link('Go Back',array('controller' => 'Project', 'action' => 'listProject'),
-                                                 array('class' => 'btn'));
-            ?>            
 		</div>

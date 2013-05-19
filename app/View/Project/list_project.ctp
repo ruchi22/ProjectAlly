@@ -5,21 +5,28 @@
 	$role = $this->Session->read('role');
 	
 ?>
-		<div class="row-fluid">
-			<div class="span12">
-				<!-- MAIN CONTENT -->
-				<div class="span3">
-				<?php
-				 
-					if ($role==1 || $role==2)
-					{
-						echo $this->Html->link('Add Project',
-											array('controller' => 'Project', 'action' => 'addProject'),
-											array('class' => 'btn'));
-					}
-				?>
-				</div>
-				<table class="table table-hover well span5">
+			<div class="row-fluid">
+				<div class="span12">
+					<!-- MAIN CONTENT -->
+				    <div class="span3">
+					<ul class="nav nav-tabs nav-stacked span9">
+					<?php 
+			 		if ($role==1 || $role==2)
+	        			{
+	        				echo '<li>';
+					    	echo $this->Html->link('Add Project',
+												array('controller' => 'Project', 'action' => 'addProject'));
+					        echo '</li>';
+				        }
+				     ?>   
+	                <li>
+			        	<?php echo $this->Html->link('View Employees Working on Projects',array('controller' => 'Project', 'action' => 'view_employees_projects')); ?>
+		            </li>
+	            </ul>
+	   
+		    </div>
+    		<div class="span9">
+				<table class="table table-hover well span12">
 					<caption>Projects</caption>
 					<thead>
 						<tr>
@@ -56,5 +63,6 @@
 						?>
 					</tbody>
 				</table>
+				</div>
 			</div>
 		</div>

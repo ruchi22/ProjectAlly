@@ -352,9 +352,7 @@ class UploadComponent extends Component
 
             	// Save on database
                 $this->UploadModel->save( $data );
-				$this->profile_check = 0;
-				$this->bug_id = 0;
-					
+				
                 if ($append_file) {
                     file_put_contents(
                         $file_path,

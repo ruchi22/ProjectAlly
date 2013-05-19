@@ -13,7 +13,7 @@
 			//TO NOTIFY PENDING USER REQUEST
 			$notify = $this->Profile->find('count', array('conditions' => array('Profile.status' => 0)));
 			$this->set(compact('notify'));
-			$this -> set('currentUser', $this->Profile->find('first' ,array('conditions' => 
+			$this->set('currentUser', $this->Profile->find('first' ,array('conditions' => 
 																	array('Profile.id' => $this->Session->read('id')))));
 		}
 		

@@ -31,6 +31,14 @@
 																'Profile.status' => '1'))));
 		}
 		
+		public function view_employees_projects(){
+			$this->set('project_members', $this->ProjectMember->find('all'));
+			$this->set('projects', $this->AddProject->find('all'));
+			$this->set('users', $this->Profile->find('all' ,array('conditions' => 
+																	array(
+																	'Profile.status' => '1'))));
+		}
+		
 		public function addProject() {
 			if(!empty($this->data)){
 				if($this->AddProject->save($this->data)){
@@ -137,7 +145,6 @@
 	
 		public function editTicket($ticket_id = null, $proj_id = null) {
             $this->set('projectid', $proj_id);
-            
             $this->set('tickets', $this->BugAndFeature->find('all', array('conditions' => array('BugAndFeature.id' => $ticket_id))));
 	            
             //fetching the values of priority
