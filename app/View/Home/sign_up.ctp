@@ -50,7 +50,8 @@
 						<div class="control-group">
 						<?php echo $this->Form->input('input_email',array('label' => false,
 																		  'placeholder' => 'Email',
-																		  'type' => 'email')); ?>
+																		  'type' => 'email',
+																			'required')); ?>
                         <p class="help-block"></p>
 						</div>
 						<div class="control-group">

@@ -1,3 +1,9 @@
+<?php
+    echo $this->Html->script('jqBootstrapValidation');
+?>
+<script>
+    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
 <div class="container">
 	<div class="page-header">
     	<h1>Signin to ProjectAlly</h1>
@@ -12,14 +18,26 @@
 					echo $this->Form->create('UserInfo',array('class' => 'form-horizontal form-signin-signup',
 												'url' => array('controller' => 'Home',
 													'action' => 'authenticate')));
+					?>
+					<div class="control-group">
+						
+					<?php 
 					echo $this->Form->input('input_email',array('label' => false,
 																	'placeholder' => 'Email',
-																	));
+																	'type' => 'email',
+																	'required'));
+					?>
+					<p class="help-block"></p>
+                    </div>
+					<div class="control-group">
+					<?php 												
 					echo $this->Form->input('input_password',array('label' => false,
 																  'placeholder' => 'Password',
 																  'type' => 'password',
-																  ));
+                                                                  'required'));
 					?>
+					<p class="help-block"></p>
+                    </div>
 					<div class="remember-me">
 	                    <div class="pull-left">
 	      	                <label class="checkbox">

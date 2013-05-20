@@ -20,7 +20,7 @@
 				else {
 				?>
 				<table class="table table-bordered">
-								<caption>List of Employees Working on project</caption>
+								<caption><b>List of Employees Working on project</b></caption>
 								<thead>
 									<tr>
 										<th>User Name</th>

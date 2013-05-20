@@ -9,15 +9,183 @@
 															array('class' => 'btn'));
 				
 			?>
-			<div id="success"></div>
 			</div>
+			<!-- CODE FOR GENERATED FEEDS -->
 			<div class="span8 well">
-				<!-- Main content -->
-				<!-- form using cakephp -->
-				<?php
+			<h4>Feeds</h4>
+			<div class="tabbable tabs-left">
+				<ul class="nav nav-pills nav-tabs">
+					<li class="active"><a href="#tab1" data-toggle="tab">Project Feeds</a></li>
+  					<li><a href="#tab2" data-toggle="tab">Milestone Feeds</a></li>
+  					<li><a href="#tab3" data-toggle="tab">Ticket Feeds</a></li>
+				</ul>
+ 				<div class="tab-content">
+					<div class="tab-pane" id="tab3">
+						<?php 
+						foreach($bugDetails as $bugDetail):
+						
+						$date1 = $bugDetail['BugAndFeature']['modified'];
+						$date2 = CakeTime::format('Y-m-d H:i:s', time());
+						$ts1 = strtotime($date1);
+						$ts2 = strtotime($date2);
+						
+						$seconds_diff = $ts2 - $ts1;
+						
+						$time_diff = floor($seconds_diff/3600/24);
+							if($time_diff <= 5){
+								if($bugDetail['BugAndFeature']['created'] == $bugDetail['BugAndFeature']['modified']){
+									echo "New ticket  ";
+									echo '<b>'.$bugDetail['BugAndFeature']['title'].'</b>';
+									echo " added";
+									echo '<br/>';
+									foreach ($users as $user):
+										if($user['Profile']['id'] == $bugDetail['BugAndFeature']['assigned_to']):
+											echo 'Ticket Assigned To ';
+											echo '<b>'.$user['Profile']['user_name'].'</b>';
+										endif;
+									endforeach;	
+									echo '<br/>';
+									foreach ($users as $user):
+										if($user['Profile']['id'] == $bugDetail['BugAndFeature']['reported_by']):
+											echo 'Ticket Reported By ';
+											echo '<b>'.$user['Profile']['user_name'].'</b>';
+										endif;
+									endforeach;	
+										echo '<br/>';
+										echo '<br/>';
+								}else {
+									echo "Ticket Modified  ";
+									echo '<b>'.$bugDetail['BugAndFeature']['title'].'</b>';
+									echo " added";
+									echo '<br/>';
+									foreach ($users as $user):
+										if($user['Profile']['id'] == $bugDetail['BugAndFeature']['assigned_to']):
+											echo 'Ticket Assigned To ';
+											echo '<b>'.$user['Profile']['user_name'].'</b>';
+										endif;
+									endforeach;	
+									echo '<br/>';
+									foreach ($users as $user):
+										if($user['Profile']['id'] == $bugDetail['BugAndFeature']['reported_by']):
+											echo 'Ticket Reported By ';
+											echo '<b>'.$user['Profile']['user_name'].'</b>';
+										endif;
+									endforeach;	
+										echo '<br/>';
+										echo '<br/>';
+								}
+							}
+						endforeach;
+						?>
+					</div>
+					<div class="tab-pane active" id="tab1">
+						<?php 
+						foreach($projectDetails as $projectDetail):
+						
+							$date1 = $projectDetail['AddProject']['modified'];
+							$date2 = CakeTime::format('Y-m-d H:i:s', time());
+							$ts1 = strtotime($date1);
+							$ts2 = strtotime($date2);
+							$seconds_diff = $ts2 - $ts1;
+							$time_diff = floor($seconds_diff/3600/24);
+						
+							if($time_diff <= 5){
+								if($projectDetail['AddProject']['created'] == $projectDetail['AddProject']['modified']){
+									echo "New project ";
+									echo '<b>'.$projectDetail['AddProject']['project_name'].'</b>';
+									echo " created";
+									echo '<br/>';
+									foreach ($users as $user):
+										foreach($project_members as $project_member):
+											if($project_member['ProjectMember']['project_id'] == $projectDetail['AddProject']['id'])
+												if($project_member['ProjectMember']['profile_id'] == $user['Profile']['id']){	
+												?> 
+													<tbody>
+														<tr>
+															<td> <?php echo $this->Html->link($user['Profile']['user_name'],
+																						array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])); ?> </td>
+															<br/>
+														</tr>
+													</tbody>
+												<?php 
+												}
+										endforeach;
+									endforeach;
+								}else{
+									echo "Project Modified ";
+									echo '<b>'.$projectDetail['AddProject']['project_name'].'</b>';
+									echo '<br/>';
+									foreach ($users as $user):
+										foreach($project_members as $project_member):
+											if($project_member['ProjectMember']['project_id'] == $projectDetail['AddProject']['id'])
+												if($project_member['ProjectMember']['profile_id'] == $user['Profile']['id']){	
+												?> 
+													<tbody>
+														<tr>
+															<td> <?php echo $this->Html->link($user['Profile']['user_name'],
+																						array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])); ?> </td>
+															<br/>
+														</tr>
+													</tbody>
+												<?php 
+												}
+										endforeach;
+									endforeach;
+								}
+							}
+						endforeach;
+						?>
+					</div>
+					<div class="tab-pane" id="tab2">
+						<?php 
+						foreach($milestoneDetails as $milestoneDetail):
+							$date1 = $milestoneDetail['Milestone']['modified'];
+							$date2 = CakeTime::format('Y-m-d H:i:s', time());
+							$ts1 = strtotime($date1);
+							$ts2 = strtotime($date2);
+							$seconds_diff = $ts2 - $ts1;
+							$time_diff = floor($seconds_diff/3600/24);
+							
+							if($time_diff <= 5){
+								if($milestoneDetail['Milestone']['created'] == $milestoneDetail['Milestone']['modified']){
+									echo "New ticket  ";
+									echo '<b>'.$milestoneDetail['Milestone']['title'].'</b>';
+									echo " added";
+									echo '<br/>';
+									foreach ($users as $user):
+										if($user['Profile']['id'] == $milestoneDetail['Milestone']['responsible_user']):
+											echo 'Responsible user ';
+											echo '<b>'.$user['Profile']['user_name'].'</b>';
+										endif;
+									endforeach;	
+									echo '<br/>';
+								}else {
+									echo "Milestone Modified  ";
+									echo '<b>'.$milestoneDetail['Milestone']['title'].'</b>';
+									echo '<br/>';
+									foreach ($users as $user):
+										if($user['Profile']['id'] == $milestoneDetail['Milestone']['responsible_user']):
+											echo 'Ticket Assigned To ';
+											echo '<b>'.$user['Profile']['user_name'].'</b>';
+										endif;
+									endforeach;	
+									echo '<br/>';
+								}
+							}
+						endforeach;
+						?>
+					
+					</div>
+				</div>			  
 				
+			</div>
+			<!-- /CODE FOR GENERATED FEEDS -->
+		</div>
+		<div class="span12">
+				<?php
 				if($role == 1){
 					if($leaveRequests != null){ ?>
+					<div class="span8 well">
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -67,9 +235,9 @@
 							
 							</tbody>
 						</table>
+				</div>
 					<?php }
 				}
 				?>
-			</div>
 		</div>
 	</div>

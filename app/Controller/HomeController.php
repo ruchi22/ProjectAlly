@@ -6,7 +6,7 @@ class HomeController extends AppController {
 	public $helpers = array('Html','Form');
 	public $components = array('Session');
 
-	public $uses = array('UserInfo', 'Profile', 'AddProject', 'Event', 'EventType');
+	public $uses = array('UserInfo', 'Profile', 'AddProject', 'Event', 'EventType', 'BugAndFeature', 'ProjectMember','Milestone');
 
 	
 	public function beforeFilter() {
@@ -49,6 +49,11 @@ class HomeController extends AppController {
 	public function HomePage() {
 		$this->set('leaveRequests', $this->Profile->find('all', array('conditions' => array('Profile.leave_request !=' => 0))));
 		$this->set('leaveDetails', $this->Event->find('all'));
+		$this->set('bugDetails', $this->BugAndFeature->find('all'));
+		$this->set('projectDetails', $this->AddProject->find('all'));
+		$this->set('users', $this->Profile->find('all'));
+		$this->set('project_members', $this->ProjectMember->find('all'));
+		$this->set('milestoneDetails', $this->Milestone->find('all'));
 	}
 	
 	
@@ -84,5 +89,4 @@ class HomeController extends AppController {
 								array('Event.id' => $id));
 		$this->redirect(array('controller' => 'Home', 'action' => 'HomePage'));
 	}
-	
 }

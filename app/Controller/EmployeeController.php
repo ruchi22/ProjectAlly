@@ -25,7 +25,8 @@
 																			'Profile.status' => '1'))));
 			//TO LIST CURRENT LEAVE STATUS
 			$this->set('leaveStatus', $this->Event->find('all' ,array('conditions' => 
-																	array('Event.profile_id' => $this->Session->read('id')))));
+																	array('Event.profile_id' => $this->Session->read('id'),
+																	'Event.event_type_id' => 2,'Event.event_type_id' => 4))));
 			
 		}
 
