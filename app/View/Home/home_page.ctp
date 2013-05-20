@@ -34,41 +34,51 @@
 						$time_diff = floor($seconds_diff/3600/24);
 							if($time_diff <= 5){
 								if($bugDetail['BugAndFeature']['created'] == $bugDetail['BugAndFeature']['modified']){
+									echo '<i class="icon-plus-sign"></i>&nbsp;&nbsp;&nbsp;';
 									echo "New ticket  ";
-									echo '<b>'.$bugDetail['BugAndFeature']['title'].'</b>';
+									echo '<b>'.$this->Html->link($bugDetail['BugAndFeature']['title'], array('controller' => 'Project', 'action' => 'viewTicket', $bugDetail['BugAndFeature']['id'])).'</b>';
 									echo " added";
 									echo '<br/>';
 									foreach ($users as $user):
 										if($user['Profile']['id'] == $bugDetail['BugAndFeature']['assigned_to']):
-											echo 'Ticket Assigned To ';
-											echo '<b>'.$user['Profile']['user_name'].'</b>';
+											echo '&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;&nbsp;&nbsp;';
+											echo 'Assigned To ';
+											echo $this->Html->link($user['Profile']['user_name'],
+																array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id']));
 										endif;
 									endforeach;	
 									echo '<br/>';
 									foreach ($users as $user):
 										if($user['Profile']['id'] == $bugDetail['BugAndFeature']['reported_by']):
-											echo 'Ticket Reported By ';
-											echo '<b>'.$user['Profile']['user_name'].'</b>';
+											echo '&nbsp;&nbsp;&nbsp;<i class="icon-book"></i>&nbsp;&nbsp;&nbsp;';
+											echo 'Reported By ';
+											echo $this->Html->link($user['Profile']['user_name'],
+																array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id']));
 										endif;
 									endforeach;	
 										echo '<br/>';
 										echo '<br/>';
 								}else {
+									echo '<i class="icon-refresh"></i>&nbsp;&nbsp;&nbsp;';
 									echo "Ticket Modified  ";
-									echo '<b>'.$bugDetail['BugAndFeature']['title'].'</b>';
+									echo '<b>'.$this->Html->link($bugDetail['BugAndFeature']['title'], array('controller' => 'Project', 'action' => 'viewTicket', $bugDetail['BugAndFeature']['id'])).'</b>';
 									echo " added";
 									echo '<br/>';
 									foreach ($users as $user):
 										if($user['Profile']['id'] == $bugDetail['BugAndFeature']['assigned_to']):
-											echo 'Ticket Assigned To ';
-											echo '<b>'.$user['Profile']['user_name'].'</b>';
+											echo '&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;&nbsp;&nbsp;';
+											echo 'Assigned To ';
+											echo '<b>'.$this->Html->link($user['Profile']['user_name'],
+																array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])).'</b>';
 										endif;
 									endforeach;	
 									echo '<br/>';
 									foreach ($users as $user):
 										if($user['Profile']['id'] == $bugDetail['BugAndFeature']['reported_by']):
-											echo 'Ticket Reported By ';
-											echo '<b>'.$user['Profile']['user_name'].'</b>';
+											echo '&nbsp;&nbsp;&nbsp;<i class="icon-book"></i>&nbsp;&nbsp;&nbsp;';
+											echo 'Reported By ';
+											echo $this->Html->link($user['Profile']['user_name'],
+																array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id']));
 										endif;
 									endforeach;	
 										echo '<br/>';
@@ -91,10 +101,17 @@
 						
 							if($time_diff <= 5){
 								if($projectDetail['AddProject']['created'] == $projectDetail['AddProject']['modified']){
+									echo '<i class="icon-plus-sign"></i>&nbsp;&nbsp;&nbsp;';
 									echo "New project ";
-									echo '<b>'.$projectDetail['AddProject']['project_name'].'</b>';
+									echo '<b>'.$this->Html->link($projectDetail['AddProject']['project_name'],
+															array('controller' => 'Project', 'action' => 'viewProject', $projectDetail['AddProject']['id']))
+										.'</b>';
 									echo " created";
 									echo '<br/>';
+									echo '&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;&nbsp;&nbsp;';
+									echo "Project Members:";
+									echo '<br/>';
+									
 									foreach ($users as $user):
 										foreach($project_members as $project_member):
 											if($project_member['ProjectMember']['project_id'] == $projectDetail['AddProject']['id'])
@@ -102,9 +119,11 @@
 												?> 
 													<tbody>
 														<tr>
-															<td> <?php echo $this->Html->link($user['Profile']['user_name'],
+															<td>
+															<i class="icon-th-list"></i>
+															 <?php echo $this->Html->link($user['Profile']['user_name'],
 																						array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])); ?> </td>
-															<br/>
+															
 														</tr>
 													</tbody>
 												<?php 
@@ -112,8 +131,14 @@
 										endforeach;
 									endforeach;
 								}else{
+									echo '<i class="icon-refresh"></i>&nbsp;&nbsp;&nbsp;';
 									echo "Project Modified ";
-									echo '<b>'.$projectDetail['AddProject']['project_name'].'</b>';
+									echo '<b>'.$this->Html->link($projectDetail['AddProject']['project_name'],
+															array('controller' => 'Project', 'action' => 'viewProject', $projectDetail['AddProject']['id']))
+										.'</b>';
+									echo '<br/>';
+									echo '&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;&nbsp;&nbsp;';
+									echo "Project Members:";
 									echo '<br/>';
 									foreach ($users as $user):
 										foreach($project_members as $project_member):
@@ -122,9 +147,9 @@
 												?> 
 													<tbody>
 														<tr>
+															<i class="icon-th-list"></i>
 															<td> <?php echo $this->Html->link($user['Profile']['user_name'],
 																						array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])); ?> </td>
-															<br/>
 														</tr>
 													</tbody>
 												<?php 
@@ -133,7 +158,10 @@
 									endforeach;
 								}
 							}
+							echo '<br/>';
+							echo '<br/>';
 						endforeach;
+						
 						?>
 					</div>
 					<div class="tab-pane" id="tab2">
@@ -148,30 +176,41 @@
 							
 							if($time_diff <= 5){
 								if($milestoneDetail['Milestone']['created'] == $milestoneDetail['Milestone']['modified']){
-									echo "New ticket  ";
-									echo '<b>'.$milestoneDetail['Milestone']['title'].'</b>';
+									echo '<i class="icon-plus-sign"></i>&nbsp;&nbsp;&nbsp;';
+									echo "New Milestone  ";
+									echo '<b>'.$this->Html->link($milestoneDetail['Milestone']['title'], array('controller' => 'Project', 
+            																	  'action' => 'viewMilestone', $milestoneDetail['Milestone']['id'])).'</b>';
 									echo " added";
 									echo '<br/>';
 									foreach ($users as $user):
 										if($user['Profile']['id'] == $milestoneDetail['Milestone']['responsible_user']):
+											echo '&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;&nbsp;&nbsp;';
 											echo 'Responsible user ';
-											echo '<b>'.$user['Profile']['user_name'].'</b>';
+											echo $this->Html->link($user['Profile']['user_name'],
+																array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])).'</b>';
+												echo '<br/>';
 										endif;
 									endforeach;	
-									echo '<br/>';
 								}else {
+									echo '<i class="icon-refresh"></i>&nbsp;&nbsp;&nbsp;';
 									echo "Milestone Modified  ";
-									echo '<b>'.$milestoneDetail['Milestone']['title'].'</b>';
+									echo '<b>'.$this->Html->link($milestoneDetail['Milestone']['title'], array('controller' => 'Project', 
+            																	  'action' => 'viewMilestone', $milestoneDetail['Milestone']['id'])).'</b>';
 									echo '<br/>';
 									foreach ($users as $user):
 										if($user['Profile']['id'] == $milestoneDetail['Milestone']['responsible_user']):
-											echo 'Ticket Assigned To ';
-											echo '<b>'.$user['Profile']['user_name'].'</b>';
+											echo '&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;&nbsp;&nbsp;';
+											echo 'Responsible user';
+											echo $this->Html->link($user['Profile']['user_name'],
+																array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id']));
+											echo '<br/>';
+						
 										endif;
 									endforeach;	
 									echo '<br/>';
 								}
 							}
+							echo '<br/>';
 						endforeach;
 						?>
 					
