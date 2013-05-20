@@ -1,3 +1,4 @@
+<?php 	$role = $this->Session->read('role'); ?>
 		<div class="row-fluid">
 			<div class="span3">
 				<ul class="nav nav-tabs nav-stacked span9">
@@ -7,7 +8,12 @@
 		            <li>
 		               <?php echo $this->Html->link('Milestones',array('controller' => 'Project', 'action' => 'listMilestones', $project['AddProject']['id'])); ?>
 		            </li>
-		            <li>
+		            <?php if ($role==1 || $role == 2):?>
+		        	<li>
+		            	<?php 	echo $this->Html->link('Delete',array('controller' => 'Project', 'action' => 'deleteProject', $project['AddProject']['id'])); ?>	
+					<li>
+					<?php endif; ?>
+	                <li>
 		                <?php echo $this->Html->link('Go Back',array('controller' => 'Project', 'action' => 'listProject')); ?>
 		            <li>
 	            </ul>
@@ -30,35 +36,35 @@
 					<?php 
 				}
 				else {
-				?>
-				<table class="table table-bordered table-hover">
-								<caption>List of Employees Working on project</caption>
-								<thead>
-									<tr>
-										<th>User Name</th>
-									</tr>
-								</thead>
-				<?php 
-					foreach ($users as $user):
-						foreach($project_members as $project_member):
-								if($project_member['ProjectMember']['profile_id'] == $user['Profile']['id']){	
-								?> 
-									<tbody>
-										<tr>
-											<td> <?php echo $this->Html->link($user['Profile']['user_name'],
-																		array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])); ?> </td>
-										</tr>
-									</tbody>
-								<?php 
-								}
-								
-						endforeach;
-					endforeach;
-				}
-				?>
+					?>
+						<table class="table table-bordered table-hover">
+										<caption>List of Employees Working on project</caption>
+										<thead>
+											<tr>
+												<th>User Name</th>
+											</tr>
+										</thead>
+						<?php 
+							foreach ($users as $user):
+								foreach($project_members as $project_member):
+										if($project_member['ProjectMember']['profile_id'] == $user['Profile']['id']){	
+										?> 
+											<tbody>
+												<tr>
+													<td> <?php echo $this->Html->link($user['Profile']['user_name'],
+																				array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])); ?> </td>
+												</tr>
+											</tbody>
+										<?php 
+										}
+										
+								endforeach;
+							endforeach;
+					}
+						?>
 						</table>	
 					</div>
-				
+				<?php if($role==1 || $role==2): ?>
 				<div class="span9">
 					<!-- LIST OF USERS THAT CAN BE ADDED GOES HERE -->
 					<table class="table table-bordered table-hover">
@@ -100,6 +106,7 @@
 							
 						</tbody>
 					</table>
+					<?php endif; ?>
 				</div>
 
 			</div>

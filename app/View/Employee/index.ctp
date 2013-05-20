@@ -16,8 +16,8 @@ $role = $this->Session->read('role') ;
 					</thead>
 					<tbody>
 				<?php 
-				if($role == 1 || $role == 2){
-					foreach ($users as $user):
+				foreach ($users as $user):
+					if($role == 1 || $role == 2){
 						if($role == 1){
 							if($user['Profile']['user_role'] > 1){
 								echo '<tr class =';
@@ -52,14 +52,47 @@ $role = $this->Session->read('role') ;
 							}
 						}
 						elseif($role == 2){
-							if($user['Profile']['user_role'] > 2){
+							if($user['Profile']['user_role'] >= 2){
 							echo '<tr class =';
 							if($user['Profile']['user_role'] == 3){
 									echo 'success';
 								}
-								elseif($user['Profile']['user_role'] == 4){
-									echo 'error';
-								}	
+							elseif($user['Profile']['user_role'] == 4){
+								echo 'error';
+							}	
+							elseif($user['Profile']['user_role'] == 2){
+								echo 'warning';
+							}	
+							echo '>';
+								echo '<td>';
+									echo $this->Html->link($user['Profile']['user_name'],
+														array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])); 
+								echo '</td>';
+								echo '<td>';
+									switch($user['Profile']['user_role']){
+										case '2': 
+											echo 'Administrator';
+											break;
+										case '3': 
+											echo 'Employee';
+											break;
+										case '4':
+											echo 'User';
+											break;
+									}
+								echo '</td>';
+							echo '</tr>';
+							}
+						}
+				}elseif($role == 3 || $role == 4) {
+						if($user['Profile']['user_role'] >= 3){
+							echo '<tr class =';
+							if($user['Profile']['user_role'] == 3){
+									echo 'success';
+								}
+							elseif($user['Profile']['user_role'] == 4){
+								echo 'error';
+							}	
 							echo '>';
 								echo '<td>';
 									echo $this->Html->link($user['Profile']['user_name'],
@@ -77,9 +110,9 @@ $role = $this->Session->read('role') ;
 								echo '</td>';
 							echo '</tr>';
 							}
+							
 						}
 					endforeach;
-				}
 				?>
 					</tbody>
 					</table>
@@ -108,11 +141,15 @@ $role = $this->Session->read('role') ;
 								</div>	
 								<?php }?>
 					  	</p>
-					</div>
-				<div class="span8">
+					  	<br/>
+					  	<br/>
+					  	<br/>
+					  	<br/>
 				<?php 
 				if($leaveStatus != null){ 
 				?>
+				<div class="span 12 well">
+				<h4>Leave request Status</h4>
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -126,6 +163,7 @@ $role = $this->Session->read('role') ;
 						<tbody>
 				<?php foreach($leaveStatus as $leave){ ?>
 							<?php 
+						if($leave['Event']['event_type_id'] == 2 || $leave['Event']['event_type_id'] == 4)	{
 							echo '<tr>';
 								echo '<td>';
 								echo $leave['Event']['title'];	
@@ -161,12 +199,14 @@ $role = $this->Session->read('role') ;
 							<?php
 								}
 							echo '</tr>';
-							}?>
+							}
+						}?>
 						</tbody>
 					</table>
 				<?php }
 				}	
 				?>
+				</div>
 				</div>
 			</div>
 		</div>

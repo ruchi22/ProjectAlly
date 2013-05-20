@@ -8,7 +8,7 @@
 		<?php
 			echo $this->Form->input('id');
 			echo $this->Form->input('event_type_id', array('options' => array(
-						'8' => 'Sickday', '4' => 'Leave'
+						'2' => 'Sick Leave', '4' => 'General Leave'
 						)));
 			echo $this->Form->input('profile_id', array('type' => 'hidden', 'value' => $this->Session->read('id')));
 			echo $this->Form->input('title');

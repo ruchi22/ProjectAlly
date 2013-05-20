@@ -248,7 +248,7 @@
 				}elseif($event['Event']['event_type_id'] == 1){
 					$data[] = array(
 							'id' => $event['Event']['id'],
-							'title'=>$event['Event']['title'],
+							'title'=>'Milestone:'. $event['Event']['title'],
 							'start'=>$event['Event']['start'],
 							'end' => $end,
 							'allDay' => $allday,
@@ -259,7 +259,7 @@
 				}elseif($event['Event']['event_type_id'] == 3){
 					$data[] = array(
 							'id' => $event['Event']['id'],
-							'title'=>$event['Event']['title'],
+							'title'=>'Project:'.$event['Event']['title'],
 							'start'=>$event['Event']['start'],
 							'end' => $end,
 							'allDay' => $allday,
