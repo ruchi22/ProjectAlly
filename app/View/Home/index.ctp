@@ -7,7 +7,7 @@
                 <div class="hero-unit">
                   <div class="row-fluid">
                     <div class="span7 marketting-info">
-                      <h1>TELL ABOUT YOUR BUSINESS AND CORPORATE.</h1>
+                      <h1>Project Management</h1>
                       <p>
                         We are Bootbusiness and we are awesome.We solve your technology problems by our awesome products.
                         We are Bootbusiness and we are awesome.We solve your technology problems by our awesome products.
@@ -17,7 +17,7 @@
                       </h3>                      
                     </div>
                     <div class="span5">
-                      <img src="img/placeholder.jpg" class="thumbnail">
+                      <img src="img/project-management.jpg" class="thumbnail">
                     </div>
                   </div>                  
                 </div>
@@ -26,7 +26,7 @@
                 <div class="hero-unit">
                   <div class="row-fluid">
                     <div class="span7 marketting-info">
-                      <h1>TELL ABOUT YOUR NATURE OF WORK</h1>
+                      <h1>Employee Management</h1>
                       <p>
                         We are Bootbusiness and we design ultimate website applications.
                         We are Bootbusiness and we design ultimate website applications.
@@ -36,7 +36,7 @@
                       </h3>                      
                     </div>
                     <div class="span5">
-                      <img src="img/placeholder.jpg" class="thumbnail">
+                      <img src="img/employee-management.jpg" class="thumbnail">
                     </div>
                   </div>                  
                 </div>
@@ -45,7 +45,7 @@
                 <div class="hero-unit">
                   <div class="row-fluid">
                     <div class="span7 marketting-info">
-                      <h1>TELL ABOUT YOUR PRODUCT</h1>
+                      <h1>Bug Tracking</h1>
                       <p>
                         Get excited about our products.We build awesome products in mobile.
                         We build awesome products in mobile.We build awesome products in mobile.
@@ -56,7 +56,7 @@
                       </h3>                      
                     </div>
                     <div class="span5">
-                      <img src="img/placeholder.jpg" class="thumbnail">
+                      <img src="img/bugtracker.jpg" class="thumbnail">
                     </div>
                   </div>                  
                 </div>
