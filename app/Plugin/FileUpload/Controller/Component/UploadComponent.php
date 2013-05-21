@@ -26,7 +26,7 @@ class UploadComponent extends Component
     function __construct( ComponentCollection $collection, $options = null ) {
 
         $this->UploadModel = ClassRegistry::init('FileUpload.Upload');
-
+		
         $this->options = array(
             'script_url' => Router::url('/', true).'file_upload/handler',
             'upload_dir' => WWW_ROOT.'uploads/',
@@ -97,23 +97,44 @@ class UploadComponent extends Component
     }
     
     protected function get_file_object($file_name) {
-        if(substr($file_name, 7, -24) == $this->bug_id){
-		    $file_path = $this->options['upload_dir'].$file_name;
-	        if (is_file($file_path) && $file_name[0] !== '.') {
-	            $file = new stdClass();
-	            $file->name = $file_name;
-	            $file->size = filesize($file_path);
-	            $file->url = $this->options['upload_url'].rawurlencode($file->name);
-	            foreach($this->options['image_versions'] as $version => $options) {
-	                if (is_file($options['upload_dir'].$file_name)) {
-	                    $file->{$version.'_url'} = $options['upload_url']
-	                        .rawurlencode($file->name);
-	                }
-	            }
-	            $this->set_file_delete_url($file);
-	            return $file;
+   		 if(isset($this->profile_check)){
+    	  	if(substr($file_name, 12, -4) == $this->profile_check){
+			    $file_path = $this->options['upload_dir'].$file_name;
+		        if (is_file($file_path) && $file_name[0] !== '.') {
+		            $file = new stdClass();
+		            $file->name = $file_name;
+		            $file->size = filesize($file_path);
+		            $file->url = $this->options['upload_url'].rawurlencode($file->name);
+		            foreach($this->options['image_versions'] as $version => $options) {
+		                if (is_file($options['upload_dir'].$file_name)) {
+		                    $file->{$version.'_url'} = $options['upload_url']
+		                        .rawurlencode($file->name);
+		                }
+		            }
+		            $this->set_file_delete_url($file);
+		            return $file;
+		        }
 	        }
-        }
+   		 }
+   		 else{
+    		if(substr($file_name, 7, -24) == $this->bug_id){
+			    $file_path = $this->options['upload_dir'].$file_name;
+		        if (is_file($file_path) && $file_name[0] !== '.') {
+		            $file = new stdClass();
+		            $file->name = $file_name;
+		            $file->size = filesize($file_path);
+		            $file->url = $this->options['upload_url'].rawurlencode($file->name);
+		            foreach($this->options['image_versions'] as $version => $options) {
+		                if (is_file($options['upload_dir'].$file_name)) {
+		                    $file->{$version.'_url'} = $options['upload_url']
+		                        .rawurlencode($file->name);
+		                }
+		            }
+		            $this->set_file_delete_url($file);
+		            return $file;
+		        }
+	        }
+   		 }
         return null;
     }
     
@@ -287,12 +308,13 @@ class UploadComponent extends Component
 	    };
 	    // New name
 	    // New name consists of jointing a random number value - defined in the random_no() function - and the original file extension
-	    if($this->profile_pic_set == $this->Session->read('id')){
-    		$final_value_b = "profile_pic_".$this->Session->read('id').$final_value;
+	    if(isset($this->profile_check)){
+          	$final_value_b = "profile_pic_".$this->profile_check.$final_value;
 			return $final_value_b;
-	    } 
-	    $final_value_b = "bug-id_".$this->bug_id."_".CakeTime::format('Y-m-d-H-i-s', time()).$final_value;
-	    return $final_value_b;
+	    }else { 
+		    $final_value_b = "bug-id_".$this->bug_id."_".CakeTime::format('Y-m-d-H-i-s', time()).$final_value;
+		    return $final_value_b;
+	    }
 	}
     
     protected function handle_file_upload($uploaded_file, $name, $size, $type, $error) {
@@ -310,17 +332,26 @@ class UploadComponent extends Component
                 // multipart/formdata uploads (POST method uploads)
 				
                 // File information to save on database
-                $data = array(
-                    'Upload' => array(
-                        'attachment' => $file->name,
-                        'size' => $size,
-                		'bugs_and_features_id' => $this->bug_id 
-                    )
-                );
+                if(isset($this->profile_check)){
+	                $data = array(
+	                    'Upload' => array(
+	                        'attachment' => $file->name,
+	                        'size' => $size,
+	                		'bugs_and_features_id' => $this->profile_check
+	                    )
+	                );
+	           }else {
+	                $data = array(
+	                    'Upload' => array(
+	                        'attachment' => $file->name,
+	                        'size' => $size,
+	                		'bugs_and_features_id' => $this->bug_id 
+	                    )
+	                );
+                }
 
-                // Save on database
+            	// Save on database
                 $this->UploadModel->save( $data );
-
 				
                 if ($append_file) {
                     file_put_contents(

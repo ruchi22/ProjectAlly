@@ -13,7 +13,7 @@
 			//TO NOTIFY PENDING USER REQUEST
 			$notify = $this->Profile->find('count', array('conditions' => array('Profile.status' => 0)));
 			$this->set(compact('notify'));
-			$this -> set('currentUser', $this->Profile->find('first' ,array('conditions' => 
+			$this->set('currentUser', $this->Profile->find('first' ,array('conditions' => 
 																	array('Profile.id' => $this->Session->read('id')))));
 		}
 		
@@ -25,13 +25,15 @@
 																			'Profile.status' => '1'))));
 			//TO LIST CURRENT LEAVE STATUS
 			$this->set('leaveStatus', $this->Event->find('all' ,array('conditions' => 
-																	array('Event.profile_id' => $this->Session->read('id')))));
+																	array('Event.profile_id' => $this->Session->read('id'),
+																	'Event.event_type_id' => 2,'Event.event_type_id' => 4))));
 			
 		}
 
 		public function pendingUsers() {
 			$this->set(compact('title_for_layout'));
-			$this->set('proUser', $this->Profile->find('all'));
+			$this->set('proUser', $this->Profile->find('all',array('conditions' => 
+																	array('Profile.user_role >' => 1))));
 		}
 		
 		public function designateAdmin($id = null){
@@ -96,6 +98,8 @@
 			
 			$this->redirect(array('controller' => 'Employee', 'action' => 'userProfile'));
 		}
-
+		public function addProfilePhoto(){
+			$this->Session->write('profile_check', $this->Session->read('id'));
+		}
 	}
 ?>

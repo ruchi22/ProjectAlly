@@ -6,7 +6,7 @@ class HomeController extends AppController {
 	public $helpers = array('Html','Form');
 	public $components = array('Session');
 
-	public $uses = array('UserInfo', 'Profile', 'AddProject', 'Event', 'EventType');
+	public $uses = array('UserInfo', 'Profile', 'AddProject', 'Event', 'EventType', 'BugAndFeature', 'ProjectMember','Milestone');
 
 	
 	public function beforeFilter() {
@@ -35,29 +35,27 @@ class HomeController extends AppController {
 	}
 	
 	public function signUp(){
-		if(!empty($this->data)){
-			if($this->Profile->save($this->data)){
-				echo "successful";
-				$this->Session->setFlash('Your stuff has been saved.');
+		if(!empty($this->request->data)){
+			if($this->Profile->save($this->request->data)){
+				$this->Session->setFlash('You have been successfully registered.. Please wait for the confirmation..!', 'success');
+				$this->redirect(array('controller' => 'Home', 'action' => 'signUp'));
+				
 			} else {
 				$this->Session->setFlash('Something went wrong please try again.');
 			}
-		$this->redirect(array('controller' => 'Home', 'action' => 'homePage'));
 		}
 	}
 	
 	public function HomePage() {
 		$this->set('leaveRequests', $this->Profile->find('all', array('conditions' => array('Profile.leave_request !=' => 0))));
 		$this->set('leaveDetails', $this->Event->find('all'));
+		$this->set('bugDetails', $this->BugAndFeature->find('all'));
+		$this->set('projectDetails', $this->AddProject->find('all'));
+		$this->set('users', $this->Profile->find('all'));
+		$this->set('project_members', $this->ProjectMember->find('all'));
+		$this->set('milestoneDetails', $this->Milestone->find('all'));
 	}
 	
-	public function test() {
-		echo "You successfully registered with projectally....kindly wait till admin approves yours request.";
-	}
-	
-	public function message() {
-		
-	}
 	
 	public function loginfailure() {
 		
@@ -91,5 +89,4 @@ class HomeController extends AppController {
 								array('Event.id' => $id));
 		$this->redirect(array('controller' => 'Home', 'action' => 'HomePage'));
 	}
-	
 }

@@ -1,26 +1,131 @@
 <?php 
-	
-	echo $this->Html->script('jquery-1.8.0.min.js');
-	echo $this->Html->script('jquery-ui-1.8.23.custom.min.js');
-	echo $this->Html->css('jquery-ui-1.8.23.custom.css');
-	
+$role = $this->Session->read('role') ;
 ?>
 		<div class="row-fluid">
 			<div class="span12">
 				<!-- Main content -->
 				<!-- form using cakephp -->
+				<div class="span5 well">
+					<h4>List of Employees</h4>
+					<table class="table table-bordered table-hover">
+					<thead>
+					    <tr>
+					      <th>Employee name</th>
+					      <th>Designation</th>
+					    </tr>
+					</thead>
+					<tbody>
 				<?php 
-					echo $this->Html->link('Profile',array('controller' => 'Employee', 'action' => 'userProfile'), array('class' => 'btn'));
+				foreach ($users as $user):
+					if($role == 1 || $role == 2){
+						if($role == 1){
+							if($user['Profile']['user_role'] > 1){
+								echo '<tr class =';
+								if($user['Profile']['user_role'] == 3){
+										echo 'success';
+									}
+									elseif($user['Profile']['user_role'] == 4){
+										echo 'error';
+									}	
+									elseif($user['Profile']['user_role'] == 2){
+										echo 'info';
+									}	
+								echo '>';
+									echo '<td>';
+										echo $this->Html->link($user['Profile']['user_name'],
+															array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])); 
+									echo '</td>';
+									echo '<td>';
+										switch($user['Profile']['user_role']){
+											case '2':
+												echo 'Administrator';
+												break;
+											case '3': 
+												echo 'Employee';
+												break;
+											case '4':
+												echo 'User';
+												break;
+										}
+									echo '</td>';
+								echo '</tr>';
+							}
+						}
+						elseif($role == 2){
+							if($user['Profile']['user_role'] >= 2){
+							echo '<tr class =';
+							if($user['Profile']['user_role'] == 3){
+									echo 'success';
+								}
+							elseif($user['Profile']['user_role'] == 4){
+								echo 'error';
+							}	
+							elseif($user['Profile']['user_role'] == 2){
+								echo 'warning';
+							}	
+							echo '>';
+								echo '<td>';
+									echo $this->Html->link($user['Profile']['user_name'],
+														array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])); 
+								echo '</td>';
+								echo '<td>';
+									switch($user['Profile']['user_role']){
+										case '2': 
+											echo 'Administrator';
+											break;
+										case '3': 
+											echo 'Employee';
+											break;
+										case '4':
+											echo 'User';
+											break;
+									}
+								echo '</td>';
+							echo '</tr>';
+							}
+						}
+				}elseif($role == 3 || $role == 4) {
+						if($user['Profile']['user_role'] >= 3){
+							echo '<tr class =';
+							if($user['Profile']['user_role'] == 3){
+									echo 'success';
+								}
+							elseif($user['Profile']['user_role'] == 4){
+								echo 'error';
+							}	
+							echo '>';
+								echo '<td>';
+									echo $this->Html->link($user['Profile']['user_name'],
+														array('controller' => 'Employee', 'action' => 'viewProfile', $user['Profile']['id'])); 
+								echo '</td>';
+								echo '<td>';
+									switch($user['Profile']['user_role']){
+										case '3': 
+											echo 'Employee';
+											break;
+										case '4':
+											echo 'User';
+											break;
+									}
+								echo '</td>';
+							echo '</tr>';
+							}
+							
+						}
+					endforeach;
 				?>
+					</tbody>
+					</table>
+				</div>
 				<br/>
 				<br/>
 				<br/>
 				<?php 
-				if($this->Session->read('role') != 1){
+				if($role != 1){
 					$leave_in_percentage = (100 * $currentUser['Profile']['leave_taken'])/21;
 				
 					?>						
-					<div class="span6">
+					<div class="span7">
 						<strong>Time off's used in %</strong><span class="pull-right"><?php echo ceil($leave_in_percentage) ?>%</span>
 					  	<div class="progress progress-warning active">
 					    	<div class="bar" style="width: <?php echo $leave_in_percentage ?>%"></div>
@@ -36,11 +141,15 @@
 								</div>	
 								<?php }?>
 					  	</p>
-					</div>
-				<div class="span8">
+					  	<br/>
+					  	<br/>
+					  	<br/>
+					  	<br/>
 				<?php 
 				if($leaveStatus != null){ 
 				?>
+				<div class="span 12 well">
+				<h4>Leave request Status</h4>
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -54,6 +163,7 @@
 						<tbody>
 				<?php foreach($leaveStatus as $leave){ ?>
 							<?php 
+						if($leave['Event']['event_type_id'] == 2 || $leave['Event']['event_type_id'] == 4)	{
 							echo '<tr>';
 								echo '<td>';
 								echo $leave['Event']['title'];	
@@ -64,7 +174,7 @@
 								elseif ($leave['Event']['status']  == 'Approved')
 									 echo $this->Html->tag('span', 'Approved', array('class' => 'label label-success'));
 								elseif ($leave['Event']['status']  == 'Declined')
-									 echo $this->Html->tag('span', 'Approved', array('class' => 'label label-inverse'));
+									 echo $this->Html->tag('span', 'Declined', array('class' => 'label label-inverse'));
 								echo '</td>';
 								if($leave['Event']['status']  == 'In Progress'){
 									?>
@@ -89,12 +199,14 @@
 							<?php
 								}
 							echo '</tr>';
-							}?>
+							}
+						}?>
 						</tbody>
 					</table>
 				<?php }
 				}	
 				?>
+				</div>
 				</div>
 			</div>
 		</div>

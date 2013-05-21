@@ -3,18 +3,28 @@ $role = $this->Session->read('role');
 ?>
 <div class="row-fluid">
 	<div class="span12">
-    <div class="span2">
-        <?php
-        if ($role==1 || $role==2)
-        {
-            echo $this->Html->link('New Ticket',
-                array('controller' => 'Project', 'action' => 'newTicket', $projectid),
-                array('class' => 'btn'));
-        }
-        ?>
+    <div class="span3">
+				<ul class="nav nav-tabs nav-stacked span9">
+				<?php 
+			 		if ($role==1 || $role==2)
+	        			{
+	        				echo '<li>';
+				            echo $this->Html->link('New Ticket',
+				                array('controller' => 'Project', 'action' => 'newTicket', $projectid));
+				            echo '</li>';
+				        }
+				     ?>   
+                   <li>
+		               <?php echo $this->Html->link('Milestones',array('controller' => 'Project', 'action' => 'listMilestones', $projectid)); ?>
+		            </li>
+		            <li>
+		                <?php echo $this->Html->link('Go Back',array('controller' => 'Project', 'action' => 'viewProject', $projectid)); ?>
+		            <li>
+	            </ul>
+	   
     </div>
 
-    <div class="span8">
+    <div class="span9">
     <?php
         foreach($milestones as $milestone){
             ?>
