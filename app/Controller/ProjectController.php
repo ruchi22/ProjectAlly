@@ -1,7 +1,7 @@
 <?php
 	class ProjectController extends AppController {	
 		
-		public $uses = array('AddProject','Profile','Milestone','BugAndFeature','Priority','Estimate','Status');
+		public $uses = array('AddProject','Profile','Milestone','BugAndFeature','Priority','Estimate','Status','ProjectMember','Event');
 		
 		public function listProject() {
 			$this->set(compact('title_for_layout'));
@@ -9,29 +9,50 @@
 		}
 		
 		public function viewProject($id = null) {
-
             //$project_id = $this->request->params['pass'][0];
-
 			$this->AddProject->id = $id;
+			$this->set('project_members', $this->ProjectMember->find('all', array('conditions' => 
+																		array('ProjectMember.project_id' => $id))));
 			$this->set('project', $this->AddProject->find('first', array('conditions' => 
 																		array('AddProject.id' => $id))));
 			$this->set('users', $this->Profile->find('all' ,array('conditions' => 
-																	array('Profile.id >' => 'Profile.id',
+																	array(
 																	'Profile.status' => '1'))));
 		}
 		
 		public function viewMembers($id = null) {
 		$this->AddProject->id = $id;
+		$this->set('project_members', $this->ProjectMember->find('all', array('conditions' => 
+																		array('ProjectMember.project_id' => $id))));
 		$this->set('project', $this->AddProject->find('first', array('conditions' => 
 																	array('AddProject.id' => $id))));
-		$this -> set('users', $this->Profile->find('all' ,array('conditions' => 
+		$this->set('users', $this->Profile->find('all' ,array('conditions' => 
 																array('Profile.id >' => 'Profile.id',
 																'Profile.status' => '1'))));
+		}
+		
+		public function view_employees_projects(){
+			$this->set('project_members', $this->ProjectMember->find('all'));
+			$this->set('projects', $this->AddProject->find('all'));
+			$this->set('users', $this->Profile->find('all' ,array('conditions' => 
+																	array(
+																	'Profile.status' => '1'))));
 		}
 		
 		public function addProject() {
 			if(!empty($this->data)){
 				if($this->AddProject->save($this->data)){
+					 $event_data = array('event_type_id' =>  '3',
+                    					'profile_id' => $this->Session->read('id'), 
+                    					'title' => $this->data['AddProject']['project_name'], 
+                    					'details' => $this->data['AddProject']['project_description'], 
+                    					'start' => CakeTime::format('Y-m-d H:i:s', time()), 
+                    					'end' => $this->data['AddProject']['due_date'], 
+                    					'all_day' => '0', 
+                    					'status' => 'Approved',
+                    					'active' => '1' 
+                    					);
+                    $this->Event->save($event_data);			
 					$this->redirect(array('controller' => 'Project', 'action' => 'listProject'));
 				} else {
 					$this->Session->setFlash('Your stuff has been saved.');
@@ -44,25 +65,10 @@
 			$this->redirect(array('controller' => 'Project', 'action' => 'listProject'));
 		}
 		
-		public function addMember($id = null) {
-
-			$user_id = $this->params['named']['user_id'];
-			$proj_id = $this->params['named']['proj_id'];
-			$project = $this->AddProject->find('first',array('conditions' =>
-															array('AddProject.id' => $proj_id)));
-			if ($project['AddProject']['projectMembers'] == null)
-			{
-				$this->AddProject->UpdateAll(array('AddProject.project_members' => "'$user_id'"),
-											array('AddProject.id' => $proj_id));	
-			}
-			else 
-			{
-				$users_id = $project['AddProject']['projectMembers'] . ',' . $user_id;
-				$this->AddProject->UpdateAll(array('AddProject.project_members' => "'$users_id'"),
-											array('AddProject.id' => $proj_id));
-				
-			
-			}
+		public function addMember($user_id = null, $proj_id = null) {
+			$data = array('project_id' => $proj_id, 
+						  'profile_id' => $user_id);
+			$this->ProjectMember->save($data);
 			$this->redirect(array('controller' => 'Project', 'action' => 'viewProject', $proj_id));
 		}
 
@@ -110,6 +116,17 @@
                 if($this->Milestone->save($this->data))
                 {
                     $this->Session->setFlash('New milestone created successfully.', 'success');
+                    $event_data = array('event_type_id' =>  '1',
+                    					'profile_id' => $this->data['Milestone']['responsible_user'], 
+                    					'title' => $this->data['Milestone']['title'], 
+                    					'details' => $this->data['Milestone']['description'], 
+                    					'start' => CakeTime::format('Y-m-d H:i:s', time()), 
+                    					'end' => $this->data['Milestone']['due_date'], 
+                    					'all_day' => '0', 
+                    					'status' => 'Approved',
+                    					'active' => '1' 
+                    					);
+                    $this->Event->save($event_data);					
                     $this->redirect(array('action' => 'listMilestones', $proj_id));
                 }else
                 {
@@ -150,7 +167,6 @@
 	
 		public function editTicket($ticket_id = null, $proj_id = null) {
             $this->set('projectid', $proj_id);
-            
             $this->set('tickets', $this->BugAndFeature->find('all', array('conditions' => array('BugAndFeature.id' => $ticket_id))));
 	            
             //fetching the values of priority
@@ -166,7 +182,8 @@
 
             //fetching the values for list of milestones
             $this->set('milestone',$this->Milestone->find('list',array(
-                'fields' => array('Milestone.title')
+                'fields' => array('Milestone.title'),
+                'conditions' => array('Milestone.project_id' => $proj_id)
             )));
 
             //fetching the values pf estimated size
@@ -208,7 +225,8 @@
 
             //fetching the values for list of milestones
             $this->set('milestone',$this->Milestone->find('list',array(
-                'fields' => array('Milestone.title')
+                'fields' => array('Milestone.title'),
+                'conditions' => array('Milestone.project_id' => $proj_id)
             )));
 
             //fetching the values pf estimated size

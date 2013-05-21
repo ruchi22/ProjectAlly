@@ -7,17 +7,18 @@
                 <div class="hero-unit">
                   <div class="row-fluid">
                     <div class="span7 marketting-info">
-                      <h1>TELL ABOUT YOUR BUSINESS AND CORPORATE.</h1>
+                      <h1>Project Management</h1>
                       <p>
-                        We are Bootbusiness and we are awesome.We solve your technology problems by our awesome products.
-                        We are Bootbusiness and we are awesome.We solve your technology problems by our awesome products.
+                        ProjectAlly offers a comprehensive Project Management system which would enable the company to carry out
+                        effective implementation of the project.
                       </p>
                       <h3>
-                        <a href="product.html" class="btn">Learn more</a>
+                          <?php echo $this->Html->link('Learn More', array('controller' => 'Home', 'action' => 'signUp'),
+                                                                     array('class' => 'btn'));?>
                       </h3>                      
                     </div>
                     <div class="span5">
-                      <img src="img/placeholder.jpg" class="thumbnail">
+                      <img src="img/project-management.jpg" class="thumbnail">
                     </div>
                   </div>                  
                 </div>
@@ -26,17 +27,19 @@
                 <div class="hero-unit">
                   <div class="row-fluid">
                     <div class="span7 marketting-info">
-                      <h1>TELL ABOUT YOUR NATURE OF WORK</h1>
+                      <h1>Employee Management</h1>
                       <p>
-                        We are Bootbusiness and we design ultimate website applications.
-                        We are Bootbusiness and we design ultimate website applications.
+                        Hunting a system that supports employee as well as project management...?...ProjectAlly is the answer.
+                        It integrates Employee Management system with Project Management providing a great amount flexibility.
                       </p>
                       <h3>
-                        <a href="service.html" class="btn">Learn more</a>
+                          <?php echo $this->Html->link('Learn More', array('controller' => 'Home', 'action' => 'signUp'),
+                                                                     array('class' => 'btn'));?>
+                          <br>
                       </h3>                      
                     </div>
                     <div class="span5">
-                      <img src="img/placeholder.jpg" class="thumbnail">
+                      <img src="img/employee-management.jpg" class="thumbnail">
                     </div>
                   </div>                  
                 </div>
@@ -45,18 +48,18 @@
                 <div class="hero-unit">
                   <div class="row-fluid">
                     <div class="span7 marketting-info">
-                      <h1>TELL ABOUT YOUR PRODUCT</h1>
+                      <h1>Bug Tracking</h1>
                       <p>
-                        Get excited about our products.We build awesome products in mobile.
-                        We build awesome products in mobile.We build awesome products in mobile.
+                        Tired of client reporting bugs in the system...?...Unable to track them...?...ProjectAlly comes to resort
+                          with its advanced bug tracking system to assist you in your job.
                       </p>
                       <h3>
-                        <a href="#" class="btn btn-primary">Buy now</a>
-                        <a href="product.html" class="btn">Learn more</a>
+                          <?php echo $this->Html->link('Learn More', array('controller' => 'Home', 'action' => 'signUp'),
+                                                                     array('class' => 'btn'));?>
                       </h3>                      
                     </div>
                     <div class="span5">
-                      <img src="img/placeholder.jpg" class="thumbnail">
+                      <img src="img/bugtracker.jpg" class="thumbnail">
                     </div>
                   </div>                  
                 </div>
@@ -65,25 +68,23 @@
                 <div class="hero-unit">
                   <div class="row-fluid">
                     <div class="span7 marketting-info">
-                      <h1>TELL ABOUT YOUR ANOTHER PRODUCT</h1>
+                      <h1>And Many More...</h1>
                       <p>
-                        Get excited about our products.We build awesome products in mobile.
-                        We build awesome products in mobile.We build awesome products in mobile.
+                          Some what are you waiting for...There is lot in store for you people.. Come make a plunge into ProjectAlly...
                       </p>
                       <h3>
-                        <a href="#" class="btn btn-primary">Buy now</a>
-                        <a href="product.html" class="btn">Learn more</a>
+                          <?php echo $this->Html->link('Learn More', array('controller' => 'Home', 'action' => 'signUp'),
+                                                                     array('class' => 'btn'));?>
+                          <br><br><br><br>
                       </h3>                      
                     </div>
                     <div class="span5">
-                      <img src="img/placeholder.jpg" class="thumbnail">
+                      <img src="img/manymore.png" class="thumbnail">
                     </div>
                   </div>                  
                 </div>
               </div>
             </div>
-            <a class="left carousel-control" href="#heroSlider" data-slide="prev"> ‹ </a>
-            <a class="right carousel-control" href="#heroSlider" data-slide="next"> › </a>
           </div>
         </div>
       </div>
@@ -91,84 +92,23 @@
       <!-- Start: PRODUCT LIST -->
         <div class="container">
           <div class="page-header">
-            <h2>Our products</h2>
-          </div>
-          <div class="row-fluid">
-            <ul class="thumbnails">
-              <li class="span4">
-                <div class="thumbnail">
-                  <img src="img/placeholder-360x200.jpg" alt="product name">
-                  <div class="caption">
-                    <h3>Product name</h3>
-                    <p>
-                      Few attractive words about your product.Few attractive words about your product.
-                      Few attractive words about your product.Few attractive words about your product.
-                    </p>
-                  </div>
-                  <div class="widget-footer">
-                    <p>
-                      <a href="#" class="btn btn-primary">Buy now</a>&nbsp;
-                      <a href="product.html" class="btn">Read more</a>
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li class="span4">
-                <div class="thumbnail">
-                  <img src="img/placeholder-360x200.jpg" alt="product name">
-                  <div class="caption">
-                    <h3>Product name</h3>
-                    <p>
-                      Few attractive words about your product.Few attractive words about your product.
-                      Few attractive words about your product.Few attractive words about your product.
-                    </p>
-                  </div>
-                  <div class="widget-footer">
-                    <p>
-                      <a href="#" class="btn btn-primary">Buy now</a>&nbsp;
-                      <a href="product.html" class="btn">Read more</a>
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li class="span4">
-                <div class="thumbnail">
-                  <img src="img/placeholder-360x200.jpg" alt="product name">
-                  <div class="caption">
-                    <h3>Product name</h3>
-                    <p>
-                      Few attractive words about your product.Few attractive words about your product.
-                      Few attractive words about your product.Few attractive words about your product.
-                    </p>
-                  </div>
-                  <div class="widget-footer">
-                    <p>
-                      <a href="#" class="btn btn-primary">Buy now</a>&nbsp;
-                      <a href="product.html" class="btn">Read more</a>
-                    </p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="page-header">
             <h2>Our Services</h2>
           </div>
           <div class="row-fluid">
             <ul class="thumbnails">
               <li class="span4">
                 <div class="thumbnail">
-                  <img src="img/placeholder-360x200.jpg" alt="product name">
+                  <img src="img/leave.png" alt="product name">
                   <div class="caption">
-                    <h3>Service title</h3>
+                    <h3>Leave Management</h3>
                     <p>
-                      Few attractive words about your service.Few attractive words about your service.
-                      Few attractive words about your service.Few attractive words about your service.
+                      Few attractive words about your product.Few attractive words about your product.
+                      Few attractive words about your product.Few attractive words about your product.
                     </p>
                   </div>
                   <div class="widget-footer">
                     <p>
-                      <a href="#" class="btn btn-primary">Try for free</a>&nbsp;
+                      <a href="#" class="btn btn-primary">Buy now</a>&nbsp;
                       <a href="product.html" class="btn">Read more</a>
                     </p>
                   </div>
@@ -176,17 +116,17 @@
               </li>
               <li class="span4">
                 <div class="thumbnail">
-                  <img src="img/placeholder-360x200.jpg" alt="product name">
+                  <img src="img/calendarhome.jpg" alt="product name">
                   <div class="caption">
-                    <h3>Service title</h3>
+                    <h3>Event based Calendar</h3>
                     <p>
-                      Few attractive words about your service.Few attractive words about your service.
-                      Few attractive words about your service.Few attractive words about your service.
+                      Few attractive words about your product.Few attractive words about your product.
+                      Few attractive words about your product.Few attractive words about your product.
                     </p>
                   </div>
                   <div class="widget-footer">
                     <p>
-                      <a href="#" class="btn btn-primary">Try for free</a>&nbsp;
+                      <a href="#" class="btn btn-primary">Buy now</a>&nbsp;
                       <a href="product.html" class="btn">Read more</a>
                     </p>
                   </div>
@@ -194,17 +134,17 @@
               </li>
               <li class="span4">
                 <div class="thumbnail">
-                  <img src="img/placeholder-360x200.jpg" alt="product name">
+                  <img src="img/bugtrackerhome.jpg" alt="product name">
                   <div class="caption">
-                    <h3>Service title</h3>
+                    <h3>Bugs and Features</h3>
                     <p>
-                      Few attractive words about your service.Few attractive words about your service.
-                      Few attractive words about your service.Few attractive words about your service.
+                      Few attractive words about your product.Few attractive words about your product.
+                      Few attractive words about your product.Few attractive words about your product.
                     </p>
                   </div>
                   <div class="widget-footer">
                     <p>
-                      <a href="#" class="btn btn-primary">Try for free</a>&nbsp;
+                      <a href="#" class="btn btn-primary">Buy now</a>&nbsp;
                       <a href="product.html" class="btn">Read more</a>
                     </p>
                   </div>
@@ -212,5 +152,66 @@
               </li>
             </ul>
           </div>
-        </div>
+<!--          <div class="page-header">-->
+<!--            <h2>Our Services</h2>-->
+<!--          </div>-->
+<!--          <div class="row-fluid">-->
+<!--            <ul class="thumbnails">-->
+<!--              <li class="span4">-->
+<!--                <div class="thumbnail">-->
+<!--                  <img src="img/placeholder-360x200.jpg" alt="product name">-->
+<!--                  <div class="caption">-->
+<!--                    <h3>Service title</h3>-->
+<!--                    <p>-->
+<!--                      Few attractive words about your service.Few attractive words about your service.-->
+<!--                      Few attractive words about your service.Few attractive words about your service.-->
+<!--                    </p>-->
+<!--                  </div>-->
+<!--                  <div class="widget-footer">-->
+<!--                    <p>-->
+<!--                      <a href="#" class="btn btn-primary">Try for free</a>&nbsp;-->
+<!--                      <a href="product.html" class="btn">Read more</a>-->
+<!--                    </p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </li>-->
+<!--              <li class="span4">-->
+<!--                <div class="thumbnail">-->
+<!--                  <img src="img/placeholder-360x200.jpg" alt="product name">-->
+<!--                  <div class="caption">-->
+<!--                    <h3>Service title</h3>-->
+<!--                    <p>-->
+<!--                      Few attractive words about your service.Few attractive words about your service.-->
+<!--                      Few attractive words about your service.Few attractive words about your service.-->
+<!--                    </p>-->
+<!--                  </div>-->
+<!--                  <div class="widget-footer">-->
+<!--                    <p>-->
+<!--                      <a href="#" class="btn btn-primary">Try for free</a>&nbsp;-->
+<!--                      <a href="product.html" class="btn">Read more</a>-->
+<!--                    </p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </li>-->
+<!--              <li class="span4">-->
+<!--                <div class="thumbnail">-->
+<!--                  <img src="img/placeholder-360x200.jpg" alt="product name">-->
+<!--                  <div class="caption">-->
+<!--                    <h3>Service title</h3>-->
+<!--                    <p>-->
+<!--                      Few attractive words about your service.Few attractive words about your service.-->
+<!--                      Few attractive words about your service.Few attractive words about your service.-->
+<!--                    </p>-->
+<!--                  </div>-->
+<!--                  <div class="widget-footer">-->
+<!--                    <p>-->
+<!--                      <a href="#" class="btn btn-primary">Try for free</a>&nbsp;-->
+<!--                      <a href="product.html" class="btn">Read more</a>-->
+<!--                    </p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
       <!-- End: PRODUCT LIST -->

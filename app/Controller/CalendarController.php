@@ -18,7 +18,7 @@
 		}
 		
 		public function index(){
-			
+			$this->set('eventTypes', $this->EventType->find('all'));
 		}
 		
 		/* CALENDAR SPECIFIC FUNTIONS */
@@ -90,6 +90,7 @@
 				$this->redirect(array('action' => 'event'));
 			}
 			$this->set('event', $this->Event->read(null, $id));
+			$this->set('leave_by', $this->Profile->find('all'));
 		}
 		
 		function leave_view($id = null) {
@@ -98,6 +99,7 @@
 				$this->redirect(array('action' => 'event'));
 			}
 			$this->set('event', $this->Event->read(null, $id));
+			$this->set('leave_by', $this->Profile->find('all'));
 		}
 		
 		function event_add() {
@@ -213,6 +215,7 @@
 			$this->layout = "ajax";
 			$vars = $this->params['url'];
 			$conditions = array('conditions' => array('UNIX_TIMESTAMP(start) >=' => $vars['start'], 'UNIX_TIMESTAMP(start) <=' => $vars['end']));
+			$leave_by = $this->Profile->find('all');
 			$events = $this->Event->find('all', $conditions);
 			foreach($events as $event) {
 				if($event['Event']['all_day'] == 1) {
@@ -222,22 +225,50 @@
 					$allday = false;
 					$end = $event['Event']['end'];
 				}
-				if($event['Event']['event_type_id'] == 4 || $event['Event']['event_type_id'] == 8){
+				if($event['Event']['event_type_id'] == 2 || $event['Event']['event_type_id'] == 4){
 					if($event['Event']['status'] == 'Approved'){
+					foreach ($leave_by as $leave):
+					if($event['Event']['profile_id'] == $leave['Profile']['id']):
+				
 					$data[] = array(
 							'id' => $event['Event']['id'],
-							'title'=>$event['Event']['title'],
+							'title'=>$leave['Profile']['user_name'].' on leave',
 							'start'=>$event['Event']['start'],
 							'end' => $end,
 							'allDay' => $allday,
-							'url' => Router::url('/') . 'Employee/event_view/'.$event['Event']['id'],
+							'url' => Router::url('/') . 'Calendar/leave_view/'.$event['Event']['id'],
 							'details' => $event['Event']['details'],
 							'className' => $event['EventType']['color']
 					);
+					endif;
+					endforeach;
 					}else{
 						$data[] = array();
 					}
-				}else{
+				}elseif($event['Event']['event_type_id'] == 1){
+					$data[] = array(
+							'id' => $event['Event']['id'],
+							'title'=>'Milestone:'. $event['Event']['title'],
+							'start'=>$event['Event']['start'],
+							'end' => $end,
+							'allDay' => $allday,
+							'url' => Router::url('/') . 'Calendar/event_view/'.$event['Event']['id'],
+							'details' => $event['Event']['details'],
+							'className' => $event['EventType']['color']
+					);
+				}elseif($event['Event']['event_type_id'] == 3){
+					$data[] = array(
+							'id' => $event['Event']['id'],
+							'title'=>'Project:'.$event['Event']['title'],
+							'start'=>$event['Event']['start'],
+							'end' => $end,
+							'allDay' => $allday,
+							'url' => Router::url('/') . 'Calendar/event_view/'.$event['Event']['id'],
+							'details' => $event['Event']['details'],
+							'className' => $event['EventType']['color']
+					);
+				}
+				else{
 					$data[] = array(
 							'id' => $event['Event']['id'],
 							'title'=>$event['Event']['title'],

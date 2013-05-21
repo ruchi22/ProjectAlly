@@ -40,11 +40,6 @@
 		            <?php
 		            //Following code is to notify number of pending users to superadmin.
 		             ?>   <ul class="nav nav-pills">
-		                    <?php if ($role == 1)
-		                {?>
-		                    <?php }
-		                    //code ends here
-		                    ?>
 		                    <!-- Code for logout and myprofile -->
 		                    <li class="dropdown">
 		                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -57,11 +52,15 @@
 		                            <li><?php echo $this->Html->link('Logout', array('controller' => 'App', 'action' => 'logout')); ?></li>
 		                        </ul>
 		                    </li>
-		                	<li>
-		                        <?php
-		                        echo $this->Html->link($notify, array('controller' => 'Employee', 'action' => 'pendingUsers'),array('class' => 'badge badge-important'));
-		                        ?>
-		                    </li>
+                        <?php if ($role == 1): ?>
+               				   
+			                	<li>
+			                        <?php
+			                        echo $this->Html->link($notify, array('controller' => 'Employee', 'action' => 'pendingUsers'),array('class' => 'badge badge-important'));
+			                        ?>
+			                    </li>
+		                     <?php endif; ?>
+		                   
 		                </ul>
 		          </li>
 				<?php 

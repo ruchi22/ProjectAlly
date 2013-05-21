@@ -1,9 +1,9 @@
 <?php 
-	echo $this->Html->script('jquery-1.8.0.min.js');
-	echo $this->Html->script('jquery-ui-1.8.23.custom.min.js');
+	echo $this->Html->script('jquery-1.8.0.min.js', FALSE);
+	echo $this->Html->script('jquery-ui-1.8.23.custom.min.js', FALSE);
 	echo $this->Html->css('jquery-ui-1.8.23.custom.css');
 	echo $this->Html->css('jquery-ui.css');
-	echo $this->Html->script('jquery-ui.js');
+	echo $this->Html->script('jquery-ui.js', FALSE);
 ?>
 	<script>
 	 $(function() {
@@ -19,14 +19,20 @@
 			<div class="span12">
 				<!-- Main content -->
 				<!-- form using cakephp -->
+				
 				<?php
-					echo $this->Form->create('Profile',array('class' => 'form-horizontal', 'url' => array('controller' => 'Employee',
+				echo $this->Form->create('Profile',array('class' => 'form-horizontal', 'url' => array('controller' => 'Employee',
 																									'action' => 'updateProfile')));
-					echo $this->Html->image('default-profile.jpg', array('class' => 'img-polaroid'));
-					echo "<div class=\"control-group\">";
-						echo $this->Form->file('user_photo', array('label' => false));
-					echo "</div>";
 					
+					if(isset($proUser['Profile']['user_photo'])){
+						echo $this->Html->image('../uploads/profile_pic_'.$this->Session->read('id').'.jpg', array('class' => 'img-polaroid', 'height' => '100px', 'width' => '100px'));
+					} else {
+						echo $this->Html->image('default-profile.jpg', array('class' => 'img-polaroid'));
+					}
+					echo '<br/>';
+					echo $this->Html->link('Add New Photo',array('controller' => 'Employee', 
+																'action' => 'addProfilePhoto'),array('class' => 'btn'));
+				
 					echo "<div class=\"control-group\">";
 						echo $this->Form->label('user_name', 'Name', array('class' => 'control-label'));
 						echo $this->Form->input('user_name', array('label' => false,
